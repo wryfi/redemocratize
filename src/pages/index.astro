@@ -1,0 +1,418 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import { getCollection } from "astro:content"
+
+let topics = []
+try {
+  topics = await getCollection("topics")
+} catch {}
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="py-24 lg:py-40 text-center">
+    <div class="container max-w-4xl">
+      <h1 class="text-5xl lg:text-7xl font-bold font-heading mb-6">Redemocratize</h1>
+      <p class="text-xl lg:text-2xl text-base-content/80 italic">
+        First Principles for Modern Democracy
+      </p>
+      <p class="text-xl lg:text-2xl text-base-content/80 mt-2 mb-10 italic">
+        Collaborative Constitutional Design
+      </p>
+      <img src="/favicon.svg" alt="Redemocratize" class="w-64 h-64 mx-auto mb-12" />
+      <div class="prose prose-xl max-w-none text-center">
+        <p>
+          Democratic governance is under assault everywhere, but <span class="italic">
+            democracy
+          </span> is not the problem.
+        </p>
+        <p>
+          Our institutions have been captured and turned against the people, who are the source of
+          all legitimate power.
+        </p>
+        <p>Constitutions designed to resist change cannot resist capture.</p>
+        <p>We know what's breaking. The harder question is: what comes next?</p>
+        <p>
+          Redemocratize articulates principles for democratic governance that are up to the
+          challenges of our time — <br /> and invites you to help build a future worthy of our past.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Problem -->
+  <section class="py-20 lg:py-24 bg-base-200">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl font-bold font-heading mb-8">The Problem</h2>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          The crisis is not one failure. It is an accumulation, with each structural breakdown
+          creating the conditions for the next.
+        </p>
+        <p>
+          Concentrated wealth captures the mechanisms of democratic governance. Captured governance
+          deadlocks legislatures, poisons the information environment, and manipulates the elections
+          meant to hold it accountable. Emergency powers, never relinquished, become permanent.
+          Executives defy the courts. Rights are stripped by the institutions charged with
+          protecting them. And the amendment processes that might have corrected any of this were
+          never designed to succeed.
+        </p>
+        <p>
+          These failures are not accidents. They are the predictable result of constitutional
+          designs that assumed good faith, relied on norms instead of structure, and provided no
+          realistic mechanism for their own renewal.
+        </p>
+        <p>
+          We no longer live in the eighteenth century, but we are bound by an eighteenth-century
+          social contract, relinquishing our democratic institutions to concentrations of wealth,
+          power, and manipulation the framers could never have predicted. The present moment does
+          not demand that we abandon democracy, but that we reclaim it for ourselves and future
+          generations.
+        </p>
+      </div>
+      <div class="mt-10">
+        <a href="/diagnosis" class="btn btn-outline btn-primary font-heading">
+          Read the full diagnosis
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Approach -->
+  <section class="py-20 lg:py-24">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl font-bold font-heading mb-8">Our Approach</h2>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          Redemocratize articulates design principles — not a specific institutional blueprint. The
+          principles constrain and guide governance design, but they do not dictate it. We evaluate
+          institutional forms by how well they serve the principles, not by how closely they
+          resemble what exists.
+        </p>
+        <p>
+          This is closer to an open-source software project than a political campaign. The
+          principles are developed in the open. Contributions are welcome. Everything is versioned,
+          transparent, and revisable — because a project advocating for adaptive governance should
+          practice it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fifteen Principles -->
+  <section class="py-20 lg:py-28 bg-base-200">
+    <div class="container max-w-5xl">
+      <h2 class="text-3xl font-bold font-heading mb-10">Fifteen Principles in Two Tiers</h2>
+
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+        <div>
+          <h3 class="text-xl font-bold font-heading mb-6 text-primary">
+            How governance is organized
+          </h3>
+          <dl class="space-y-6">
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/adaptive-capacity" class="link link-hover">
+                  Adaptive Capacity
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                A constitution's first obligation is ensuring its own revisability and
+                self-correction. Rigidity is not stability. It is deferred crisis.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/subsidiarity" class="link link-hover">Subsidiarity</a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Authority defaults to the most local competent level, constrained by a floor of
+                fundamental rights that no level of government may breach.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/plural-sovereignty" class="link link-hover">
+                  Plural Sovereignty
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                A large polity contains multiple overlapping political communities. Constitutional
+                design accommodates this rather than forcing a fiction of unity.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/temporal-pluralism" class="link link-hover">
+                  Temporal Pluralism
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Different institutions operate at different speeds for different purposes.
+                Responsiveness and stability are architecturally separated.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/epistemic-pluralism" class="link link-hover">
+                  Epistemic Pluralism
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Different modes of knowledge are built into different institutional roles. No single
+                epistemology dominates.
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold font-heading mb-6 text-accent">
+            What governance must protect
+          </h3>
+          <dl class="space-y-6">
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/fundamental-rights-floor" class="link link-hover">
+                  Fundamental Rights Floor
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Rights attach to all persons within jurisdiction, not only citizens. Non-derogable —
+                no emergency justifies suspension.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/epistemic-autonomy" class="link link-hover">
+                  Epistemic Autonomy
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                The right to truthful information and freedom from systematic manipulation of
+                perception and judgment.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/human-primacy" class="link link-hover">Human Primacy</a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Human judgment is required over decisions affecting fundamental rights. AI cannot
+                decide when rights are revoked.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/economic-democracy" class="link link-hover">
+                  Economic Democracy
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Extreme wealth concentration is inherently incompatible with democratic
+                self-governance. Political participation belongs to persons, not economic entities.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a
+                  href="/principles/democratic-sovereignty-over-institutions"
+                  class="link link-hover"
+                >
+                  Democratic Sovereignty over Institutions
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                No institutional form — corporate, religious, nonprofit — confers immunity from
+                democratic accountability.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/commons-governance" class="link link-hover">
+                  Commons Governance
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Shared wealth is held in trust and cannot be enclosed.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/ecological-embeddedness" class="link link-hover">
+                  Ecological Embeddedness
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Governance operates within biophysical limits.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/civic-technology-sovereignty" class="link link-hover">
+                  Civic Technology Sovereignty
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Democratic infrastructure must be publicly owned, transparent, and verifiable by
+                non-experts.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/democratic-peace-and-security" class="link link-hover">
+                  Democratic Peace & Security
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                The authority to exercise force is subject to the most rigorous democratic
+                constraints. The enforcement apparatus may not be directed against political
+                activity.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-bold font-heading">
+                <a href="/principles/cooperative-sovereignty" class="link link-hover">
+                  Cooperative Sovereignty
+                </a>
+              </dt>
+              <dd class="text-base-content/80 mt-1">
+                Relationships between political communities are governed by mutual respect,
+                non-domination, and democratic accountability.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <a href="/principles" class="btn btn-primary font-heading">Explore the principles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Build On -->
+  <section class="py-20 lg:py-24">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl font-bold font-heading mb-8">What We Build On</h2>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          This project is not nihilistic about existing democratic traditions. Many principles
+          embedded in those traditions are sound — due process, freedom of conscience, separation of
+          powers, civilian control of the military, the rejection of hereditary privilege. The
+          crisis is that institutional implementations have failed these principles.
+        </p>
+        <p>
+          We claim these traditions more seriously than those defending the status quo. We insist on
+          fulfilling what they promised but could not deliver.
+        </p>
+      </div>
+      <div class="mt-10">
+        <a href="/inherited-principles" class="btn btn-outline btn-primary font-heading">
+          Read about inherited principles
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Start Here -->
+  <section class="py-20 lg:py-24 bg-base-200">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl font-bold font-heading mb-8">Start Here</h2>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          The principles are the intellectual architecture. But most people think in terms of
+          issues. These topic pages show how the principles apply to the things you care about.
+        </p>
+      </div>
+
+      <div class="mt-10 space-y-5">
+        <div class="card bg-base-100 shadow-sm">
+          <div class="card-body p-5">
+            <h3 class="card-title text-base font-heading">
+              Preventing & Defeating Authoritarianism
+            </h3>
+            <p class="text-sm text-base-content/70">
+              How the entire framework is designed to make authoritarian capture structurally
+              impossible.
+            </p>
+            <div class="card-actions justify-end">
+              <a href="/topics/authoritarianism" class="btn btn-sm btn-primary font-heading">
+                Read
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card bg-base-100 shadow-sm">
+          <div class="card-body p-5">
+            <h3 class="card-title text-base font-heading">Wealth Inequality & Oligarchy</h3>
+            <p class="text-sm text-base-content/70">
+              Why extreme wealth concentration is inherently incompatible with democracy, and what
+              governance designed to prevent it looks like.
+            </p>
+            <div class="card-actions justify-end">
+              <a href="/topics/wealth-inequality" class="btn btn-sm btn-primary font-heading">
+                Read
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-8 text-base-content/70">
+        More topics: Education, Immigration, Healthcare, Criminal Justice, Climate & Environment,
+        Labor & Work, Technology & Privacy, Money & Politics
+      </p>
+
+      <div class="mt-8">
+        <a href="/topics" class="btn btn-outline btn-primary font-heading">All topics</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contribute -->
+  <section class="py-20 lg:py-24">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl font-bold font-heading mb-8">Contribute</h2>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          This is an open project. The principles are developed in the open and contributions are
+          welcome from anyone — scholars, organizers, lawyers, technologists, citizens.
+        </p>
+        <p>
+          You can contribute essays and analysis on how the principles apply to issues you know. You
+          can propose institutional mechanisms that serve the principles. You can bring comparative
+          examples from other democratic traditions. You can translate.
+        </p>
+        <p>
+          We use Google Docs for accessibility — you don't need to know git to participate. All
+          content is licensed CC BY-SA.
+        </p>
+      </div>
+      <div class="mt-10">
+        <a href="/contribute" class="btn btn-primary font-heading">How to contribute</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stay Connected -->
+  <section class="py-20 lg:py-24">
+    <div class="container max-w-4xl text-center">
+      <h2 class="text-3xl font-bold font-heading mb-8">Stay Connected</h2>
+      <p class="text-lg text-base-content/80 mb-10">
+        Join the mailing list to follow the project's development and be notified of new content and
+        opportunities to contribute.
+      </p>
+      <div class="flex justify-center">
+        <div class="join">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            class="input join-item input-bordered w-64"
+          />
+          <button class="btn btn-primary join-item font-heading">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

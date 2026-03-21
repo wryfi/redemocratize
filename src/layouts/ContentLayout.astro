@@ -1,0 +1,41 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const { title, description, headings, backLink, backLabel } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Redemocratize`} description={description}>
+  <div class="container py-8">
+    <div class="max-w-6xl mx-auto">
+      <header class="mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold font-heading">
+          {title}
+        </h1>
+        {description && (
+          <p class="mt-6 text-lg text-base-content/70">{description}</p>
+        )}
+      </header>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        {headings && headings.length > 0 && (
+          <aside class="lg:w-1/4 lg:sticky lg:top-20 lg:self-start order-last lg:order-first">
+            <TableOfContents headings={headings} />
+          </aside>
+        )}
+
+        <article class={`prose prose-lg max-w-none ${headings && headings.length > 0 ? 'lg:w-3/4' : 'w-full'}`}>
+          <slot />
+        </article>
+      </div>
+
+      {backLink && (
+        <footer class="mt-16">
+          <a href={backLink} class="btn btn-outline btn-primary">
+            &larr; {backLabel || "Back"}
+          </a>
+        </footer>
+      )}
+    </div>
+  </div>
+</BaseLayout>

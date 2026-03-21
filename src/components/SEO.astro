@@ -1,0 +1,24 @@
+---
+const {
+  title = 'Redemocratize',
+  description = 'An open-source constitutional design project articulating principles for democratic governance adequate to the 21st century.',
+  image = '/og-default.jpg',
+  canonical
+} = Astro.props;
+
+const siteUrl = 'https://redemocratize.org';
+const fullTitle = title === 'Redemocratize' ? title : `${title} | Redemocratize`;
+---
+
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, siteUrl).href} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical || Astro.url.href} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(image, siteUrl).href} />
+
+{canonical && <link rel="canonical" href={canonical} />}

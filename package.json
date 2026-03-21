@@ -1,0 +1,43 @@
+{
+  "name": "redemocratize",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "dev:clean": "bun run clean && astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "bun test",
+    "clean": "rm -rf .astro node_modules/.vite",
+    "clean:full": "rm -rf .astro node_modules/.vite node_modules bun.lock",
+    "reinstall": "bun run clean:full && bun install",
+    "install:frozen": "bun install --frozen-lockfile"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "5",
+    "@astrojs/sitemap": "^3.7.1",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/ph": "^1.2.2",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^6.0.4",
+    "astro-icon": "^1.1.5",
+    "citation-js": "^0.7.22",
+    "citeproc": "^2.4.63",
+    "mdast-util-directive": "^3.1.0",
+    "remark-definition-list": "^2.0.0",
+    "remark-directive": "^4.0.0",
+    "remark-gfm": "^4.0.1",
+    "tailwindcss": "^4.2.1",
+    "theme-change": "^2.5.0",
+    "unist-util-visit": "^5.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "daisyui": "^5.5.19",
+    "gray-matter": "^4.0.3",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

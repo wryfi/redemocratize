@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const principles = (await getCollection('principles')).sort((a, b) => a.data.number - b.data.number);
+const structural = principles.filter(p => p.data.tier === 'structural');
+const substantive = principles.filter(p => p.data.tier === 'substantive');
+---
+
+<BaseLayout title="The Fifteen Principles | Redemocratize">
+  <div class="container py-8">
+    <div class="max-w-4xl mx-auto">
+      <header class="mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-4">The Fifteen Principles</h1>
+        <p class="text-lg text-base-content/70">
+          Organized in two tiers: structural principles that govern how institutions are organized,
+          and substantive commitments that define what governance must protect. The tension between
+          the two tiers is productive and must be held, not resolved.
+        </p>
+      </header>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold font-heading mb-2 text-primary">Structural Principles</h2>
+        <p class="text-base-content/70 mb-6">How governance is organized</p>
+        <div class="space-y-4">
+          {structural.map(p => (
+            <a href={`/principles/${p.id}`} class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow block">
+              <div class="card-body p-6">
+                <h3 class="card-title font-heading">
+                  <span class="text-primary">{p.data.number}.</span> {p.data.title}
+                </h3>
+                <p class="text-base-content/70">{p.data.summary}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold font-heading mb-2 text-accent">Substantive Commitments</h2>
+        <p class="text-base-content/70 mb-6">What governance must protect</p>
+        <div class="space-y-4">
+          {substantive.map(p => (
+            <a href={`/principles/${p.id}`} class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow block">
+              <div class="card-body p-6">
+                <h3 class="card-title font-heading">
+                  <span class="text-accent">{p.data.number}.</span> {p.data.title}
+                </h3>
+                <p class="text-base-content/70">{p.data.summary}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

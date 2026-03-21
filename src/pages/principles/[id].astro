@@ -1,0 +1,25 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const principles = await getCollection('principles');
+  return principles.map(entry => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<ContentLayout
+  title={`${entry.data.number}. ${entry.data.title}`}
+  description={entry.data.summary}
+  headings={headings}
+  backLink="/principles"
+  backLabel="Back to Principles"
+>
+  <Content />
+</ContentLayout>

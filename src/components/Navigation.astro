@@ -1,0 +1,70 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/diagnosis', label: 'Diagnosis' },
+  { href: '/principles', label: 'Principles' },
+  { href: '/topics', label: 'Topics' },
+];
+
+function isActive(href) {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(href);
+}
+---
+
+<div class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
+  <div class="navbar-start">
+    <!-- Mobile menu dropdown -->
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        {navItems.map(item => (
+          <li>
+            <a href={item.href} class={isActive(item.href) ? 'active font-semibold' : ''}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <!-- Logo -->
+    <a href="/" class="btn btn-ghost text-xl font-bold font-heading">
+      Redemocratize
+    </a>
+  </div>
+
+  <!-- Desktop menu -->
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      {navItems.map(item => (
+        <li>
+          <a href={item.href} class={isActive(item.href) ? 'active font-semibold' : ''}>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="navbar-end">
+  </div>
+</div>
+
+<style>
+  .menu a.active {
+    background-color: var(--color-primary);
+    color: var(--color-primary-content);
+  }
+
+  .menu a:hover:not(.active) {
+    background-color: var(--color-base-200);
+  }
+</style>

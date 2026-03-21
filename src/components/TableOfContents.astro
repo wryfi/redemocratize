@@ -1,0 +1,27 @@
+---
+const { headings } = Astro.props;
+---
+
+{headings && headings.length > 0 && (
+  <nav class="card bg-base-200">
+    <div class="card-body p-6">
+      <h2 class="text-lg font-bold font-heading mb-4">Table of Contents</h2>
+      <ul class="space-y-2">
+        {headings.map((heading) => (
+          <li class={heading.depth === 3 ? 'ml-4' : ''}>
+            <a
+              href={`#${heading.slug}`}
+              class={`block py-1 hover:text-primary transition-colors ${
+                heading.depth === 2
+                  ? 'font-semibold'
+                  : 'text-base-content/70 text-sm'
+              }`}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+)}
