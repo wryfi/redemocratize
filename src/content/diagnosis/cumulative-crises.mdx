@@ -4,6 +4,57 @@ summary: "The U.S. constitutional system has been undermined by an accumulation 
 order: 1
 ---
 
+import DistortionSvg from "../../assets/founding_distortion_ring_labeled.svg"
+import CascadeDiagram from "../../components/CascadeDiagram.astro"
+
+## Introduction
+
+The United States Constitution was designed, in significant part, to be
+difficult to change. That difficulty was not a neutral procedural choice. It was
+a condition demanded by the interests most threatened by democratic revision,
+and it has functioned ever since to protect the structural advantages of those
+who wrote the rules.
+
+This is the founding distortion: a system that makes its own correction
+functionally impossible, governed by an amendment process that can only be
+changed through itself. Each constitutional crisis gets resolved not
+democratically but by whoever holds power at the time, in ways that entrench
+that power and make the next crisis more likely. The loop tightens with every
+revolution.
+
+<div class="flex justify-center max-w-lg mx-auto cursor-pointer" onclick="document.getElementById('distortion-modal').showModal()">
+  <DistortionSvg role="img" aria-label="Founding distortion diagram — click to enlarge" class="w-full h-auto" />
+</div>
+<p class="text-center text-xs text-base-content/40 mt-1">click to enlarge</p>
+<dialog id="distortion-modal" class="modal">
+  <div class="modal-box max-w-4xl w-11/12 p-6">
+    <DistortionSvg role="img" aria-label="Founding distortion diagram" class="w-full h-auto" />
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+What follows is the record of that distortion compounding. Constitutional crises
+are not anomalies. They are the predictable output of a system with unresolved
+structural contradictions.
+
+The Civil War, the collapse of Reconstruction, the long accumulation of
+executive power, the rise of corporate constitutional rights, and the
+coordinated capture of the judiciary and the campaign finance system are not
+separate stories. They are a single cascading failure, each episode foreclosing
+another avenue of reform, until the system arrived at its present condition: a
+social contract that no living person has affirmatively negotiated, which has
+fully consumed its own corrective capacity.
+
+<div class="my-16">
+  <CascadeDiagram />
+</div>
+
+This is not a prediction of what comes next. It is a diagnosis of where we are.
+Understanding how we got here is the necessary precondition for thinking
+seriously about what comes after.
+
 ## Earth Belongs to the Living
 
 The Declaration of Independence states that governments derive their just powers
@@ -11,8 +62,8 @@ from the consent of the governed. In September 1789, Thomas Jefferson took that
 principle seriously enough to follow it to an uncomfortable conclusion. Writing
 to James Madison in the first year of the new government's operation, he argued
 that "the earth belongs always to the living generation." No constitution could
-legitimately bind a people for nineteen years, which he calculated to be the
-span of a generation. "Every constitution then, and every law," he wrote,
+legitimately bind a people for more than nineteen years, which he calculated to
+be the span of a generation. "Every constitution then, and every law," he wrote,
 "naturally expires at the end of nineteen years. If it be enforced longer, it is
 an act of force, and not of right."
 
@@ -26,7 +77,7 @@ because the system makes meaningful revision functionally impossible.
 
 Jefferson's concern was prescient, but his proposed remedy of automatic
 expiration was the wrong solution to the right problem. The real question was
-not how to force periodic revision, but how to ensure that the document would
+not how to force periodic revision, but how to ensure that the government would
 remain genuinely adaptable when the people demanded revision. That question has
 never been satisfactorily answered. The consequences of that failure are the
 subject of this article.
@@ -51,7 +102,7 @@ would agree to them if they had a genuine choice.
 
 ### Article V: Engine of Adhesion
 
-Article V is the provision that governs amendment of the Constitution. It
+<span id="article-v" />Article V is the provision that governs amendment of the Constitution. It
 establishes two paths by which the people might revise their fundamental law,
 and closes both. Congress can propose amendments by a two-thirds vote of both
 houses, or the legislatures of two-thirds of the states can call for a
@@ -104,7 +155,7 @@ practice as a void.
 
 ### Deliberate Protection of Structural Distortion
 
-Article V's design was not an accident. The Three-Fifths Compromise and equal
+<span id="senate-malapportionment" />Article V's design was not an accident. The Three-Fifths Compromise and equal
 state representation in the Senate were conditions of ratification demanded by
 slaveholding states. Article V's supermajority requirements ensured
 that these provisions could not be undone without the consent of the states they
@@ -216,9 +267,9 @@ underlying questions of federalism were never resolved through deliberation, but
 mooted by election, left lying in wait for the next crisis to revive them.
 
 Three years later, _Marbury v. Madison_ supplied an answer: the Court decides.
-Marshall's opinion famously established judicial review, the power of the
-Supreme Court to strike down federal laws as unconstitutional, from a
-constitutional text that does not explicitly grant it, in a case Marshall
+Chief Justice John Marshall's opinion famously established judicial review, the
+power of the Supreme Court to strike down federal laws as unconstitutional, from
+a constitutional text that does not explicitly grant it, in a case Marshall
 structured to avoid a confrontation with Jefferson he could not win. It was a
 brilliant assertion of institutional power dressed as judicial modesty. And it
 answered the question from 1798 only provisionally: the Court's authority to
@@ -253,15 +304,15 @@ power to prohibit slavery in the territories, and that the Missouri Compromise
 had been unconstitutional all along. The Court attempted to settle the slavery
 question by constitutional interpretation. Instead, it detonated it.
 
-The Civil War, in which two percent of Americans perished, was the result of a
+<span id="reconstruction-amendments" />The Civil War, in which two percent of Americans perished, was the result of a
 constitutional system that could not peacefully resolve its own founding
 contradiction. The Reconstruction Amendments that followed represent the only
 fundamental structural revision in American history. They were purchased at
 staggering cost: four years of war, a generation of occupation, the violent
 suppression of the old order. And they were systematically undermined within
-that same generation. The Compromise of 1877 withdrew federal troops from the
+that same generation. <span id="reconstruction-eroded" />The Compromise of 1877 withdrew federal troops from the
 South, and the Supreme Court hollowed out the Fourteenth Amendment's protections
-through decisions like _Plessy v. Ferguson_, not through any democratic process,
+through decisions like <span id="plessy" />_Plessy v. Ferguson_, not through any democratic process,
 but by judicial fiat. The structural revision purchased in blood was effectively
 reversed without changing a word of the Constitution. The amendment process, the
 intended mechanism of structural revision, played no role in either the
@@ -290,7 +341,7 @@ into disputed territory between the Nueces River and the Rio Grande, knowing
 that the move would provoke a Mexican response, using the predictable bloodshed
 as a pretext to goad Congress into declaring war on Mexico.
 
-By the time of the Civil War, the stage had been set. By suspending habeas
+<span id="lincoln-war-powers" />By the time of the Civil War, the stage had been set. By suspending habeas
 corpus, imposing a naval blockade, and expanding the Army, Abraham Lincoln
 claimed sweeping war powers that would come to define the executive. He
 acknowledged his lawbreaking as an intentional, reluctant necessity, and sought
@@ -313,7 +364,7 @@ intelligence apparatus were all created as wartime necessities and never
 dismantled. They became the permanent architecture of the Cold War executive:
 the CIA, the NSA, the nuclear arsenal under sole presidential control.
 
-Eisenhower, who built much of this infrastructure, used his farewell address to
+<span id="military-industrial-complex" />Eisenhower, who built much of this infrastructure, used his farewell address to
 warn that the military-industrial complex had become a form of institutional
 capture the constitutional design had no mechanism to check. By then, corporate
 and executive power had fused into a single apparatus, each legitimating the
@@ -330,10 +381,10 @@ insidious: executive _impunity_. Hamilton wrote in Federalist No. 69 that unlike
 a king, the president "is at all times liable to prosecution in the due course
 of law." Successive presidents have pushed that boundary to its breaking point.
 
-Watergate appeared to demonstrate that the system worked: a president who abused
+<span id="ford-pardon" />Watergate appeared to demonstrate that the system worked: a president who abused
 his power was forced from office. But the resolution carried a seed of future
 failure. Gerald Ford's pardon of Richard Nixon established that a president
-could commit crimes in office and face no legal consequences. The 1986
+could commit crimes in office and face no legal consequences. <span id="iran-contra" />The 1986
 Iran-Contra scandal confirmed the lesson. The Reagan administration circumvented
 congressional appropriations to fund an illegal war. The evidence was clear.
 And George H.W. Bush pardoned the key participants before trial. These episodes
@@ -341,7 +392,7 @@ established a norm that the executive branch can break the law with impunity,
 and the institution of the presidency will insulate unlawful executive behavior
 from legal consequence.
 
-Each episode of executive lawbreaking without consequence made the next episode
+<span id="trump-immunity" />Each episode of executive lawbreaking without consequence made the next episode
 more likely. By the time the Supreme Court decided _Trump v. United States_ in 2024,
 granting absolute immunity for "core constitutional powers" and presumptive
 immunity for all "official acts," the Court was not breaking new ground so much
@@ -359,7 +410,7 @@ defective by design.
 
 ### The Shadow Branch
 
-The framers feared concentrated private power as much as concentrated government
+<span id="corporate-exclusion" />The framers feared concentrated private power as much as concentrated government
 power. The Boston Tea Party is remembered as a tax revolt, but the tea under the
 Tea Act of 1773 was actually cheaper than it had been before. What enraged the
 colonists was the East India Company's government-backed monopoly. The East
@@ -375,7 +426,7 @@ outside the constitutional architecture deliberately, assuming that the existing
 system of state chartering, which was revocable, purpose-limited, and
 time-bound, would be sufficient to keep it contained.
 
-That assumption did not survive the Civil War. Governments at every level
+<span id="permissive-incorporation" />That assumption did not survive the Civil War. Governments at every level
 emerged from the conflict fiscally devastated and desperate for capital.
 Corporate charters were a source of both state revenue and investment capital:
 states collected fees for granting them and attracted investment by making them
@@ -391,7 +442,7 @@ assertion was never argued in court or subjected to constitutional scrutiny. It
 was simply repeated until it became true. Corporations are not people; they are
 legal fictions. But since 1886, these legal fictions have rights.
 
-Over the following century, corporations accumulated constitutional rights the
+<span id="corporate-personhood" />Over the following century, corporations accumulated constitutional rights the
 framers never intended them to have, political influence the framers explicitly
 sought to prevent, and economic scale that renders the largest of them, in
 practice, a fourth branch of government. They are nowhere named in the
@@ -421,7 +472,7 @@ their era and institutions reshaped by a deliberate, funded, decades-long
 project targeting every lever of democratic governance. That project began in
 the 1970s and continues today.
 
-In 1971, corporate lawyer Lewis Powell wrote a confidential memorandum to the
+<span id="powell-memo" />In 1971, corporate lawyer Lewis Powell wrote a confidential memorandum to the
 U.S. Chamber of Commerce arguing that the judiciary was "the most important
 instrument for social, economic and political change" and calling on business
 interests to organize systematically to reshape it. Two months later, Richard
@@ -429,10 +480,10 @@ Nixon nominated Powell to the Supreme Court. In 1978, Powell wrote the majority
 opinion in _First National Bank of Boston v. Bellotti_, extending First Amendment
 protection to corporate political speech for the first time. The author of the
 blueprint had delivered one of its central objectives from the bench. By 1982,
-the Federalist Society was founded explicitly to pipeline business-friendly legal
+the <span id="federalist-society" />Federalist Society was founded explicitly to pipeline business-friendly legal
 talent into the federal judiciary.
 
-The campaign finance decisions tightened the circuit. _Buckley v. Valeo_ (1976)
+<span id="campaign-finance" />The campaign finance decisions tightened the circuit. _Buckley v. Valeo_ (1976)
 established that campaign spending is constitutionally protected speech.
 _Bellotti_ extended that protection to corporations. _Citizens United v. FEC_
 (2010) applied it to corporate spending on candidate elections. _SpeechNow.org
@@ -441,7 +492,7 @@ campaigns. Each decision reinforced the last. The same money that benefits from
 these decisions funds the campaigns of the officials who would need to reverse
 them.
 
-_Shelby County v. Holder_ (2013) gutted the preclearance provisions of the
+<span id="shelby-county" />_Shelby County v. Holder_ (2013) gutted the preclearance provisions of the
 Voting Rights Act, the primary federal mechanism for preventing discriminatory
 voting practices. Jurisdictions previously subject to federal oversight moved
 quickly to restrict ballot access. Those restrictions fall hardest on the
@@ -449,7 +500,7 @@ communities least able to elect representatives who would restore the
 protections. Restricted voters elect fewer representatives capable of appointing
 judges who might check the restrictions. The adhesion tightens.
 
-By 2016, the machine was fully operational. The Senate refused to consider
+<span id="garland-seat" />By 2016, the machine was fully operational. The Senate refused to consider
 President Obama's nomination of Merrick Garland to the Supreme Court, holding
 the seat vacant for nearly a year on the stated principle that the Senate should
 not confirm justices in an election year. In 2020, the same Senate confirmed Amy
@@ -496,7 +547,7 @@ that benefit from them.
 
 ### Democratic Legitimacy Under Stress
 
-On January 6, 2021, the United States came closer to a violent rupture of its
+<span id="january-6" />On January 6, 2021, the United States came closer to a violent rupture of its
 constitutional order than at any point since 1861. A mob stormed the Capitol to
 prevent the certification of a presidential election. The constitutional system
 survived only because a handful of individuals in positions of power chose to

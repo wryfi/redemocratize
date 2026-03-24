@@ -3,21 +3,23 @@ const { headings } = Astro.props;
 ---
 
 {headings && headings.length > 0 && (
-  <nav class="card bg-base-200">
+  <nav class="card bg-base-200" id="toc-nav">
     <div class="card-body p-6">
       <h2 class="text-lg font-bold font-heading mb-4">Table of Contents</h2>
       <ul class="space-y-2">
         {headings.map((heading) => (
-          <li class={heading.depth === 3 ? 'ml-4' : ''}>
+          <li class={`toc-item ${heading.depth === 3 ? 'ml-4' : ''}`}>
             <a
               href={`#${heading.slug}`}
-              class={`block py-1 hover:text-primary transition-colors ${
+              class={`toc-link flex items-center gap-1.5 py-1 hover:text-primary transition-colors ${
                 heading.depth === 2
                   ? 'font-semibold'
                   : 'text-base-content/70 text-sm'
               }`}
+              data-heading={heading.slug}
             >
-              {heading.text}
+              <span class="toc-chevron opacity-0 transition-opacity text-primary" aria-hidden="true">&#8250;</span>
+              <span>{heading.text}</span>
             </a>
           </li>
         ))}
@@ -25,3 +27,65 @@ const { headings } = Astro.props;
     </div>
   </nav>
 )}
+
+<script>
+  function initScrollTracking() {
+    const tocLinks = document.querySelectorAll('.toc-link');
+    if (!tocLinks.length) return;
+
+    const slugs = Array.from(tocLinks).map(link => link.dataset.heading);
+    const headingElements = slugs
+      .map(slug => document.getElementById(slug))
+      .filter(Boolean);
+
+    if (!headingElements.length) return;
+
+    let activeSlug = null;
+
+    function setActive(slug) {
+      if (slug === activeSlug) return;
+      activeSlug = slug;
+      tocLinks.forEach(link => {
+        const chevron = link.querySelector('.toc-chevron');
+        if (link.dataset.heading === slug) {
+          link.classList.add('text-primary');
+          chevron?.classList.replace('opacity-0', 'opacity-100');
+        } else {
+          link.classList.remove('text-primary');
+          chevron?.classList.replace('opacity-100', 'opacity-0');
+        }
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the topmost visible heading
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visible.length > 0) {
+          setActive(visible[0].target.id);
+        } else {
+          // No heading visible — find the last heading above the viewport
+          let lastAbove = null;
+          for (const el of headingElements) {
+            if (el.getBoundingClientRect().top < 100) {
+              lastAbove = el;
+            }
+          }
+          if (lastAbove) {
+            setActive(lastAbove.id);
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+    );
+
+    headingElements.forEach(el => observer.observe(el));
+  }
+
+  // Run on initial load and on Astro page navigations
+  initScrollTracking();
+  document.addEventListener('astro:after-swap', initScrollTracking);
+</script>

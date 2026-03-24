@@ -1,0 +1,445 @@
+---
+// CascadeDiagram.astro
+// Tapering cascade diagram for the Cumulative Crises diagnosis page.
+// Dependencies: Tailwind v4, DaisyUI
+// Usage: <CascadeDiagram />
+//
+// Tag types correspond to the Cycle of Adhesion color vocabulary:
+//   distortion → purple  #534AB7
+//   crisis     → coral   #D85A30
+//   capture    → green   #639922
+//   adhesion   → blue    #185FA5
+//
+// Anchor hrefs should match IDs in the full article page.
+
+type TagType = "distortion" | "crisis" | "capture" | "adhesion"
+
+interface Tag {
+  label: string
+  href: string
+  type: TagType
+}
+
+interface Band {
+  id: string
+  year: string
+  width: string
+  title: string
+  sub: string
+  colorClass: string
+  body: string
+  tags: Tag[]
+}
+
+const bands: Band[] = [
+  {
+    id: "founding-distortion",
+    year: "1787",
+    width: "100%",
+    title: "The founding distortion",
+    sub: "Article V · Senate malapportionment · corporate exclusion",
+    colorClass: "band-1",
+    body: "A republic premised on consent of the governed encoded slavery in its architecture. Article V's supermajority thresholds — conditions demanded by slaveholding states — made the amendment process impossible to use without the consent of those it advantaged. Senate malapportionment was made explicitly unamendable. The corporate form was excluded from constitutional architecture with no enforcement mechanism to keep it contained.",
+    tags: [
+      { label: "Article V", href: "#article-v", type: "distortion" },
+      { label: "Malapportionment", href: "#senate-malapportionment", type: "distortion" },
+      { label: "Corporate exclusion", href: "#corporate-exclusion", type: "distortion" },
+    ],
+  },
+  {
+    id: "civil-war-ruptures",
+    year: "1865",
+    width: "88%",
+    title: "Civil War & its ruptures",
+    sub: "Reconstruction · executive expansion · permissive incorporation",
+    colorClass: "band-2",
+    body: "The result of a constitutional system that could not peacefully resolve its own founding contradiction. Two percent of Americans killed. Three simultaneous outputs: the Reconstruction Amendments — the only fundamental structural revision in history; a permanent expansion of executive emergency power; and the fiscal devastation that triggered the corporate charter race to the bottom.",
+    tags: [
+      { label: "Reconstruction", href: "#reconstruction-amendments", type: "capture" },
+      { label: "Reconstruction eroded", href: "#reconstruction-eroded", type: "adhesion" },
+      {
+        label: "Executive expansion",
+        href: "#lincoln-war-powers",
+        type: "crisis",
+      },
+      { label: "Permissive incorporation", href: "#permissive-incorporation", type: "distortion" },
+    ],
+  },
+  {
+    id: "long-accumulation",
+    year: "1877–1971",
+    width: "72%",
+    title: "The long accumulation",
+    sub: "Reconstruction eroded · corporate personhood · military-industrial complex",
+    colorClass: "band-3",
+    body: "Three tracks running in parallel, each compounding independently. Reconstruction was eroded by the Compromise of 1877 and Plessy v. Ferguson. Corporate personhood accumulated through Santa Clara and Bellotti. Executive power fused with corporate power in the military-industrial complex. None of this was coordinated. It didn't need to be.",
+    tags: [
+      { label: "Compromise of 1877", href: "#reconstruction-eroded", type: "adhesion" },
+      { label: "Plessy v. Ferguson", href: "#plessy", type: "capture" },
+      { label: "Corporate personhood", href: "#corporate-personhood", type: "distortion" },
+      {
+        label: "Military-industrial",
+        href: "#military-industrial-complex",
+        type: "crisis",
+      },
+    ],
+  },
+  {
+    id: "coordinated-capture",
+    year: "1971–2013",
+    width: "54%",
+    title: "Coordinated capture",
+    sub: "Powell · Citizens United · Shelby County · Federalist Society",
+    colorClass: "band-4",
+    body: "The Powell Memo (1971) is the hinge — the moment three independent accumulations became a coordinated project. The Federalist Society built the judicial pipeline. Buckley and Citizens United constitutionalized unlimited political spending. Shelby County gutted the Voting Rights Act. Each decision reinforced the last.",
+    tags: [
+      { label: "Powell Memo", href: "#powell-memo", type: "capture" },
+      { label: "Citizens United", href: "#campaign-finance", type: "capture" },
+      { label: "Shelby County", href: "#shelby-county", type: "capture" },
+      { label: "Federalist Society", href: "#federalist-society", type: "capture" },
+      { label: "Ford pardon", href: "#ford-pardon", type: "adhesion" },
+      { label: "Iran-Contra pardons", href: "#iran-contra", type: "adhesion" },
+      { label: "Garland seat theft", href: "#garland-seat", type: "adhesion" },
+    ],
+  },
+  {
+    id: "terminal-adhesion",
+    year: "now",
+    width: "36%",
+    title: "Terminal adhesion",
+    sub: "corrective capacity exhausted",
+    colorClass: "band-5",
+    body: "Trump v. United States (2024) formalized presidential immunity. January 6 demonstrated the system survives only through the voluntary compliance of individual actors. The Big Lie became a permanent standing challenge to democratic legitimacy. Every institution through which structural reform would pass has been captured by the forces that reform would threaten.",
+    tags: [
+      { label: "Trump v. United States", href: "#trump-immunity", type: "adhesion" },
+      { label: "January 6", href: "#january-6", type: "adhesion" },
+      { label: "Garland seat theft", href: "#garland-seat", type: "adhesion" },
+    ],
+  },
+]
+
+// Tag color styles keyed by type
+const tagStyles: Record<TagType, string> = {
+  distortion: "tag-distortion",
+  crisis: "tag-crisis",
+  capture: "tag-capture",
+  adhesion: "tag-adhesion",
+}
+---
+
+<div class="cascade-diagram not-prose py-2 font-heading">
+  <!-- Pass 1: all band rows, no panels -->
+  <div class="cascade-bands mb-3">
+    {
+      bands.map((band) => (
+        <div class="flex items-start mb-2">
+          <div class="hidden sm:block w-16 shrink-0 pt-4 text-right pr-3 text-sm text-base-content/50 leading-snug whitespace-nowrap">
+            {band.year}
+          </div>
+          <div class="flex-1">
+            <button
+              class={`cascade-band ${band.colorClass} rounded-xl px-5 py-4 text-center cursor-pointer transition-opacity hover:opacity-90 border-0 bg-transparent block mx-auto`}
+              style={`width: ${band.width}`}
+              aria-expanded="false"
+              aria-controls={`detail-${band.id}`}
+              data-band
+            >
+              <div class="band-year sm:hidden text-xs opacity-60 mb-0.5">{band.year}</div>
+              <div class="band-title text-base font-medium mb-1">{band.title}</div>
+              <div class="band-sub text-sm opacity-80 leading-relaxed">{band.sub}</div>
+            </button>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="text-center text-sm text-base-content/40 pb-3">
+    width encodes room to maneuver · click any band to expand
+  </p>
+
+  <!-- Pass 2: all detail panels, stacked below the full timeline -->
+  {
+    bands.map((band) => (
+      <div
+        id={`detail-${band.id}`}
+        class="cascade-detail hidden mb-2 sm:ml-16 rounded-lg overflow-hidden border border-base-content/10"
+        role="region"
+      >
+        <div
+          class={`detail-header ${band.colorClass} px-4 py-2 text-sm font-medium uppercase tracking-wider`}
+        >
+          {band.title}
+        </div>
+        <div class="px-4 py-3 text-sm leading-relaxed text-base-content/70 bg-base-100">
+          <p class="mb-3">{band.body}</p>
+          <div class="flex flex-wrap gap-1">
+            {band.tags.map((tag) => (
+              <a
+                href={tag.href}
+                class={`cycle-tag ${tagStyles[tag.type]} text-sm px-2 py-0.5 rounded-full border no-underline transition-opacity hover:opacity-75`}
+              >
+                {tag.label} →
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  /* ── Gray ramp: five stops, lightest → darkest ── */
+  .band-1 {
+    background: #f1efe8;
+    border: 1px solid #d3d1c7;
+  }
+  .band-1 .band-title {
+    color: #2c2c2a;
+  }
+  .band-1 .band-sub {
+    color: #5f5e5a;
+  }
+
+  .band-2 {
+    background: #d3d1c7;
+    border: 1px solid #b4b2a9;
+  }
+  .band-2 .band-title {
+    color: #2c2c2a;
+  }
+  .band-2 .band-sub {
+    color: #444441;
+  }
+
+  .band-3 {
+    background: #b4b2a9;
+    border: 1px solid #888780;
+  }
+  .band-3 .band-title {
+    color: #2c2c2a;
+  }
+  .band-3 .band-sub {
+    color: #444441;
+  }
+
+  .band-4 {
+    background: #888780;
+    border: 1px solid #5f5e5a;
+  }
+  .band-4 .band-title {
+    color: #f1efe8;
+  }
+  .band-4 .band-sub {
+    color: #d3d1c7;
+  }
+
+  .band-5 {
+    background: #444441;
+    border: 1.5px solid #2c2c2a;
+  }
+  .band-5 .band-title {
+    color: #f1efe8;
+  }
+  .band-5 .band-sub {
+    color: #b4b2a9;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .band-1 {
+      background: #2c2c2a;
+      border-color: #444441;
+    }
+    .band-1 .band-title {
+      color: #f1efe8;
+    }
+    .band-1 .band-sub {
+      color: #b4b2a9;
+    }
+    .band-2 {
+      background: #444441;
+      border-color: #5f5e5a;
+    }
+    .band-2 .band-title {
+      color: #f1efe8;
+    }
+    .band-2 .band-sub {
+      color: #d3d1c7;
+    }
+    .band-3 {
+      background: #5f5e5a;
+      border-color: #888780;
+    }
+    .band-3 .band-title {
+      color: #f1efe8;
+    }
+    .band-3 .band-sub {
+      color: #d3d1c7;
+    }
+    .band-4 {
+      background: #888780;
+      border-color: #b4b2a9;
+    }
+    .band-4 .band-title {
+      color: #f1efe8;
+    }
+    .band-4 .band-sub {
+      color: #f1efe8;
+    }
+    .band-5 {
+      background: #b4b2a9;
+      border-color: #d3d1c7;
+    }
+    .band-5 .band-title {
+      color: #2c2c2a;
+    }
+    .band-5 .band-sub {
+      color: #444441;
+    }
+  }
+
+  /* ── Detail panel header matches band ── */
+  .detail-header.band-1 {
+    background: #f1efe8;
+    color: #2c2c2a;
+    border-bottom: 1px solid #d3d1c7;
+  }
+  .detail-header.band-2 {
+    background: #d3d1c7;
+    color: #2c2c2a;
+    border-bottom: 1px solid #b4b2a9;
+  }
+  .detail-header.band-3 {
+    background: #b4b2a9;
+    color: #2c2c2a;
+    border-bottom: 1px solid #888780;
+  }
+  .detail-header.band-4 {
+    background: #888780;
+    color: #f1efe8;
+    border-bottom: 1px solid #5f5e5a;
+  }
+  .detail-header.band-5 {
+    background: #444441;
+    color: #f1efe8;
+    border-bottom: 1px solid #2c2c2a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .detail-header.band-1 {
+      background: #2c2c2a;
+      color: #f1efe8;
+      border-bottom-color: #444441;
+    }
+    .detail-header.band-2 {
+      background: #444441;
+      color: #f1efe8;
+      border-bottom-color: #5f5e5a;
+    }
+    .detail-header.band-3 {
+      background: #5f5e5a;
+      color: #f1efe8;
+      border-bottom-color: #888780;
+    }
+    .detail-header.band-4 {
+      background: #888780;
+      color: #f1efe8;
+      border-bottom-color: #b4b2a9;
+    }
+    .detail-header.band-5 {
+      background: #b4b2a9;
+      color: #2c2c2a;
+      border-bottom-color: #d3d1c7;
+    }
+  }
+
+  /* ── Cycle of Adhesion tag colors ── */
+  /* Maps to: distortion=purple, crisis=coral, capture=green, adhesion=blue */
+  .tag-distortion {
+    background: #eeedfe;
+    color: #3c3489;
+    border-color: #afa9ec;
+  }
+  .tag-crisis {
+    background: #faece7;
+    color: #712b13;
+    border-color: #f0997b;
+  }
+  .tag-capture {
+    background: #eaf3de;
+    color: #173404;
+    border-color: #97c459;
+  }
+  .tag-adhesion {
+    background: #e6f1fb;
+    color: #042c53;
+    border-color: #85b7eb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .tag-distortion {
+      background: #26215c;
+      color: #cecbf6;
+      border-color: #534ab7;
+    }
+    .tag-crisis {
+      background: #4a1b0c;
+      color: #f5c4b3;
+      border-color: #993c1d;
+    }
+    .tag-capture {
+      background: #173404;
+      color: #c0dd97;
+      border-color: #3b6d11;
+    }
+    .tag-adhesion {
+      background: #042c53;
+      color: #b5d4f4;
+      border-color: #185fa5;
+    }
+  }
+
+  /* ── Expand animation ── */
+  .cascade-detail:not(.hidden) {
+    animation: slideDown 0.18s ease;
+  }
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const allBtns = document.querySelectorAll<HTMLButtonElement>("[data-band]")
+
+  allBtns.forEach((btn) => {
+    const detailId = btn.getAttribute("aria-controls")
+    if (!detailId) return
+    const detail = document.getElementById(detailId)
+    if (!detail) return
+
+    btn.addEventListener("click", () => {
+      const isOpen = !detail.classList.contains("hidden")
+
+      // Close all panels and reset all buttons
+      allBtns.forEach((b) => {
+        const id = b.getAttribute("aria-controls")
+        if (id) document.getElementById(id)?.classList.add("hidden")
+        b.setAttribute("aria-expanded", "false")
+      })
+
+      // If it wasn't open, open it
+      if (!isOpen) {
+        detail.classList.remove("hidden")
+        btn.setAttribute("aria-expanded", "true")
+      }
+    })
+  })
+</script>
