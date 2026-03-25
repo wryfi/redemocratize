@@ -1,0 +1,43 @@
+---
+import ContentLayout from '../../../layouts/ContentLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('news', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
+  return entries.map(entry => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+
+function formatDate(date) {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<ContentLayout
+  title={entry.data.title}
+  description={entry.data.summary}
+  headings={headings}
+  backLink="/lab"
+  backLabel="Back to Lab"
+>
+  <div class="flex flex-wrap items-center gap-3 text-sm text-base-content/60 mb-8 not-prose">
+    <span class="badge badge-warning badge-sm">news</span>
+    {entry.data.author && <span>by {entry.data.author}</span>}
+    <span>Published {formatDate(entry.data.pubDate)}</span>
+    {entry.data.updatedDate && (
+      <span>| Updated {formatDate(entry.data.updatedDate)}</span>
+    )}
+  </div>
+  <Content />
+</ContentLayout>

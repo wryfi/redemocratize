@@ -28,7 +28,7 @@ let registryInitialized = false;
 let registryInitializing = null;
 
 // Content collections to scan
-const COLLECTIONS = ['principles', 'topics', 'proposals', 'models', 'diagnosis'];
+const COLLECTIONS = ['principles', 'articles', 'topics', 'proposals', 'models', 'news'];
 
 /**
  * Recursively find all .mdx/.md files in a directory

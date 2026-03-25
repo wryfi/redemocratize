@@ -11,6 +11,16 @@ let registry = new Map();
 // Document metadata cache
 let documentMeta = new Map();
 
+// Collections that live under /labs/ in the URL structure
+const LABS_COLLECTIONS = new Set(['articles', 'topics', 'proposals', 'models', 'news']);
+
+/**
+ * Get the URL base path for a collection
+ */
+function collectionBasePath(collection) {
+  return LABS_COLLECTIONS.has(collection) ? `/lab/${collection}` : `/${collection}`;
+}
+
 /**
  * Target types that can be referenced
  */
@@ -38,13 +48,14 @@ export function registerDocument(collection, slug, meta) {
   const key = normalizeKey(`${collection}/${slug}`);
   documentMeta.set(key, { collection, slug, ...meta });
 
+  const base = collectionBasePath(collection);
   registry.set(key, {
     type: TargetType.DOCUMENT,
     collection,
     slug,
     id: null,
     title: meta.title,
-    fullPath: `/${collection}/${slug}`
+    fullPath: `${base}/${slug}`
   });
 }
 
@@ -60,13 +71,14 @@ export function registerTarget(collection, slug, id, options = {}) {
   const docKey = `${collection}/${slug}`;
   const key = id ? normalizeKey(`${docKey}#${id}`) : normalizeKey(docKey);
 
+  const base = collectionBasePath(collection);
   registry.set(key, {
     type,
     collection,
     slug,
     id,
     title,
-    fullPath: id ? `/${collection}/${slug}#${id}` : `/${collection}/${slug}`
+    fullPath: id ? `${base}/${slug}#${id}` : `${base}/${slug}`
   });
 }
 

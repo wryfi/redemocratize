@@ -1,0 +1,254 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const contributionTypes = [
+  {
+    title: "Writing & Research",
+    description:
+      "Draft topic pages, propose institutional mechanisms, analyze how principles apply to real governance challenges, or contribute comparative examples from other democratic traditions.",
+  },
+  {
+    title: "Review & Editing",
+    description:
+      "Review drafts for clarity, rigor, and accessibility. Help ensure the project speaks with both analytical precision and genuine conviction.",
+  },
+  {
+    title: "Design & Development",
+    description:
+      "Improve the site's design, accessibility, and user experience. Contribute to the open-source codebase. Help make democratic design legible and inviting.",
+  },
+  {
+    title: "Translation & Localization",
+    description:
+      "Help make these ideas accessible across languages and political traditions. Democratic design is not an exclusively English-language conversation.",
+  },
+  {
+    title: "Funding & Support",
+    description:
+      "Support the infrastructure that keeps this project independent and open. We accept no funding with strings attached — contributor autonomy is non-negotiable.",
+  },
+  {
+    title: "Organizing & Outreach",
+    description:
+      "Connect the project with communities, institutions, and movements working on democratic reform. Help bridge the gap between theory and practice.",
+  },
+]
+
+const interestOptions = [
+  "Writing & Research",
+  "Review & Editing",
+  "Design & Development",
+  "Translation & Localization",
+  "Funding & Support",
+  "Organizing & Outreach",
+]
+---
+
+<BaseLayout title="Contribute — Redemocratize" description="Join the Redemocratize project. We welcome writers, researchers, designers, developers, reviewers, translators, organizers, and funders.">
+  <!-- Hero -->
+  <section class="py-20 lg:py-28">
+    <div class="container max-w-4xl">
+      <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-8">Contribute</h1>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          Redemocratize is an open project. The principles are developed in the open, the code is
+          open-source, and contributions are welcome from anyone who takes democratic
+          self-governance seriously.
+        </p>
+        <p>
+          You do not need to be a scholar, a lawyer, or a technologist. You need to care about
+          building democratic institutions adequate to the world we actually inhabit. If that
+          describes you, there is a place for your work here.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contribution Types -->
+  <section class="py-20 lg:py-24 bg-base-200">
+    <div class="container max-w-5xl">
+      <h2 class="text-3xl font-bold font-heading mb-10">Ways to Contribute</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {contributionTypes.map((type) => (
+          <div class="card bg-base-100 shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title font-heading text-lg">{type.title}</h3>
+              <p class="text-base-content/80">{type.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Work -->
+  <section class="py-20 lg:py-24">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl font-bold font-heading mb-8">How We Work</h2>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          All content is licensed <strong>CC BY-SA 4.0</strong> — open, shareable, and revisable.
+          We use collaborative tools so you do not need to know git to participate, though
+          developers are welcome to contribute directly to the codebase.
+        </p>
+        <p>
+          Contributions are reviewed for alignment with the project's principles and for clarity
+          and rigor. We value substance over credentials. A well-argued contribution from anyone
+          carries more weight than an appeal to authority.
+        </p>
+        <p>
+          This is closer to an open-source software project than a political campaign. Everything
+          is versioned, transparent, and revisable — because a project advocating for adaptive
+          governance must first practice it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting Started -->
+  <section class="py-20 lg:py-24 bg-base-200">
+    <div class="container max-w-4xl">
+      <h2 class="text-3xl font-bold font-heading mb-8">We're Just Getting Started</h2>
+      <div class="prose prose-lg max-w-none">
+        <p>
+          This project is in its early stages. The principles are taking shape, the first topic
+          pages and proposals are being drafted, and the infrastructure for collaboration is still
+          being built. We do not yet have all the contribution mechanisms figured out — and
+          figuring them out is itself part of the work.
+        </p>
+        <p>
+          If you have ideas about how an open project like this should accept, review, and
+          integrate contributions, we want to hear them. The process of building democratic
+          governance starts with how we organize ourselves.
+        </p>
+        <p>
+          For now, the best way to get involved is to register your interest below. We will
+          reach out as contribution pathways take shape, and early contributors will help define
+          what those pathways look like.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interest Form -->
+  <section class="py-20 lg:py-24">
+    <div class="container max-w-2xl">
+      <h2 class="text-3xl font-bold font-heading mb-4">Register Your Interest</h2>
+      <p class="text-base-content/80 mb-10">
+        Tell us a bit about yourself and how you would like to contribute. We will follow up
+        with next steps.
+      </p>
+
+      <form id="contribute-form" class="space-y-6">
+        <div class="form-control w-full">
+          <label class="label mb-1" for="name">
+            <span class="label-text font-heading font-semibold">Name</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Your name"
+            class="input w-full"
+          />
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label mb-1" for="email">
+            <span class="label-text font-heading font-semibold">Email</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="you@example.com"
+            class="input w-full"
+          />
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label mb-1">
+            <span class="label-text font-heading font-semibold">How would you like to contribute?</span>
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-1">
+            {interestOptions.map((option) => (
+              <label class="label cursor-pointer justify-start gap-3">
+                <input
+                  type="checkbox"
+                  name="contributions"
+                  value={option}
+                  class="checkbox checkbox-primary checkbox-sm"
+                />
+                <span class="label-text">{option}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label mb-1" for="message">
+            <span class="label-text font-heading font-semibold">Message</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Tell us about your background, interests, or ideas for the project."
+            class="textarea w-full"
+          ></textarea>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-primary font-heading">Submit</button>
+        </div>
+
+        <div id="form-success" class="alert alert-success hidden">
+          <span>Thank you for your interest. We will be in touch.</span>
+        </div>
+
+        <div id="form-error" class="alert alert-error hidden">
+          <span>Something went wrong. Please try again or reach out directly.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById("contribute-form")
+  const successAlert = document.getElementById("form-success")
+  const errorAlert = document.getElementById("form-error")
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault()
+    successAlert.classList.add("hidden")
+    errorAlert.classList.add("hidden")
+
+    const formData = new FormData(form)
+    const contributions = formData.getAll("contributions")
+
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      contributions,
+      message: formData.get("message"),
+    }
+
+    try {
+      // TODO: Wire up to Supabase
+      // const { createClient } = await import("@supabase/supabase-js")
+      // const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+      // const { error } = await supabase.from("contributions").insert([payload])
+      // if (error) throw error
+
+      console.log("Form submission payload:", payload)
+      successAlert.classList.remove("hidden")
+      form.reset()
+    } catch (err) {
+      console.error("Submission error:", err)
+      errorAlert.classList.remove("hidden")
+    }
+  })
+</script>

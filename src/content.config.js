@@ -14,46 +14,53 @@ const principles = defineCollection({
   }),
 })
 
+/** Shared fields for all Labs content types */
+const labsBase = {
+  uid: z.string(),
+  title: z.string(),
+  summary: z.string().optional(),
+  author: z.string().optional(),
+  pubDate: z.coerce.date(),
+  updatedDate: z.coerce.date().optional(),
+  draft: z.boolean().default(false),
+  pin: z.number().optional(),
+  principles: z.array(z.string()).optional(),
+}
+
+const articles = defineCollection({
+  loader: glob({ base: "./src/content/articles", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    ...labsBase,
+  }),
+})
+
 const topics = defineCollection({
   loader: glob({ base: "./src/content/topics", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
-    title: z.string(),
-    slug: z.string().optional(),
-    summary: z.string(),
-    principles: z.array(z.string()).optional(),
+    ...labsBase,
   }),
 })
 
 const proposals = defineCollection({
   loader: glob({ base: "./src/content/proposals", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
-    title: z.string(),
-    slug: z.string().optional(),
-    summary: z.string(),
+    ...labsBase,
     status: z.enum(["draft", "review", "accepted"]).default("draft"),
-    principles: z.array(z.string()).optional(),
-    author: z.string().optional(),
   }),
 })
 
 const models = defineCollection({
   loader: glob({ base: "./src/content/models", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
-    title: z.string(),
-    slug: z.string().optional(),
-    summary: z.string(),
+    ...labsBase,
     country: z.string().optional(),
-    principles: z.array(z.string()).optional(),
   }),
 })
 
-const diagnosis = defineCollection({
-  loader: glob({ base: "./src/content/diagnosis", pattern: "**/*.{md,mdx}" }),
+const news = defineCollection({
+  loader: glob({ base: "./src/content/news", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
-    title: z.string(),
-    slug: z.string().optional(),
-    summary: z.string().optional(),
-    order: z.number().optional(),
+    ...labsBase,
   }),
 })
 
@@ -65,4 +72,4 @@ const landing = defineCollection({
   }),
 })
 
-export const collections = { principles, topics, proposals, models, diagnosis, landing }
+export const collections = { principles, articles, topics, proposals, models, news, landing }

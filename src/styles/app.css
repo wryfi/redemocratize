@@ -5,7 +5,7 @@
 }
 
 @plugin "daisyui" {
-    themes: redemocratize --default, dim --prefers-dark;
+    themes: redemocratize --default, business --prefersdark;
 }
 
 @plugin "daisyui/theme" {
@@ -58,6 +58,12 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: none;
+    }
 }
 
 /* Typography */
@@ -119,8 +125,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Buttons */
-.btn-primary {
+/* Buttons and labels */
+.btn, .badge, label, .navbar {
     font-family: var(--font-family-heading);
 }
 
