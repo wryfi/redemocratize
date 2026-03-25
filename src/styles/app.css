@@ -130,6 +130,56 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-family-heading);
 }
 
+/* Homepage hero */
+.hero-section {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 87, 122, 0.04) 0%,
+            rgba(34, 87, 122, 0.015) 50%,
+            transparent 100%
+        );
+    border-bottom: 1px solid rgba(34, 87, 122, 0.08);
+}
+
+.hero-rule {
+    background: linear-gradient(
+        to right,
+        #22577A 0%,
+        rgba(34, 87, 122, 0.2) 60%,
+        transparent 100%
+    );
+}
+
+.hero-logo {
+}
+
+@media (prefers-color-scheme: dark) {
+    .hero-section {
+        background:
+            linear-gradient(
+                135deg,
+                rgba(34, 87, 122, 0.08) 0%,
+                rgba(34, 87, 122, 0.03) 50%,
+                transparent 100%
+            );
+        border-bottom-color: rgba(34, 87, 122, 0.15);
+    }
+
+    .hero-logo {
+        filter: drop-shadow(0 2px 8px rgba(244, 157, 18, 0.3));
+    }
+
+    .hero-rule {
+        background: linear-gradient(
+            to right,
+            rgba(110, 173, 215, 0.6) 0%,
+            rgba(110, 173, 215, 0.15) 60%,
+            transparent 100%
+        );
+    }
+}
+
 /* Legal citations */
 .legal-citation {
     font-style: normal;

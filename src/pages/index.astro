@@ -10,25 +10,46 @@ try {
 
 <BaseLayout>
   <!-- Hero -->
-  <section class="py-24 lg:py-30 text-center">
-    <div class="container max-w-4xl">
-      <h1 class="text-5xl lg:text-7xl font-bold font-heading mb-8">Redemocratize</h1>
-      <p class="text-xl lg:text-2xl italic mb-4">
-        Design Principles for Democratic Self-Governance
-      </p>
-      <p class="text-xl lg:text-2xl mt-4 mb-10 italic">Laboratory for Collaborative Democracy</p>
-      <img src="/favicon.svg" alt="Redemocratize" class="w-64 h-64 mx-auto mb-12" />
-      <div class="prose prose-xl max-w-none text-center">
+  <section class="hero-section relative overflow-hidden">
+    <div class="container max-w-4xl relative py-20 lg:py-28">
+      <!-- Masthead -->
+      <div class="flex items-start gap-5 md:gap-8 mb-6">
+        <img
+          src="/favicon.svg"
+          alt=""
+          class="hero-logo w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 shrink-0"
+        />
+        <div>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-heading tracking-tight">
+            Redemocratize
+          </h1>
+          <p class="text-base md:text-lg lg:text-xl italic text-base-content/70 mt-2 leading-snug">
+            Design Principles for Democratic Self-Governance
+          </p>
+          <p
+            class="text-base md:text-lg lg:text-xl italic text-base-content/70 mt-0.5 leading-snug"
+          >
+            Laboratory for Collaborative Democracy
+          </p>
+        </div>
+      </div>
+
+      <!-- Rule -->
+      <div class="hero-rule h-px mb-8 md:mb-10"></div>
+
+      <!-- Manifesto -->
+      <div class="text-base md:text-lg space-y-3 text-base-content/85">
         <p>
-          Democratic governance is under assault everywhere, but <span class="italic">
-            democracy
-          </span> is not the problem.
+          Democratic governance is under assault everywhere, but
+          <em>democracy</em> is not the problem.
         </p>
         <p>The problem is institutional vulnerability to capture.</p>
         <p>We know what's breaking. The harder question is: what comes next?</p>
         <p>Constitutions designed to resist change cannot resist capture.</p>
         <p>Redemocratize offers resilient principles for the world we actually inhabit.</p>
-        <p>The answer to capture is not resistance. It's better design.</p>
+        <p class="font-semibold text-base-content">
+          The answer to capture is not resistance. It's better design.
+        </p>
       </div>
     </div>
   </section>
@@ -51,9 +72,9 @@ try {
           to ensure it could not be dislodged.
         </p>
         <p>
-          These failures are not accidents. They are the predictable result of constitutional
-          designs that assumed good faith, relied on norms instead of structure, and provided no
-          realistic mechanism for their own renewal.
+          These failures are neither accident nor conspiracy. They are the predictable result of
+          constitutional designs that assumed good faith, relied on norms instead of structure, and
+          provided no realistic mechanism for their own renewal.
         </p>
         <p>
           We no longer live in the eighteenth century, but we are governed by an eighteenth-century
@@ -64,7 +85,7 @@ try {
       </div>
       <div class="mt-12">
         <a href="/lab/articles/cumulative-crises" class="btn btn-outline btn-primary font-heading">
-          Read the full diagnosis
+          Read more ...
         </a>
       </div>
     </div>
