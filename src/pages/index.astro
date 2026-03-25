@@ -6,6 +6,10 @@ let topics = []
 try {
   topics = await getCollection("topics")
 } catch {}
+
+const principles = (await getCollection("principles")).sort((a, b) => a.data.number - b.data.number)
+const structural = principles.filter((p) => p.data.tier === "structural")
+const substantive = principles.filter((p) => p.data.tier === "substantive")
 ---
 
 <BaseLayout>
@@ -13,7 +17,7 @@ try {
   <section class="hero-section relative overflow-hidden">
     <div class="container max-w-4xl relative py-20 lg:py-28">
       <!-- Masthead -->
-      <div class="flex items-start gap-5 md:gap-8 mb-6">
+      <div class="flex items-start gap-5 md:gap-8 mb-10">
         <img
           src="/favicon.svg"
           alt=""
@@ -35,16 +39,16 @@ try {
       </div>
 
       <!-- Rule -->
-      <div class="hero-rule h-px mb-8 md:mb-10"></div>
+      <div class="hero-rule h-px mb-8 md:mb-12"></div>
 
       <!-- Manifesto -->
-      <div class="text-base md:text-lg space-y-3 text-base-content/85">
+      <div class="text-base md:text-xl space-y-3 text-base-content/85">
         <p>
           Democratic governance is under assault everywhere, but
           <em>democracy</em> is not the problem.
         </p>
         <p>The problem is institutional vulnerability to capture.</p>
-        <p>We know what's breaking. The harder question is: what comes next?</p>
+        <p>We know what's breaking. The harder question is: how do we rebuild?</p>
         <p>Constitutions designed to resist change cannot resist capture.</p>
         <p>Redemocratize offers resilient principles for the world we actually inhabit.</p>
         <p class="font-semibold text-base-content">
@@ -77,6 +81,13 @@ try {
           provided no realistic mechanism for their own renewal.
         </p>
         <p>
+          The 21st century has compounded the crisis with threats no 18th-century framework could
+          have anticipated: industrialized manipulation of the information environment, AI-generated
+          disinformation at scale, corporate-authoritarian alignment, automated surveillance, the
+          enclosure of shared wealth by a shrinking oligarchic class, and ecological breakdown that
+          the existing system has no structural capacity to address.
+        </p>
+        <p>
           We no longer live in the eighteenth century, but we are governed by an eighteenth-century
           social contract that no living person chose or consented to. The present moment does not
           demand that we abandon democracy. It demands that we build democratic institutions robust
@@ -97,6 +108,14 @@ try {
       <h2 class="text-3xl font-bold font-heading mb-8">Our Approach</h2>
       <div class="prose prose-lg max-w-none">
         <p>Redemocratize articulates capture-resistant design principles for modern democracy.</p>
+        <p>
+          The framework addresses problems that existing constitutions were not designed for:
+          algorithmic manipulation of public discourse, the concentration of epistemic power in
+          unaccountable private hands, automated systems making decisions about human rights, extreme
+          wealth that negates democratic self-governance, ecological limits that no political
+          arrangement can override, and institutional capture by actors who use the tools of
+          democracy to dismantle it.
+        </p>
         <p>
           The principles function as architectural elements around which resilient government
           institutions may be constructed. We evaluate institutional forms by how well they serve
@@ -133,61 +152,18 @@ try {
             How governance is organized
           </h3>
           <dl class="space-y-6">
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/adaptive-capacity" class="link link-hover">
-                  Adaptive Capacity
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                A constitution's first obligation is ensuring its own revisability and
-                self-correction. Rigidity is not stability. It is deferred crisis.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/subsidiarity-solidarity" class="link link-hover">
-                  Subsidiarity & Solidarity
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Authority defaults to the most local competent level, constrained by a floor of
-                fundamental rights that no level of government may breach.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/plural-sovereignty" class="link link-hover">
-                  Plural Sovereignty
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                A large polity contains multiple overlapping political communities. Constitutional
-                design accommodates this rather than forcing a fiction of unity.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/temporal-pluralism" class="link link-hover">
-                  Temporal Pluralism
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Different institutions operate at different speeds for different purposes.
-                Responsiveness and stability are architecturally separated.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/epistemic-pluralism" class="link link-hover">
-                  Epistemic Pluralism
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Different modes of knowledge are built into different institutional roles. No single
-                epistemology dominates.
-              </dd>
-            </div>
+            {
+              structural.map((p) => (
+                <div>
+                  <dt class="font-bold font-heading">
+                    <a href={`/principles/${p.id}`} class="link link-hover">
+                      {p.data.title}
+                    </a>
+                  </dt>
+                  <dd class="text-base-content/80 mt-1">{p.data.summary}</dd>
+                </div>
+              ))
+            }
           </dl>
         </div>
 
@@ -196,116 +172,18 @@ try {
             What governance must protect
           </h3>
           <dl class="space-y-6">
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/fundamental-rights-floor" class="link link-hover">
-                  Fundamental Rights Floor
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Rights attach to all persons within jurisdiction, not only citizens. Non-derogable —
-                no emergency justifies suspension.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/epistemic-autonomy" class="link link-hover">
-                  Epistemic Autonomy
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                The right to truthful information and freedom from systematic manipulation of
-                perception and judgment.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/human-primacy" class="link link-hover">Human Primacy</a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Human judgment is required over decisions affecting fundamental rights. AI cannot
-                decide when rights are revoked.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/economic-democracy" class="link link-hover">
-                  Economic Democracy
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Extreme wealth concentration is inherently incompatible with democratic
-                self-governance. Political participation belongs to persons, not economic entities.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a
-                  href="/principles/democratic-sovereignty-over-institutions"
-                  class="link link-hover"
-                >
-                  Democratic Sovereignty over Institutions
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                No institutional form — corporate, religious, nonprofit — confers immunity from
-                democratic accountability.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/commons-governance" class="link link-hover">
-                  Commons Governance
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Shared wealth is held in trust and cannot be enclosed.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/ecological-embeddedness" class="link link-hover">
-                  Ecological Embeddedness
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Governance operates within biophysical limits.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/civic-technology-sovereignty" class="link link-hover">
-                  Civic Technology Sovereignty
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Democratic infrastructure must be publicly owned, transparent, and verifiable by
-                non-experts.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/democratic-peace-and-security" class="link link-hover">
-                  Democratic Peace & Security
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                The authority to exercise force is subject to the most rigorous democratic
-                constraints. The enforcement apparatus may not be directed against political
-                activity.
-              </dd>
-            </div>
-            <div>
-              <dt class="font-bold font-heading">
-                <a href="/principles/cooperative-sovereignty" class="link link-hover">
-                  Cooperative Sovereignty
-                </a>
-              </dt>
-              <dd class="text-base-content/80 mt-1">
-                Relationships between political communities are governed by mutual respect,
-                non-domination, and democratic accountability.
-              </dd>
-            </div>
+            {
+              substantive.map((p) => (
+                <div>
+                  <dt class="font-bold font-heading">
+                    <a href={`/principles/${p.id}`} class="link link-hover">
+                      {p.data.title}
+                    </a>
+                  </dt>
+                  <dd class="text-base-content/80 mt-1">{p.data.summary}</dd>
+                </div>
+              ))
+            }
           </dl>
         </div>
       </div>
@@ -333,7 +211,10 @@ try {
         </p>
       </div>
       <div class="mt-10">
-        <a href="/inherited-principles" class="btn btn-outline btn-primary font-heading">
+        <a
+          href="/lab/articles/inherited-principles"
+          class="btn btn-outline btn-primary font-heading"
+        >
           Read about inherited principles
         </a>
       </div>
@@ -385,8 +266,8 @@ try {
       </div>
 
       <p class="mt-8 text-base-content/70">
-        More topics: Education, Immigration, Healthcare, Criminal Justice, Climate & Environment,
-        Labor & Work, Technology & Privacy, Money & Politics
+        Help us develop: Education, Immigration, Healthcare, Criminal Justice,
+        Climate & Environment, Labor & Work, Technology & Privacy, Money & Politics
       </p>
 
       <div class="mt-8">
