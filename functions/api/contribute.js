@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-          secret: (env.TURNSTILE_SECRET_KEY || "").trim(),
+          secret: env.TURNSTILE_SECRET_KEY,
           response: turnstileToken,
         }),
       }
@@ -27,7 +27,6 @@ export async function onRequestPost(context) {
     const turnstileData = await turnstileRes.json();
 
     if (!turnstileData.success) {
-      console.log("Turnstile failed:", JSON.stringify(turnstileData));
       return new Response(
         JSON.stringify({ message: "Verification failed. Please try again." }),
         { status: 403, headers: { "Content-Type": "application/json" } }
@@ -35,40 +34,24 @@ export async function onRequestPost(context) {
     }
 
     // Insert into Supabase
-    const supabaseUrl = (env.SUPABASE_URL || "").trim();
-    const supabaseKey = (env.SUPABASE_ANON_KEY || "").trim();
-    console.log("env check:", {
-      hasUrl: !!env.SUPABASE_URL,
-      urlType: typeof env.SUPABASE_URL,
-      urlPrefix: supabaseUrl.substring(0, 20),
-      hasKey: !!env.SUPABASE_ANON_KEY,
-      keyType: typeof env.SUPABASE_ANON_KEY,
-      keyLen: supabaseKey.length,
-    });
-
-    const fetchUrl = `${supabaseUrl}/rest/v1/contributor_interest`;
-    const requestBody = JSON.stringify({
-      name,
-      email,
-      contributions: contributions || [],
-      message: message || null,
-    });
-
-    console.log("request debug:", {
-      fetchUrl,
-      bodyLen: requestBody.length,
-      keyLen: supabaseKey.length,
-    });
-
-    const supabaseRes = await fetch(fetchUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Prefer": "return=minimal",
-        "apikey": supabaseKey,
-      },
-      body: requestBody,
-    });
+    const supabaseRes = await fetch(
+      `${env.SUPABASE_URL}/rest/v1/contributor_interest`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal",
+          "apikey": env.SUPABASE_ANON_KEY,
+          "Authorization": `Bearer ${env.SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          contributions: contributions || [],
+          message: message || null,
+        }),
+      }
+    );
 
     if (!supabaseRes.ok) {
       const errorText = await supabaseRes.text();
