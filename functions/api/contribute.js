@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-          secret: env.TURNSTILE_SECRET_KEY || "",
+          secret: (env.TURNSTILE_SECRET_KEY || "").trim(),
           response: turnstileToken,
         }),
       }
@@ -35,8 +35,8 @@ export async function onRequestPost(context) {
     }
 
     // Insert into Supabase
-    const supabaseUrl = env.SUPABASE_URL || "";
-    const supabaseKey = env.SUPABASE_ANON_KEY || "";
+    const supabaseUrl = (env.SUPABASE_URL || "").trim();
+    const supabaseKey = (env.SUPABASE_ANON_KEY || "").trim();
     console.log("env check:", {
       hasUrl: !!env.SUPABASE_URL,
       urlType: typeof env.SUPABASE_URL,
@@ -46,8 +46,17 @@ export async function onRequestPost(context) {
       keyLen: supabaseKey.length,
     });
 
+    const fetchUrl = `${supabaseUrl}/rest/v1/contributor_interest`;
+    const authHeader = `Bearer ${supabaseKey}`;
+    console.log("fetch debug:", {
+      fetchUrl,
+      apikeyLen: supabaseKey.length,
+      authHeaderLen: authHeader.length,
+      authHeaderStart: authHeader.substring(0, 20),
+      authHeaderEnd: authHeader.substring(authHeader.length - 10),
+    });
     const supabaseRes = await fetch(
-      `${supabaseUrl}/rest/v1/contributor_interest`,
+      fetchUrl,
       {
         method: "POST",
         headers: {
