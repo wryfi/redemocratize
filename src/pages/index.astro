@@ -309,12 +309,79 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         Join the mailing list to follow the project's development and be notified of new content and
         opportunities to contribute.
       </p>
-      <div class="flex justify-center">
+      <form id="subscribe-form" class="flex flex-col items-center gap-4">
         <div class="join">
-          <input type="email" placeholder="your@email.com" class="input join-item w-64" />
-          <button class="btn btn-primary join-item font-heading">Subscribe</button>
+          <input
+            type="email"
+            id="subscribe-email"
+            placeholder="your@email.com"
+            class="input join-item w-64"
+            required
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            title="Please enter a valid email address"
+          />
+          <button type="submit" class="btn btn-primary join-item font-heading">
+            Subscribe
+          </button>
         </div>
-      </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAACwW6ap8A70BtVeG" data-theme="auto"></div>
+      </form>
+      <p id="subscribe-message" class="mt-4 text-sm hidden"></p>
     </div>
   </section>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <script>
+    const form = document.getElementById("subscribe-form");
+    const emailInput = document.getElementById("subscribe-email");
+    const message = document.getElementById("subscribe-message");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      const turnstileToken = form.querySelector("[name='cf-turnstile-response']")?.value;
+      if (!turnstileToken) {
+        message.textContent = "Please complete the verification.";
+        message.className = "mt-4 text-sm text-error";
+        return;
+      }
+
+      const button = form.querySelector("button");
+      button.disabled = true;
+      button.textContent = "Subscribing...";
+      message.classList.add("hidden");
+
+      try {
+        const res = await fetch("/api/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, turnstileToken }),
+        });
+
+        const data = await res.json().catch(() => null);
+
+        if (res.ok) {
+          message.textContent =
+            "Check your email to confirm your subscription.";
+          message.className = "mt-4 text-sm text-success";
+          emailInput.value = "";
+          turnstile.reset();
+        } else {
+          message.textContent =
+            data?.message || "Something went wrong. Please try again.";
+          message.className = "mt-4 text-sm text-error";
+        }
+      } catch {
+        message.textContent =
+          "Could not reach the server. Please try again later.";
+        message.className = "mt-4 text-sm text-error";
+      } finally {
+        button.disabled = false;
+        button.textContent = "Subscribe";
+      }
+    });
+  </script>
 </BaseLayout>

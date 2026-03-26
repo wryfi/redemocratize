@@ -163,6 +163,8 @@ const interestOptions = [
             id="email"
             name="email"
             required
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            title="Please enter a valid email address"
             placeholder="you@example.com"
             class="input w-full"
           />
@@ -200,6 +202,8 @@ const interestOptions = [
           ></textarea>
         </div>
 
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAACwW6ap8A70BtVeG" data-theme="auto"></div>
+
         <div>
           <button type="submit" class="btn btn-primary font-heading">Submit</button>
         </div>
@@ -216,6 +220,8 @@ const interestOptions = [
   </section>
 </BaseLayout>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script>
   const form = document.getElementById("contribute-form")
   const successAlert = document.getElementById("form-success")
@@ -226,6 +232,17 @@ const interestOptions = [
     successAlert.classList.add("hidden")
     errorAlert.classList.add("hidden")
 
+    const turnstileToken = form.querySelector("[name='cf-turnstile-response']")?.value
+    if (!turnstileToken) {
+      errorAlert.querySelector("span").textContent = "Please complete the verification."
+      errorAlert.classList.remove("hidden")
+      return
+    }
+
+    const button = form.querySelector("button[type='submit']")
+    button.disabled = true
+    button.textContent = "Submitting..."
+
     const formData = new FormData(form)
     const contributions = formData.getAll("contributions")
 
@@ -233,22 +250,36 @@ const interestOptions = [
       name: formData.get("name"),
       email: formData.get("email"),
       contributions,
-      message: formData.get("message"),
+      message: formData.get("message") || null,
+      turnstileToken,
     }
 
     try {
-      // TODO: Wire up to Supabase
-      // const { createClient } = await import("@supabase/supabase-js")
-      // const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-      // const { error } = await supabase.from("contributions").insert([payload])
-      // if (error) throw error
+      const res = await fetch("/api/contribute", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
 
-      console.log("Form submission payload:", payload)
+      const data = await res.json().catch(() => null)
+
+      if (!res.ok) {
+        throw new Error(data?.message || "Submission failed.")
+      }
+
+      successAlert.querySelector("span").textContent =
+        "Thank you for your interest. We will be in touch."
       successAlert.classList.remove("hidden")
       form.reset()
+      turnstile.reset()
     } catch (err) {
       console.error("Submission error:", err)
+      errorAlert.querySelector("span").textContent =
+        err.message || "Something went wrong. Please try again or reach out directly."
       errorAlert.classList.remove("hidden")
+    } finally {
+      button.disabled = false
+      button.textContent = "Submit"
     }
   })
 </script>
