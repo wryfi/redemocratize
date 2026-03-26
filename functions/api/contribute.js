@@ -47,32 +47,28 @@ export async function onRequestPost(context) {
     });
 
     const fetchUrl = `${supabaseUrl}/rest/v1/contributor_interest`;
-    const authHeader = `Bearer ${supabaseKey}`;
-    console.log("fetch debug:", {
-      fetchUrl,
-      apikeyLen: supabaseKey.length,
-      authHeaderLen: authHeader.length,
-      authHeaderStart: authHeader.substring(0, 20),
-      authHeaderEnd: authHeader.substring(authHeader.length - 10),
+    const requestBody = JSON.stringify({
+      name,
+      email,
+      contributions: contributions || [],
+      message: message || null,
     });
-    const supabaseRes = await fetch(
+
+    console.log("request debug:", {
       fetchUrl,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: supabaseKey,
-          Authorization: `Bearer ${supabaseKey}`,
-          Prefer: "return=minimal",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          contributions: contributions || [],
-          message: message || null,
-        }),
-      }
-    );
+      bodyLen: requestBody.length,
+      keyLen: supabaseKey.length,
+    });
+
+    const supabaseRes = await fetch(fetchUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal",
+        "apikey": supabaseKey,
+      },
+      body: requestBody,
+    });
 
     if (!supabaseRes.ok) {
       const errorText = await supabaseRes.text();
