@@ -37,6 +37,14 @@ export async function onRequestPost(context) {
     // Insert into Supabase
     const supabaseUrl = env.SUPABASE_URL || "";
     const supabaseKey = env.SUPABASE_ANON_KEY || "";
+    console.log("env check:", {
+      hasUrl: !!env.SUPABASE_URL,
+      urlType: typeof env.SUPABASE_URL,
+      urlPrefix: supabaseUrl.substring(0, 20),
+      hasKey: !!env.SUPABASE_ANON_KEY,
+      keyType: typeof env.SUPABASE_ANON_KEY,
+      keyLen: supabaseKey.length,
+    });
 
     const supabaseRes = await fetch(
       `${supabaseUrl}/rest/v1/contributor_interest`,
