@@ -26,10 +26,18 @@ it is deferred crisis.
 
 The American amendment process, which requires supermajority approval at
 multiple levels, has produced only seventeen amendments since the Bill of
-Rights, none of which fundamentally altered the structure of governance. An
-amendment process that can only be changed through itself is a lock without a
-key. A democratic constitution must be revisable by the people who live under
-it, within a timeframe that corresponds to the political life of a generation.
+Rights. The Reconstruction Amendments were the only substantive attempt at
+self-correction, and a century and a half of interpretive erosion, political
+capitulation, and outright defiance reduced their transformative promise to
+a set of under-enforced aspirations.
+
+The lesson is not just that amendment is too difficult, but that formal textual
+change is insufficient without structural mechanisms to ensure implementation
+and resist rollback. An amendment process that can only be changed through
+itself is a lock without a key. A democratic constitution must be revisable by
+the people who live under it, within a timeframe that corresponds to the
+political life of a generation, and its revisions must be structurally durable
+against interpretive nullification.
 
 ## Revisability and the Rights Floor
 
@@ -42,8 +50,8 @@ then revisability has an exception. If so, then the floor is not
 truly non-derogable.
 
 The resolution is that these two commitments operate at different
-levels. Non-derogable rights are not constraints *on* democratic
-self-governance. They are constitutive *of* it. The right to
+levels. Non-derogable rights are not constraints _on_ democratic
+self-governance. They are constitutive _of_ it. The right to
 political participation, freedom of conscience, equal protection,
 bodily autonomy, due process: these are not limits imposed on
 democracy from outside. They are the conditions under which
