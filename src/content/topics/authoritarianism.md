@@ -2,7 +2,7 @@
 uid: "topic-authoritarianism"
 title: "Preventing & Defeating Authoritarianism"
 summary: "The Redemocratrize Principles are designed to make authoritarian capture structurally impossible — not through norms or good faith, but through architecture."
-author: "Redemocratize"
+author: Christian Haumesser
 pubDate: 2026-03-25
 draft: false
 principles:

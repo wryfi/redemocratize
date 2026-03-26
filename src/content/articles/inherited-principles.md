@@ -2,7 +2,7 @@
 uid: "wx0yds1ehm"
 title: "Inherited Principles: What We Build On"
 summary: "Redemocratize is not nihilistic about the American democratic tradition. Many of its principles are sound. The crisis is that the institutional implementation has failed them."
-author: "Redemocratize"
+author: Christian Haumesser
 pubDate: 2026-03-25
 draft: false
 pin: 20

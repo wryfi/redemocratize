@@ -2,7 +2,7 @@
 uid: "topic-wealth-inequality"
 title: "Wealth Inequality & Oligarchy"
 summary: "Why extreme wealth concentration is inherently incompatible with democracy, and what governance designed to prevent it looks like."
-author: "Redemocratize"
+author: Christian Haumesser
 pubDate: 2026-03-25
 draft: false
 principles:
