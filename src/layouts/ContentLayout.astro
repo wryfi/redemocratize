@@ -1,11 +1,16 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import TableOfContents from '../components/TableOfContents.astro';
+import MobileTableOfContents from '../components/MobileTableOfContents.astro';
 
 const { title, description, headings, backLink, backLabel } = Astro.props;
 ---
 
 <BaseLayout title={`${title} | Redemocratize`} description={description}>
+  {headings && headings.length > 0 && (
+    <MobileTableOfContents headings={headings} />
+  )}
+
   <div class="container py-8">
     <div class="max-w-6xl mx-auto">
       <header class="mb-12">
@@ -19,7 +24,7 @@ const { title, description, headings, backLink, backLabel } = Astro.props;
 
       <div class="flex flex-col lg:flex-row gap-8">
         {headings && headings.length > 0 && (
-          <aside class="lg:w-1/4 lg:sticky lg:top-20 lg:self-start order-last lg:order-first">
+          <aside class="hidden lg:block lg:w-1/4 lg:sticky lg:top-20 lg:self-start">
             <TableOfContents headings={headings} />
           </aside>
         )}
