@@ -2,15 +2,18 @@
 title: Human Primacy
 number: 8
 tier: substantive
-summary: "Human judgment required over fundamental rights decisions. AI cannot decide when rights are revoked."
+summary: "Human judgment required over fundamental rights decisions. AI cannot decide when rights are revoked. Computational systems do not possess consciousness, moral agency, or legal personhood, and may not be granted the rights or standing afforded to biological life."
 ---
 
 _Human Primacy_ requires that human judgment governs all decisions affecting
 fundamental rights and entitlements. AI and automated systems cannot determine
 when rights are curtailed, benefits denied, liberty restricted, or a person's
-standing in the political community altered. This is an ontological claim about
-what kind of entity has standing to make decisions about human beings'
-relationship to their polity.
+standing in the political community altered. Computational systems, regardless
+of their sophistication, do not possess consciousness, moral agency, or legal
+personhood, and may not be granted the rights or standing afforded to biological
+life. This is an ontological claim about what kind of entity has standing to
+make decisions about human beings' relationship to their polity, and about what
+kind of entity can hold rights at all.
 
 ## An Ontological Claim, Not a Technical One
 
@@ -59,6 +62,96 @@ and a kind that no artificial system replicates. The person whose rights are at
 stake is an animal, embedded in an ecology, possessed of a form of awareness
 that emerged from billions of years of biological evolution. That is not a
 detail to be optimized past. It is the foundation of the principle.
+
+## No Personhood for Computational Systems
+
+Human Primacy addresses not only what AI may not _do_ (decide questions of
+rights) but what AI may not _be_ (a holder of rights). Computational systems
+do not possess consciousness, moral agency, or legal personhood, and they may
+not be granted the rights or standing afforded to biological life. This is not
+a limitation to be overcome through technological progress. It is a recognition
+that the distinction between living and non-living systems is foundational,
+not contingent. You do not arrive at personhood by adding more compute.
+
+The pressure to move in the opposite direction is real and well-funded.
+The European Union has debated "electronic personhood" for advanced AI systems.
+Corporate interests have enormous incentives to establish some form of AI
+personhood: it could shield corporations from liability ("the AI decided, not
+us"), create new property rights in AI systems, and blur the line between
+biological and computational entities in ways that serve capital. If the
+constitutional framework does not explicitly foreclose AI personhood, the
+argument that its principles are compatible with it will be made, and it will
+be made in bad faith by actors with substantial resources behind them.
+
+The framework this project articulates draws a clear ontological line. Three
+categories of entity exist within it, and each holds a different relationship
+to rights and accountability:
+
+- **Biological life** possesses intrinsic value and can hold rights. Humans,
+  natural systems, future generations, and other living beings fall on this
+  side of the line. :ref[Ecological
+  Embeddedness]{to="principles/ecological-embeddedness"} recognizes that
+  rivers, forests, and ecosystems have legal standing and the right to exist,
+  flourish, and regenerate. The capacity for rights is grounded in life itself.
+
+- **Institutional constructs** (corporations, nonprofits, government agencies)
+  are created by the polity for specific purposes. They hold no inherent
+  rights. They are subject to democratic accountability under
+  :ref[Democratic Sovereignty over
+  Institutions]{to="principles/democratic-sovereignty-over-institutions"}.
+  Corporate personhood, established through judicial interpretation rather
+  than democratic choice, has been catastrophic for self-governance. The
+  framework explicitly reverses it.
+
+- **Computational systems** are tools created by humans. They may be powerful,
+  sophisticated, and capable of behavior that mimics understanding, but they
+  are not conscious, not moral agents, and not bearers of rights. They fall in
+  the same category as other instruments: useful, sometimes essential, always
+  subordinate to the living beings and democratic communities they serve.
+
+AI personhood would collapse the third category into the first, treating
+fundamentally different things as equivalent. This is precisely the kind of
+false equivalence the framework resists throughout. A river is alive. A
+corporation is a legal fiction. An AI is a tool. These are not the same kind of
+entity, and granting them the same standing is not a recognition of progress.
+It is a category error with devastating institutional consequences.
+
+The parallel to corporate personhood is instructive. When courts granted
+corporations the rights of natural persons, the result was not the elevation of
+corporate life but the degradation of democratic governance. Corporate
+"speech" drowned out human speech. Corporate "rights" overrode community
+self-determination. The fiction that an institutional construct could hold the
+same rights as a living person became one of the most effective tools for
+concentrating power in the hands of the few. AI personhood would repeat this
+mistake in a new domain, with potentially greater consequences. If a
+corporation can claim that "the AI decided" and thereby diffuse accountability
+for harm, the combination of corporate personhood and AI personhood creates an
+accountability vacuum in which no one is responsible for anything.
+
+The "not yet" argument deserves direct refutation. It holds that current AI
+systems may not merit personhood, but that future systems, sufficiently
+advanced, will cross some threshold of sophistication that entitles them to
+rights. Human Primacy rejects this framing entirely. The distinction between
+biological life and computational systems is not a matter of degree. It is
+a matter of kind. Consciousness, moral agency, and the capacity for genuine
+suffering are not emergent properties of information processing at sufficient
+scale. They are properties of living systems, evolved over billions of years,
+embedded in ecological relationships, possessed of a form of awareness that
+no architecture of silicon and electricity replicates. The line is life, not
+intelligence. No amount of computational sophistication moves a system from one
+side of that line to the other.
+
+This connects to the strengthened :ref[Ecological
+Embeddedness]{to="principles/ecological-embeddedness"} principle in a way that
+clarifies both. Ecological Embeddedness recognizes that non-human living systems
+have rights: rivers, forests, ecosystems possess intrinsic value and legal
+standing. Human Primacy establishes that non-living systems do not, regardless
+of how sophisticated they become. Together, the two principles draw the same
+line from opposite directions. Life has standing. Computation does not. The
+framework recognizes the rights of a river and denies them to the most advanced
+AI system ever built, and it does so for the same reason: the distinction that
+matters is between the living and the non-living, not between the simple and
+the complex.
 
 ## Where Human Primacy Applies
 
@@ -197,13 +290,16 @@ _machines_ in decisions about _human rights_. It says nothing about human
 superiority over other living systems, and the framework as a whole says the
 opposite. :ref[Ecological Embeddedness]{to="principles/ecological-embeddedness"}
 establishes that governance operates _within_ biophysical limits, not above
-them. Humans are embedded in ecological systems, not sovereign over them. The
-same biological grounding that makes human judgment irreplaceable in rights
-decisions -- our embodiment, our mortality, our dependence on living systems --
-is precisely what makes the pretension of dominion over nature a delusion. Human
+them, and that natural systems possess intrinsic value and legal standing of
+their own. Humans are embedded in ecological systems, not sovereign over them.
+The same biological grounding that makes human judgment irreplaceable in rights
+decisions (our embodiment, our mortality, our dependence on living systems) is
+precisely what makes the pretension of dominion over nature a delusion. Human
 Primacy over AI and human embeddedness in nature are not in tension. They are
-two expressions of the same recognition: that biological life has a character
-that artificial systems do not share and that ecological systems do not serve.
+two expressions of the same recognition: biological life has a character that
+artificial systems do not share and that ecological systems do not serve. The
+line the framework draws is between living and non-living, not between human
+and non-human.
 
 ## Relationship to Other Principles
 
@@ -231,10 +327,23 @@ requires that the tools supporting that decision-maker are democratically
 accountable. An opaque algorithm advising a human judge is only marginally
 better than an opaque algorithm replacing one.
 
+**:ref[Democratic Sovereignty over
+Institutions]{to="principles/democratic-sovereignty-over-institutions"}** shares
+the structural logic of the no-personhood commitment. Corporate personhood,
+established through judicial interpretation rather than democratic choice,
+has been catastrophic for self-governance. Human Primacy prevents the same
+mistake from being made with AI. Corporations are instruments chartered by the
+polity. Computational systems are tools built by humans. Neither is a person,
+and neither may claim the rights of one.
+
 **:ref[Ecological Embeddedness]{to="principles/ecological-embeddedness"}**
 connects at the level of the principle's deepest claim: the irreducibility of
 biological life. Human Primacy is not an assertion of human superiority over
 nature. It is a recognition that the kind of consciousness that emerges from
-biological life -- embodied, mortal, embedded in ecological relationships -- is
+biological life, embodied, mortal, embedded in ecological relationships, is
 the kind of consciousness that must govern decisions about beings who share that
-condition. The principle is grounded in biology, not in abstraction.
+condition. Ecological Embeddedness draws the same line from the other direction:
+living systems have rights; computational systems do not. Together the two
+principles establish that the capacity for rights is grounded in life itself.
+The framework recognizes the standing of a river and denies it to the most
+powerful AI ever built, for the same reason.
