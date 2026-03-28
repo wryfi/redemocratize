@@ -62,18 +62,23 @@ axes, not just geographic ones:
   does not recognize this is built on a lie about its own origins.
 
 - **Ecological communities** -- people who share a watershed, a coastline, a
-  bioregion, or an environmental fate. The community downstream of the dam has a
-  political relationship that does not respect state lines. The communities around
-  the Great Lakes share governance interests that no single state can represent.
-  Ecological communities are arguably the most politically neglected form of
-  political community, despite being among the most consequential. The people who
-  share a river system, an aquifer, or a fire-prone landscape are bound together
-  by biophysical realities that no political boundary can override. As ecological
-  crisis intensifies, these communities become more politically salient, not less.
-  :ref[Ecological Embeddedness]{to="principles/ecological-embeddedness"} -- the
-  principle that governance operates within biophysical limits -- demands that
-  these communities have structural representation, and Plural Sovereignty
-  provides the framework for that representation.
+  bioregion, or an environmental fate, and the natural systems themselves. The
+  community downstream of the dam has a political relationship that does not
+  respect state lines. The communities around the Great Lakes share governance
+  interests that no single state can represent. But Plural Sovereignty extends
+  beyond the human communities organized around ecological realities to the
+  ecological systems themselves. :ref[Ecological
+  Embeddedness]{to="principles/ecological-embeddedness"} recognizes that natural
+  systems (rivers, forests, watersheds, ecosystems) possess intrinsic value
+  and legal standing independent of their utility to humans. The watershed is not
+  just a community of people who share an environmental fate; it is itself an
+  entity with rights and standing that governance must recognize. This makes
+  ecological communities arguably the most radical form of plural sovereignty:
+  not just human communities with overlapping jurisdiction, but living systems
+  with their own right to exist and flourish, requiring guardianship
+  institutions to represent their interests. As ecological crisis intensifies,
+  these communities, both human and non-human, become more politically
+  salient, not less.
 
 These categories overlap. A person belongs to several simultaneously. A member
 of a tribal nation living in a city within a particular bioregion participates
@@ -139,10 +144,13 @@ Indigenous sovereignty also has a deep connection to :ref[Ecological
 Embeddedness]{to="principles/ecological-embeddedness"}. Many indigenous
 governance traditions are organized around relationships to land, water, and
 living systems in ways that Western political thought has only recently begun to
-take seriously. Recognizing indigenous sovereignty is not only a matter of
-justice to those communities; it is a source of governance knowledge about how
-to live within biophysical limits that the dominant constitutional tradition
-badly needs.
+take seriously. The recognition that natural systems have rights and standing,
+that the river is a relation and not a resource, is not a Western legal
+innovation. It is an indigenous insight that Western jurisprudence is belatedly
+codifying. Recognizing indigenous sovereignty is not only a matter of justice to
+those communities; it is a source of governance knowledge about how to live
+within biophysical limits, and how to recognize the standing of non-human life,
+that the dominant constitutional tradition badly needs.
 
 ## The African American Political Community
 
@@ -237,10 +245,16 @@ along state lines. A watershed is a political community whether the law
 recognizes it or not -- the people within it share an environmental fate, and
 governance decisions upstream affect everyone downstream. The same is true of
 airsheds, aquifers, coastlines, and fire-prone landscapes. Ecological
-Embeddedness demands that governance operate within biophysical limits; Plural
-Sovereignty provides the constitutional architecture for recognizing the
-communities that those biophysical realities create. Without Plural Sovereignty,
-Ecological Embeddedness has no institutional home.
+Embeddedness demands that governance operate within biophysical limits and that
+natural systems possess rights of their own -- the right to exist, flourish,
+and regenerate. Plural Sovereignty provides the constitutional architecture for
+recognizing both the human communities that biophysical realities create and
+the natural systems themselves as entities with standing. Ecological systems
+are a form of overlapping sovereignty: the river does not respect municipal
+boundaries, the forest does not care about state lines, and the migratory
+corridor crosses every jurisdiction it passes through. Without Plural
+Sovereignty, Ecological Embeddedness and the rights of nature it establishes
+have no institutional home.
 
 **:ref[Temporal Pluralism]{to="principles/temporal-pluralism"}** adds another
 dimension: different institutions operating at different speeds. A cultural
