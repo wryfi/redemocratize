@@ -2,18 +2,30 @@
 title: Human Primacy
 number: 8
 tier: substantive
-summary: "Human judgment required over fundamental rights decisions. AI cannot decide when rights are revoked. Computational systems do not possess consciousness, moral agency, or legal personhood, and may not be granted the rights or standing afforded to biological life."
+summary: "Not supremacy over nature -- authority over machines. Human judgment required over fundamental rights decisions. No person may be denied a right, a benefit, or their liberty by a machine."
 ---
 
-_Human Primacy_ requires that human judgment governs all decisions affecting
-fundamental rights and entitlements. AI and automated systems cannot determine
-when rights are curtailed, benefits denied, liberty restricted, or a person's
-standing in the political community altered. Computational systems, regardless
-of their sophistication, do not possess consciousness, moral agency, or legal
-personhood, and may not be granted the rights or standing afforded to biological
-life. This is an ontological claim about what kind of entity has standing to
-make decisions about human beings' relationship to their polity, and about what
-kind of entity can hold rights at all.
+_Human Primacy_ is not a claim of human supremacy over the natural world; the
+project's commitment to the rights of living systems is articulated under
+:ref[Ecological Embeddedness]{to="principles/ecological-embeddedness"}. Human
+Primacy is specifically about the relationship between human judgment and
+automated systems: authority over machines, not dominion over life.
+
+Human judgment must govern all decisions affecting fundamental rights and
+entitlements. No person may be denied a right, a benefit, or their liberty by a
+machine. AI and automated systems cannot determine when rights are curtailed,
+benefits denied, liberty restricted, or a person's standing in the political
+community altered. The enforcement apparatus of rights and entitlements must
+have a human being accountable for every consequential decision.
+
+Computational systems, regardless of their sophistication, are tools. They do
+not possess consciousness, moral agency, or legal personhood, and may not be
+granted the rights or standing afforded to biological life. This distinction
+between living and non-living systems is foundational, not a limitation to be
+overcome through technological progress. Any change to the standing of
+computational systems requires deliberative democratic process under
+:ref[Adaptive Capacity]{to="principles/adaptive-capacity"}, not corporate
+lobbying, judicial interpretation, or market pressure.
 
 ## An Ontological Claim, Not a Technical One
 
@@ -141,7 +153,7 @@ no architecture of silicon and electricity replicates. The line is life, not
 intelligence. No amount of computational sophistication moves a system from one
 side of that line to the other.
 
-This connects to the strengthened :ref[Ecological
+This connects to the :ref[Ecological
 Embeddedness]{to="principles/ecological-embeddedness"} principle in a way that
 clarifies both. Ecological Embeddedness recognizes that non-human living systems
 have rights: rivers, forests, ecosystems possess intrinsic value and legal
