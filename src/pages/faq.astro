@@ -1,0 +1,289 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const sections = [
+  {
+    heading: "About the Project",
+    faqs: [
+      {
+        question: "What is Redemocratize?",
+        answer: `Redemocratize is an open-source constitutional design project.
+It articulates principles for democratic governance adequate to the
+21st century, invites collaborative development of institutional
+proposals, and evaluates both existing and proposed systems against
+those principles. It is not a policy platform, not a manifesto, and
+not a proposal for a specific alternative constitution. It is closer
+to an open-source software project than a political campaign.`,
+      },
+      {
+        question: "Why does this project exist?",
+        answer: `The crisis facing democratic governance is not one failure but an
+accumulation of structural breakdowns, each creating the conditions
+for the next. The U.S. Constitution's amendment process was made
+deliberately difficult; concentrated wealth has moved into structures
+the framers left unguarded; and the 21st century has introduced threats
+no 18th-century framework could have anticipated: industrialized
+manipulation of information, AI-generated disinformation, corporate-
+authoritarian alignment, automated surveillance, ecological breakdown,
+and the enclosure of shared wealth by a shrinking oligarchic class.
+These failures are the predictable result of constitutional designs
+that assumed good faith, relied on norms instead of structure, and
+provided no realistic mechanism for their own renewal.`,
+      },
+      {
+        question: "What makes this different from other reform efforts?",
+        answer: `Most reform efforts work within the existing constitutional framework,
+accepting its constraints. Redemocratize is greenfield: it does not
+assume the existing Constitution should be preserved or that Article V
+is the path forward. The current system has exhausted its adaptive
+capacity. Working within the existing frame implicitly concedes the
+frame's legitimacy. This project also differs from policy platforms,
+which are reactive, tied to electoral cycles, and invite point-by-point
+debate on the opposition's terms. Design principles are durable and
+can attract people across ideological lines in ways a policy platform
+cannot.`,
+      },
+      {
+        question: "Is this realistic?",
+        answer: `The project does not depend on any particular political pathway or
+timeline. Constitutional frameworks have been redesigned throughout
+history, often in moments of crisis. The work of articulating
+principles, developing institutional proposals, and building a
+community of contributors is valuable regardless of when or how change
+comes. The project's open-source model scales with intellectual
+contribution rather than funding or media attention. The alternative
+is to accept that constitutional design stopped in the 18th century.`,
+      },
+      {
+        question: "So what? What does this actually accomplish?",
+        answer: `This is not an activist organization, and it is not trying to get
+anyone elected or pass any particular law. The project exists to do
+the intellectual groundwork now so that a coherent, principled vision
+for democratic governance is ready when opportunities for change
+arise. History shows that moments of institutional transformation
+open suddenly and close quickly. The movements and societies that
+shape what comes next are the ones that did the design work in
+advance. Redemocratize is building that body of work in the open:
+articulating principles, developing institutional proposals, studying
+comparative models, and growing a community of contributors who
+understand the framework deeply enough to apply it. When the window
+opens, the question will not be whether change is needed but whether
+anyone has a credible answer to what comes next. That is what this
+project is for.`,
+      },
+    ],
+  },
+  {
+    heading: "About the Principles",
+    faqs: [
+      {
+        question: 'What does "principles, not prescriptions" mean?',
+        answer: `The project articulates design principles that constrain and guide
+institutional proposals but do not dictate specific institutional
+forms. Existing features like bicameralism, separation of powers, and
+federalism are implementations, not principles. Multiple institutional
+forms could satisfy the same principles. This creates space for
+genuine institutional imagination and convenes a conversation rather
+than dictating outcomes. The one exception is Universal Human Rights,
+which is prescriptive: whatever institutions are built, they must
+protect these rights.`,
+      },
+      {
+        question: "What are the fifteen principles?",
+        answer: `The principles are organized into two tiers. Five Structural Principles
+address how governance is organized: Adaptive Capacity, Subsidiarity
+& Solidarity, Plural Sovereignty, Temporal Pluralism, and Epistemic
+Pluralism. Ten Substantive Commitments address what governance must
+protect: Universal Human Rights, Epistemic Autonomy, Human Primacy,
+Economic Democracy, Democratic Sovereignty over Institutions, The
+Inalienable Commons, Ecological Embeddedness, Civic Technology
+Sovereignty, Democratic Peace & Security, and Cooperative Sovereignty.
+The tension between these two tiers is productive and deliberate:
+subsidiarity without a rights floor is a license for local tyranny,
+and a rights floor without subsidiarity is centralized paternalism.`,
+      },
+      {
+        question: "Why two tiers of principles?",
+        answer: `Structural Principles define how governance is organized. Substantive
+Commitments define what governance must protect. This distinction
+matters because the two tiers constrain each other. Subsidiarity
+without a rights floor enables local tyranny. A rights floor without
+subsidiarity produces centralized paternalism. The productive tension
+between the tiers must be held, not resolved.`,
+      },
+      {
+        question: "What is novel about these principles?",
+        answer: `Several principles address problems that existing constitutional
+frameworks do not. Epistemic Autonomy establishes the right to be free
+from algorithmic manipulation of perception and judgment. Human Primacy
+makes an ontological claim: only human beings have standing to decide
+when human rights are revoked, not AI systems. Civic Technology
+Sovereignty insists that the systems of democratic participation must
+be publicly owned, transparent, auditable, and comprehensible to
+non-expert citizens. The Self-Correction architecture within Adaptive
+Capacity builds automatic structural responses to institutional
+capture, including deference decay for compromised institutions and
+automatic triggers that activate without requiring political will.`,
+      },
+    ],
+  },
+  {
+    heading: "Scope and Positioning",
+    faqs: [
+      {
+        question: "Are you trying to abolish the Constitution?",
+        answer: `No. We take the system's aspirations more seriously than those
+defending the status quo. We ask whether the current implementation
+achieves what the tradition promised. The project explicitly claims
+principles from the American democratic tradition: due process,
+freedom of conscience, separation of powers, civilian control of the
+military, the rejection of hereditary privilege, federalism as
+experiment, and more. We insist on fulfilling what those principles
+promised but could not deliver. We also name honestly where the
+tradition was wrong from the start: slavery, the exclusion of women,
+the treatment of indigenous nations, and the privileging of property
+over people.`,
+      },
+      {
+        question: "Is this a left-wing or right-wing project?",
+        answer: `The principles are designed to attract people across ideological lines.
+Libertarians may value subsidiarity, conservatives may value
+institutional accountability, and progressives may value economic
+democracy. The project is not organized around an electoral coalition
+or policy agenda. It addresses structural questions about how
+democratic governance should work. That said, the project does not
+pretend to be neutral on everything: it holds that extreme wealth
+concentration is inherently incompatible with democracy, that human
+rights are non-negotiable, and that no institutional form confers
+immunity from democratic accountability.`,
+      },
+      {
+        question: "Is this for the United States only?",
+        answer: `No. The principles are intended to be broadly applicable to democratic
+governance anywhere. The project is framed in terms of American
+democracy because that is its founder's frame of reference, and the
+American constitutional crisis provides immediate motivation. But
+the design questions the project addresses are not uniquely American:
+institutional capture, wealth concentration, algorithmic manipulation,
+ecological limits, and the tension between local authority and
+universal rights are challenges facing democracies everywhere.
+Comparative examples from other democratic traditions are an important
+part of the project, and contributors from any country or tradition
+are welcome.`,
+      },
+      {
+        question: "Does this apply only to federal government?",
+        answer: `No. The principles are meant to apply to democratic governance at every
+level: local, regional, national, and supranational. A city charter, a
+state constitution, a cooperative's bylaws, and an international treaty
+regime can all be evaluated against the same design principles.
+Subsidiarity, one of the structural principles, specifically holds
+that authority defaults to the most local competent level. The
+framework is not a blueprint for one level of government but a set of
+principles for organizing democratic power wherever it operates.`,
+      },
+    ],
+  },
+  {
+    heading: "Specific Topics",
+    faqs: [
+      {
+        question: "What does the project say about religion?",
+        answer: `The project never directly targets religion. It is radically for freedom
+of conscience. Multiple principles working together make fundamentalist
+political capture structurally impossible without restricting belief:
+Epistemic Autonomy addresses manipulation by any actor, Epistemic
+Pluralism prevents any single metaphysical framework from dominating,
+Democratic Sovereignty over Institutions removes institutional
+immunity, and the Universal Human Rights floor protects freedom from
+coercion. The project opposes political capture by any orthodoxy
+precisely because it takes freedom of conscience seriously.`,
+      },
+      {
+        question: "How does the project address corporate power?",
+        answer: `Corporate power spans three principles. Economic Democracy addresses
+participation in economic governance, wealth concentration limits,
+and labor rights. Democratic Sovereignty over Institutions dissolves
+corporate personhood, establishes that jurisdiction follows impact,
+and ensures no institutional form confers immunity from democratic
+accountability. The Inalienable Commons holds shared resources in
+trust, not subject to enclosure. Together, these address corporate
+personhood, global corporate sovereignty, the enclosure of commons,
+labor and productive power, and financialization.`,
+      },
+    ],
+  },
+  {
+    heading: "Getting Involved",
+    faqs: [
+      {
+        question: "How can I contribute?",
+        answer: `The project welcomes contributions from scholars, organizers, lawyers,
+technologists, and citizens. You can contribute essays and analysis on
+how the principles apply to issues you know. You can propose
+institutional mechanisms that serve the principles. You can bring
+comparative examples from other democratic traditions. You can
+translate. The preferred workflow is through git and the project's
+source repository, but we also accept contributions through Google
+Docs for those who prefer that. All content is licensed CC BY-SA 4.0.`,
+      },
+      {
+        question: "Who runs this project?",
+        answer: `The project launched with a single maintainer and is open to
+contributions. As the contributor community grows, trusted contributors
+will be invited to become reviewers, forming the seed of an editorial
+board. The project's internal governance practices its own principles:
+adaptive capacity, transparency, and epistemic pluralism.`,
+      },
+    ],
+  },
+]
+---
+
+<BaseLayout
+  title="FAQ — Redemocratize"
+  description="Frequently asked questions about the Redemocratize project, its principles, and how to get involved."
+>
+  <section class="py-16 lg:py-24">
+    <div class="container max-w-4xl">
+      <h1 class="text-4xl font-bold font-heading mb-4">
+        Frequently Asked Questions
+      </h1>
+      <p class="text-lg text-base-content/70 mb-12">
+        Common questions about the project, its principles, and how
+        to get involved.
+      </p>
+
+      <div class="space-y-12">
+        {sections.map((section, si) => (
+          <div>
+            <h2 class="text-2xl font-bold font-heading mb-4">
+              {section.heading}
+            </h2>
+            <div class="space-y-4">
+              {section.faqs.map((faq, fi) => (
+                <div class="collapse collapse-arrow bg-base-200">
+                  <input
+                    type="radio"
+                    name="faq-accordion"
+                    checked={si === 0 && fi === 0}
+                  />
+                  <div class="collapse-title font-heading font-bold text-lg">
+                    {faq.question}
+                  </div>
+                  <div class="collapse-content">
+                    <div class="prose max-w-none">
+                      {faq.answer.split('\n\n').map(p => (
+                        <p>{p}</p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
