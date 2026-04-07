@@ -1,0 +1,51 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const { author } = Astro.props;
+const attribution = author
+  ? `${author}, Redemocratize Project`
+  : 'Redemocratize Project contributors';
+---
+
+<label for="license-modal" class="badge badge-md cursor-pointer hover:brightness-95 transition-all gap-1 bg-badge-license text-badge-license-content" title="Licensed under CC BY-SA 4.0">
+  <Icon name="ph:scales-bold" class="size-4" />
+  CC BY-SA
+</label>
+
+<input type="checkbox" id="license-modal" class="modal-toggle" />
+<div class="modal" role="dialog">
+  <div class="modal-box max-w-md">
+    <label for="license-modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">&#x2715;</label>
+    <div class="flex items-start gap-4">
+      <img
+        src="/images/cc-by-sa.svg"
+        alt="CC BY-SA 4.0"
+        width="88"
+        height="31"
+        class="shrink-0 mt-1"
+      />
+      <div>
+        <h3 class="font-bold text-lg">License</h3>
+        <p class="text-sm text-base-content/70 mt-2">
+          &copy; {attribution}.
+        </p>
+        <p class="text-sm text-base-content/70 mt-2">
+          This work is licensed under a
+          <a
+            href="https://creativecommons.org/licenses/by-sa/4.0/"
+            target="_blank"
+            rel="noopener noreferrer license"
+            class="link link-primary"
+          >Creative Commons Attribution-ShareAlike 4.0
+          International License</a>.
+        </p>
+        <p class="text-sm text-base-content/70 mt-2">
+          When sharing or adapting, please attribute to
+          <strong>{attribution}</strong>
+          (<a href="https://redemocratize.org" class="link link-primary">redemocratize.org</a>).
+        </p>
+      </div>
+    </div>
+  </div>
+  <label class="modal-backdrop" for="license-modal">Close</label>
+</div>

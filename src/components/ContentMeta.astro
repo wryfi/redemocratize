@@ -1,0 +1,73 @@
+---
+import { Icon } from 'astro-icon/components';
+import LicenseBadge from './LicenseBadge.astro';
+
+const {
+  type,
+  author,
+  pubDate,
+  updatedDate,
+  status,
+  country,
+} = Astro.props;
+
+const typeConfig = {
+  article:   { icon: 'ph:article-bold',   classes: 'bg-badge-article text-badge-article-content',   href: '/lab/articles' },
+  topic:     { icon: 'ph:compass-bold',    classes: 'bg-badge-topic text-badge-topic-content',       href: '/lab/topics' },
+  proposal:  { icon: 'ph:lightbulb-bold',  classes: 'bg-badge-proposal text-badge-proposal-content', href: '/lab/proposals' },
+  model:     { icon: 'ph:blueprint-bold',  classes: 'bg-badge-model text-badge-model-content',       href: '/lab/models' },
+  news:      { icon: 'ph:newspaper-bold',  classes: 'bg-badge-news text-badge-news-content',         href: '/lab/news' },
+  principle: { icon: 'ph:scroll-bold',     classes: 'bg-badge-principle text-badge-principle-content', href: '/principles' },
+};
+
+const config = typeConfig[type] || { icon: 'ph:file-bold', classes: 'bg-badge-meta text-badge-meta-content' };
+
+function formatDate(date) {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<div class="flex flex-wrap items-center gap-2 mb-8 not-prose">
+  <a href={config.href} class:list={['badge badge-md gap-1 no-underline hover:brightness-90 transition-all', config.classes]}>
+    <Icon name={config.icon} class="size-4" />
+    {type}
+  </a>
+
+  {status && (
+    <span class="badge badge-md bg-badge-meta text-badge-meta-content">{status}</span>
+  )}
+
+  {country && (
+    <span class="badge badge-md gap-1 bg-badge-country text-badge-country-content">
+      <Icon name="ph:globe-bold" class="size-4" />
+      {country}
+    </span>
+  )}
+
+  {author && (
+    <span class="badge badge-md gap-1 bg-badge-author text-badge-author-content">
+      <Icon name="ph:user-bold" class="size-4" />
+      {author}
+    </span>
+  )}
+
+  {pubDate && (
+    <span class="badge badge-md gap-1 bg-badge-date text-badge-date-content">
+      <Icon name="ph:calendar-bold" class="size-4" />
+      {formatDate(pubDate)}
+    </span>
+  )}
+
+  {updatedDate && (
+    <span class="badge badge-md gap-1 bg-badge-date text-badge-date-content">
+      <Icon name="ph:clock-clockwise-bold" class="size-4" />
+      {formatDate(updatedDate)}
+    </span>
+  )}
+
+  <LicenseBadge author={author} />
+</div>

@@ -1,20 +1,17 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 const { item, collection } = Astro.props;
 
-const collectionLabel = {
-  articles: 'article',
-  topics: 'topic',
-  proposals: 'proposal',
-  models: 'model',
-  news: 'news',
+const collectionConfig = {
+  articles:  { label: 'article',  icon: 'ph:article-bold',   classes: 'bg-badge-article text-badge-article-content' },
+  topics:    { label: 'topic',    icon: 'ph:compass-bold',    classes: 'bg-badge-topic text-badge-topic-content' },
+  proposals: { label: 'proposal', icon: 'ph:lightbulb-bold',  classes: 'bg-badge-proposal text-badge-proposal-content' },
+  models:    { label: 'model',    icon: 'ph:blueprint-bold',   classes: 'bg-badge-model text-badge-model-content' },
+  news:      { label: 'news',     icon: 'ph:newspaper-bold',  classes: 'bg-badge-news text-badge-news-content' },
 };
-const collectionColor = {
-  articles: 'badge-primary',
-  topics: 'badge-accent',
-  proposals: 'badge-info',
-  models: 'badge-success',
-  news: 'badge-warning',
-};
+
+const config = collectionConfig[collection] || { label: collection, icon: 'ph:file-bold', classes: 'bg-badge-meta text-badge-meta-content' };
 
 function formatDate(date) {
   return new Date(date).toLocaleDateString('en-US', {
@@ -39,27 +36,27 @@ function getExcerpt(body, maxLength = 200) {
   if (firstParagraph.length <= maxLength) return firstParagraph;
   return firstParagraph.slice(0, maxLength).replace(/\s+\S*$/, '') + '...';
 }
-
-const col = collection;
 ---
 
 <a
-  href={`/lab/${col}/${item.id}`}
+  href={`/lab/${collection}/${item.id}`}
   class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow block"
 >
   <div class="card-body p-5">
-    <div class="flex items-center gap-3 mb-1">
+    <div class="flex flex-wrap items-center gap-2 mb-1">
       {item.data.pin != null && (
-        <span class="badge badge-neutral badge-sm">pinned</span>
+        <span class="badge badge-sm bg-badge-meta text-badge-meta-content">pinned</span>
       )}
-      <span class={`badge badge-sm ${collectionColor[col]}`}>
-        {collectionLabel[col]}
+      <span class:list={['badge badge-sm gap-1', config.classes]}>
+        <Icon name={config.icon} class="size-3" />
+        {config.label}
       </span>
-      <span class="text-xs text-base-content/50">
+      <span class="badge badge-sm gap-1 bg-badge-date text-badge-date-content">
+        <Icon name="ph:calendar-bold" class="size-3" />
         {formatDate(item.data.pubDate)}
       </span>
       {item.data.draft && (
-        <span class="badge badge-ghost badge-sm">draft</span>
+        <span class="badge badge-sm bg-badge-meta text-badge-meta-content">draft</span>
       )}
     </div>
     <h2 class="card-title font-heading text-lg">{item.data.title}</h2>
@@ -67,7 +64,12 @@ const col = collection;
       {item.data.summary || getExcerpt(item.body)}
     </p>
     {item.data.author && (
-      <p class="text-xs text-base-content/40 mt-1">by {item.data.author}</p>
+      <div class="mt-1">
+        <span class="badge badge-sm gap-1 bg-badge-author text-badge-author-content">
+          <Icon name="ph:user-bold" class="size-3" />
+          {item.data.author}
+        </span>
+      </div>
     )}
   </div>
 </a>

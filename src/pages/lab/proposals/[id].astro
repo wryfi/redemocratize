@@ -1,5 +1,6 @@
 ---
 import ContentLayout from '../../../layouts/ContentLayout.astro';
+import ContentMeta from '../../../components/ContentMeta.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -15,14 +16,6 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
-function formatDate(date) {
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
 const statusLabel = {
   draft: 'Draft',
   review: 'In Review',
@@ -37,14 +30,12 @@ const statusLabel = {
   backLink="/lab"
   backLabel="Back to Lab"
 >
-  <div class="flex flex-wrap items-center gap-3 text-sm text-base-content/60 mb-8 not-prose">
-    <span class="badge badge-info badge-sm">proposal</span>
-    <span class="badge badge-ghost badge-sm">{statusLabel[entry.data.status]}</span>
-    {entry.data.author && <span>by {entry.data.author}</span>}
-    <span>Published {formatDate(entry.data.pubDate)}</span>
-    {entry.data.updatedDate && (
-      <span>| Updated {formatDate(entry.data.updatedDate)}</span>
-    )}
-  </div>
+  <ContentMeta
+    type="proposal"
+    author={entry.data.author}
+    pubDate={entry.data.pubDate}
+    updatedDate={entry.data.updatedDate}
+    status={statusLabel[entry.data.status]}
+  />
   <Content />
 </ContentLayout>

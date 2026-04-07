@@ -1,5 +1,6 @@
 ---
 import ContentLayout from '../../layouts/ContentLayout.astro';
+import ContentMeta from '../../components/ContentMeta.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -21,5 +22,6 @@ const { Content, headings } = await render(entry);
   backLink="/principles"
   backLabel="Back to Principles"
 >
+  <ContentMeta type="principle" />
   <Content />
 </ContentLayout>

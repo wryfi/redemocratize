@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentMeta from '../components/ContentMeta.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<BaseLayout title="Badge Color Preview | Redemocratize" description="Preview of badge color palette">
+  <div class="container py-12">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold font-heading mb-8">Badge Color Palette</h1>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading font-bold mb-4">Content Type Badges</h2>
+        <div class="flex flex-wrap gap-3 mb-8">
+          <span class="badge badge-md gap-1 bg-badge-article text-badge-article-content">
+            <Icon name="ph:article-bold" class="size-4" /> article
+          </span>
+          <span class="badge badge-md gap-1 bg-badge-topic text-badge-topic-content">
+            <Icon name="ph:compass-bold" class="size-4" /> topic
+          </span>
+          <span class="badge badge-md gap-1 bg-badge-proposal text-badge-proposal-content">
+            <Icon name="ph:lightbulb-bold" class="size-4" /> proposal
+          </span>
+          <span class="badge badge-md gap-1 bg-badge-model text-badge-model-content">
+            <Icon name="ph:blueprint-bold" class="size-4" /> model
+          </span>
+          <span class="badge badge-md gap-1 bg-badge-news text-badge-news-content">
+            <Icon name="ph:newspaper-bold" class="size-4" /> news
+          </span>
+          <span class="badge badge-md gap-1 bg-badge-principle text-badge-principle-content">
+            <Icon name="ph:scroll-bold" class="size-4" /> principle
+          </span>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading font-bold mb-4">Metadata Badges</h2>
+        <div class="flex flex-wrap gap-3 mb-8">
+          <span class="badge badge-md gap-1 bg-badge-author text-badge-author-content">
+            <Icon name="ph:user-bold" class="size-4" /> Jane Author
+          </span>
+          <span class="badge badge-md gap-1 bg-badge-date text-badge-date-content">
+            <Icon name="ph:calendar-bold" class="size-4" /> April 7, 2026
+          </span>
+          <span class="badge badge-md gap-1 bg-badge-date text-badge-date-content">
+            <Icon name="ph:clock-clockwise-bold" class="size-4" /> April 7, 2026
+          </span>
+          <span class="badge badge-md gap-1 bg-badge-license text-badge-license-content">
+            <Icon name="ph:scales-bold" class="size-4" /> CC BY-SA
+          </span>
+          <span class="badge badge-md bg-badge-meta text-badge-meta-content">Draft</span>
+          <span class="badge badge-md gap-1 bg-badge-country text-badge-country-content">
+            <Icon name="ph:globe-bold" class="size-4" /> Germany
+          </span>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading font-bold mb-4">In Context</h2>
+        <p class="text-base-content/70 mb-6">How badges appear together on different content types:</p>
+
+        <div class="space-y-6">
+          <div class="p-6 rounded-lg border border-base-300">
+            <h3 class="font-heading font-bold mb-3">Article page</h3>
+            <ContentMeta
+              type="article"
+              author="Chris Haumesser"
+              pubDate={new Date('2026-03-15')}
+            />
+          </div>
+
+          <div class="p-6 rounded-lg border border-base-300">
+            <h3 class="font-heading font-bold mb-3">Proposal page (with status)</h3>
+            <ContentMeta
+              type="proposal"
+              author="Jane Doe"
+              pubDate={new Date('2026-02-01')}
+              updatedDate={new Date('2026-03-20')}
+              status="In Review"
+            />
+          </div>
+
+          <div class="p-6 rounded-lg border border-base-300">
+            <h3 class="font-heading font-bold mb-3">Model page (with country)</h3>
+            <ContentMeta
+              type="model"
+              author="Alex Smith"
+              pubDate={new Date('2026-01-10')}
+              country="Germany"
+            />
+          </div>
+
+          <div class="p-6 rounded-lg border border-base-300">
+            <h3 class="font-heading font-bold mb-3">Principle page (minimal)</h3>
+            <ContentMeta type="principle" />
+          </div>
+
+          <div class="p-6 rounded-lg border border-base-300">
+            <h3 class="font-heading font-bold mb-3">Topic page</h3>
+            <ContentMeta
+              type="topic"
+              author="Chris Haumesser"
+              pubDate={new Date('2026-04-01')}
+              updatedDate={new Date('2026-04-05')}
+            />
+          </div>
+
+          <div class="p-6 rounded-lg border border-base-300">
+            <h3 class="font-heading font-bold mb-3">News page</h3>
+            <ContentMeta
+              type="news"
+              pubDate={new Date('2026-04-07')}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-heading font-bold mb-4">Color Swatches</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-article"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-article-content"></div>
+            <span class="text-xs text-base-content/60">article (sandy-brown)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-topic"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-topic-content"></div>
+            <span class="text-xs text-base-content/60">topic (cerulean)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-proposal"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-proposal-content"></div>
+            <span class="text-xs text-base-content/60">proposal (light-gold)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-model"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-model-content"></div>
+            <span class="text-xs text-base-content/60">model (muted-olive)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-news"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-news-content"></div>
+            <span class="text-xs text-base-content/60">news (blushed-brick)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-principle"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-principle-content"></div>
+            <span class="text-xs text-base-content/60">principle (steel-azure)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-author"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-author-content"></div>
+            <span class="text-xs text-base-content/60">author (lavender-grey)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-date"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-date-content"></div>
+            <span class="text-xs text-base-content/60">date (jungle-teal)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-license"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-license-content"></div>
+            <span class="text-xs text-base-content/60">license (gray)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-country"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-country-content"></div>
+            <span class="text-xs text-base-content/60">country (dark-teal)</span>
+          </div>
+          <div class="text-center">
+            <div class="rounded-lg h-16 mb-2 bg-badge-meta"></div>
+            <div class="rounded-lg h-8 mb-1 bg-badge-meta-content"></div>
+            <span class="text-xs text-base-content/60">meta (muted teal)</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

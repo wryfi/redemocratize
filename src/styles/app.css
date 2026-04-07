@@ -2,6 +2,31 @@
 
 @plugin "@tailwindcss/typography";
 @theme {
+  /* Badge palette — light mode
+   * Derived from: sandy-brown, cerulean, light-gold, muted-olive,
+   * blushed-brick, steel-azure, lavender-grey, jungle-teal, dark-teal */
+  --color-badge-article: oklch(85% 0.08 61);
+  --color-badge-article-content: oklch(28% 0.12 61);
+  --color-badge-topic: oklch(85% 0.05 217);
+  --color-badge-topic-content: oklch(28% 0.09 217);
+  --color-badge-proposal: oklch(85% 0.07 99);
+  --color-badge-proposal-content: oklch(28% 0.12 99);
+  --color-badge-model: oklch(85% 0.07 131);
+  --color-badge-model-content: oklch(28% 0.11 131);
+  --color-badge-news: oklch(85% 0.08 20);
+  --color-badge-news-content: oklch(28% 0.12 20);
+  --color-badge-principle: oklch(85% 0.08 255);
+  --color-badge-principle-content: oklch(28% 0.12 255);
+  --color-badge-author: oklch(85% 0.02 302);
+  --color-badge-author-content: oklch(28% 0.03 302);
+  --color-badge-date: oklch(85% 0.04 171);
+  --color-badge-date-content: oklch(28% 0.06 171);
+  --color-badge-license: oklch(88% 0.01 0);
+  --color-badge-license-content: oklch(28% 0.01 0);
+  --color-badge-country: oklch(85% 0.04 213);
+  --color-badge-country-content: oklch(28% 0.06 213);
+  --color-badge-meta: oklch(85% 0.02 171);
+  --color-badge-meta-content: oklch(28% 0.04 171);
 }
 
 @plugin "daisyui" {
@@ -43,6 +68,39 @@
     --noise: 0;
 }
 
+
+/* Badge palette — dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-badge-article: oklch(35% 0.08 61);
+    --color-badge-article-content: oklch(85% 0.10 61);
+    --color-badge-topic: oklch(35% 0.06 217);
+    --color-badge-topic-content: oklch(85% 0.07 217);
+    --color-badge-proposal: oklch(35% 0.08 99);
+    --color-badge-proposal-content: oklch(85% 0.09 99);
+    --color-badge-model: oklch(35% 0.07 131);
+    --color-badge-model-content: oklch(85% 0.09 131);
+    --color-badge-news: oklch(35% 0.08 20);
+    --color-badge-news-content: oklch(85% 0.10 20);
+    --color-badge-principle: oklch(35% 0.08 255);
+    --color-badge-principle-content: oklch(85% 0.10 255);
+    --color-badge-author: oklch(35% 0.03 302);
+    --color-badge-author-content: oklch(85% 0.03 302);
+    --color-badge-date: oklch(35% 0.04 171);
+    --color-badge-date-content: oklch(85% 0.05 171);
+    --color-badge-license: oklch(32% 0.01 0);
+    --color-badge-license-content: oklch(85% 0.01 0);
+    --color-badge-country: oklch(35% 0.04 213);
+    --color-badge-country-content: oklch(85% 0.05 213);
+    --color-badge-meta: oklch(35% 0.03 171);
+    --color-badge-meta-content: oklch(85% 0.04 171);
+  }
+}
+
+/* Prose overrides */
+.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    margin-top: 1em;
+}
 
 /* Base styles */
 html {
