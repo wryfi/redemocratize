@@ -3,6 +3,11 @@ title: Temporal Pluralism
 number: 4
 tier: structural
 summary: "Different institutions at different speeds for different purposes. Responsiveness and stability architecturally separated."
+connections:
+  - adaptive-capacity
+  - subsidiarity-solidarity
+  - plural-sovereignty
+  - ecological-embeddedness
 ---
 
 _Temporal Pluralism_ means that different institutions operate at different

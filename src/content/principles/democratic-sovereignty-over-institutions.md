@@ -3,6 +3,13 @@ title: Democratic Sovereignty over Institutions
 number: 10
 tier: substantive
 summary: "No institutional form confers immunity from democratic accountability. Jurisdiction follows impact."
+connections:
+  - adaptive-capacity
+  - epistemic-pluralism
+  - universal-human-rights
+  - epistemic-autonomy
+  - economic-democracy
+  - inalienable-commons
 ---
 
 _Democratic Sovereignty over Institutions_ holds that no

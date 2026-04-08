@@ -3,6 +3,12 @@ title: The Inalienable Commons
 number: 11
 tier: substantive
 summary: "Shared wealth, including natural resources, the atmosphere, public research, data, and the electromagnetic spectrum, is held in trust and cannot be enclosed or privatized."
+connections:
+  - subsidiarity-solidarity
+  - epistemic-autonomy
+  - economic-democracy
+  - democratic-sovereignty-over-institutions
+  - ecological-embeddedness
 ---
 
 _The Inalienable Commons_ is the principle that categories of shared wealth

@@ -3,6 +3,14 @@ title: Adaptive Capacity
 number: 1
 tier: structural
 summary: "Any fundamental law that cannot be amended by the living political community within a generation is democratically illegitimate."
+connections:
+  - subsidiarity-solidarity
+  - temporal-pluralism
+  - epistemic-pluralism
+  - universal-human-rights
+  - epistemic-autonomy
+  - democratic-sovereignty-over-institutions
+  - democratic-peace-and-security
 ---
 
 _Adaptive Capacity_ is the meta-principle of this project, the one that sets the

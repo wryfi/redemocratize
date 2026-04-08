@@ -3,6 +3,13 @@ title: Ecological Embeddedness
 number: 12
 tier: substantive
 summary: "Governance within biophysical limits. Natural systems possess intrinsic value and legal standing. Structural representation for future generations and non-human systems."
+connections:
+  - subsidiarity-solidarity
+  - plural-sovereignty
+  - temporal-pluralism
+  - universal-human-rights
+  - human-primacy
+  - inalienable-commons
 ---
 
 _Ecological Embeddedness_ means that governance operates within biophysical

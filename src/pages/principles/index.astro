@@ -1,14 +1,54 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
+import { Image } from "astro:assets"
 import { getCollection } from "astro:content"
 
-const principles = (await getCollection("principles")).sort((a, b) => a.data.number - b.data.number)
+import adaptiveCapacityImg from "../../assets/principles/adaptive_capacity.png"
+import subsidiaritySolidarityImg from "../../assets/principles/subsidiarity_solidarity.png"
+import pluralSovereigntyImg from "../../assets/principles/plural_sovereignty.png"
+import temporalPluralismImg from "../../assets/principles/temporal_pluralism.png"
+import epistemicPluralismImg from "../../assets/principles/epistemic_pluralism.png"
+import universalHumanRightsImg from "../../assets/principles/universal_human_rights.png"
+import epistemicAutonomyImg from "../../assets/principles/epistemic_autonomy.png"
+import humanPrimacyImg from "../../assets/principles/human_primacy.png"
+import economicDemocracyImg from "../../assets/principles/economic_democracy.png"
+import democraticSovereigntyImg from "../../assets/principles/democratic_sovereignty_over_institutions.png"
+import inalienableCommonsImg from "../../assets/principles/inalienable_commons.png"
+import ecologicalEmbeddednessImg from "../../assets/principles/ecological_embeddedness.png"
+import democraticPeaceSecurityImg from "../../assets/principles/democratic_peace_security.png"
+import cooperativeSovereigntyImg from "../../assets/principles/cooperative_sovereignty.png"
+import civicTechnologySovereigntyImg from "../../assets/principles/civic_technology_sovereignty.png"
+
+const principleImages = {
+  "adaptive-capacity": adaptiveCapacityImg,
+  "subsidiarity-solidarity": subsidiaritySolidarityImg,
+  "plural-sovereignty": pluralSovereigntyImg,
+  "temporal-pluralism": temporalPluralismImg,
+  "epistemic-pluralism": epistemicPluralismImg,
+  "universal-human-rights": universalHumanRightsImg,
+  "epistemic-autonomy": epistemicAutonomyImg,
+  "human-primacy": humanPrimacyImg,
+  "economic-democracy": economicDemocracyImg,
+  "democratic-sovereignty-over-institutions": democraticSovereigntyImg,
+  "inalienable-commons": inalienableCommonsImg,
+  "ecological-embeddedness": ecologicalEmbeddednessImg,
+  "democratic-peace-and-security": democraticPeaceSecurityImg,
+  "cooperative-sovereignty": cooperativeSovereigntyImg,
+  "civic-technology-sovereignty": civicTechnologySovereigntyImg,
+}
+
+const principles = (await getCollection("principles")).sort(
+  (a, b) => a.data.number - b.data.number,
+)
 const structural = principles.filter((p) => p.data.tier === "structural")
 const substantive = principles.filter((p) => p.data.tier === "substantive")
 
+// Lookup for resolving connection ids to principle entries
+const principlesById = Object.fromEntries(principles.map((p) => [p.id, p]))
+
 const breadcrumbs = [
-  { name: 'Home', url: '/' },
-  { name: 'Principles', url: '/principles' },
+  { name: "Home", url: "/" },
+  { name: "Principles", url: "/principles" },
 ]
 
 const definedTermSet = principles.map((p) => ({
@@ -17,6 +57,8 @@ const definedTermSet = principles.map((p) => ({
   url: `/principles/${p.id}`,
   termCode: String(p.data.number),
 }))
+
+const pad = (n) => String(n).padStart(2, "0")
 ---
 
 <BaseLayout
@@ -26,62 +68,704 @@ const definedTermSet = principles.map((p) => ({
   breadcrumbs={breadcrumbs}
   definedTermSet={definedTermSet}
 >
-  <div class="container py-8">
-    <div class="max-w-4xl mx-auto">
-      <header class="mb-12">
-        <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-4">
-          The Redemocratize Principles
-        </h1>
-        <p class="text-lg text-base-content/70">
-          Organized in two tiers: structural principles that govern how institutions are organized,
-          and substantive commitments that define what governance must protect. The tension between
-          the two tiers is productive and must be held, not resolved.
+  {/* Intro */}
+  <section class="principles-intro">
+    <div class="container max-w-5xl py-16 lg:py-28 relative">
+      <p class="eyebrow mb-6">The Fifteen</p>
+      <h1
+        class="text-5xl md:text-6xl lg:text-7xl font-bold font-heading tracking-tight leading-[0.95] mb-10"
+      >
+        Principles for a<br />
+        <span class="text-primary">resilient</span>{" "}<em class="font-serif italic"
+          >democracy</em
+        >.
+      </h1>
+      <div class="max-w-2xl text-lg lg:text-xl text-base-content/75 space-y-4">
+        <p>
+          Fifteen design principles, arranged in two tiers. Five structural principles
+          that determine how institutions are organized. Ten substantive commitments
+          that define what governance is obligated to protect.
         </p>
-      </header>
+        <p>
+          Read them as a system, not a list. The tension between the two tiers is
+          productive and must be held, not resolved. No single principle is sufficient;
+          together they describe a constitutional architecture adequate to the world we
+          actually inhabit.
+        </p>
+      </div>
 
-      <section class="mb-12">
-        <h2 class="text-2xl font-bold font-heading mb-2 text-primary">Structural Principles</h2>
-        <p class="text-base-content/70 mb-6">How governance is organized</p>
-        <div class="space-y-4">
-          {
-            structural.map((p) => (
-              <a
-                href={`/principles/${p.id}`}
-                class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow block"
-              >
-                <div class="card-body p-6">
-                  <h3 class="card-title font-heading">
-                    <span class="text-primary">{p.data.number}.</span> {p.data.title}
-                  </h3>
-                  <p class="text-base-content/70">{p.data.summary}</p>
-                </div>
-              </a>
-            ))
-          }
+      <div class="legend mt-12">
+        <div class="legend-item">
+          <span class="legend-dot legend-dot-structural"></span>
+          <div>
+            <p class="legend-label">Structure</p>
+            <p class="legend-sub">Principles 01 to 05</p>
+          </div>
         </div>
-      </section>
+        <div class="legend-divider"></div>
+        <div class="legend-item">
+          <span class="legend-dot legend-dot-substantive"></span>
+          <div>
+            <p class="legend-label">Protection</p>
+            <p class="legend-sub">Principles 06 to 15</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <section>
-        <h2 class="text-2xl font-bold font-heading mb-2 text-accent">Substantive Commitments</h2>
-        <p class="text-base-content/70 mb-6">What governance must protect</p>
-        <div class="space-y-4">
-          {
-            substantive.map((p) => (
-              <a
-                href={`/principles/${p.id}`}
-                class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow block"
-              >
-                <div class="card-body p-6">
-                  <h3 class="card-title font-heading">
-                    <span class="text-accent">{p.data.number}.</span> {p.data.title}
-                  </h3>
-                  <p class="text-base-content/70">{p.data.summary}</p>
-                </div>
-              </a>
-            ))
-          }
-        </div>
-      </section>
+  {/* Main: sticky index + panels */}
+  <div class="container max-w-7xl py-16 lg:py-24">
+    <div class="lg:grid lg:grid-cols-[220px_1fr] lg:gap-16 xl:gap-24">
+      <aside class="hidden lg:block">
+        <nav class="sticky top-24" aria-label="Principles index">
+          <p class="eyebrow mb-5">Index</p>
+          <ol class="space-y-1">
+            {
+              principles.map((p) => {
+                const isStructural = p.data.tier === "structural"
+                return (
+                  <li>
+                    <a
+                      href={`#p-${p.id}`}
+                      class={`index-link ${isStructural ? "index-structural" : "index-substantive"}`}
+                      data-target={`p-${p.id}`}
+                    >
+                      <span class="index-num">{pad(p.data.number)}</span>
+                      <span class="index-title">{p.data.title}</span>
+                    </a>
+                  </li>
+                )
+              })
+            }
+          </ol>
+        </nav>
+      </aside>
+
+      <main>
+        {/* Part I: Structure */}
+        <section class="mb-24 lg:mb-36" id="section-structural">
+          <header class="part-header part-header-structural mb-14 lg:mb-20">
+            <p class="eyebrow text-primary">Part I</p>
+            <h2 class="part-title">
+              How governance is{" "}
+              <em class="part-emphasis text-primary">organized</em>
+            </h2>
+            <p class="part-lede">
+              Structural principles determine whether institutions can adapt, distribute
+              power, and resist capture. They are the load-bearing architecture. If
+              structure fails, no right is secure.
+            </p>
+          </header>
+
+          <div class="panels">
+            {
+              structural.map((p, i) => {
+                const related = (p.data.connections || [])
+                  .map((cid) => principlesById[cid])
+                  .filter(Boolean)
+                const img = principleImages[p.id]
+                const reverse = i % 2 === 1
+                return (
+                  <article
+                    id={`p-${p.id}`}
+                    class={`panel panel-structural ${reverse ? "panel-reverse" : ""}`}
+                  >
+                    <div class="panel-image">
+                      {img && (
+                        <Image
+                          src={img}
+                          alt=""
+                          widths={[600, 900, 1200]}
+                          sizes="(min-width: 768px) 40vw, 100vw"
+                        />
+                      )}
+                      <span class="panel-image-badge">Structure</span>
+                    </div>
+                    <div class="panel-content">
+                      <span class="panel-number" aria-hidden="true">
+                        {pad(p.data.number)}
+                      </span>
+                      <h3 class="panel-title">{p.data.title}</h3>
+                      <p class="panel-summary">{p.data.summary}</p>
+                      {related.length > 0 && (
+                        <div class="panel-related">
+                          <span class="panel-related-label">Related</span>
+                          <div class="panel-related-list">
+                            {related.map((r) => {
+                              const isStructural =
+                                r.data.tier === "structural"
+                              return (
+                                <a
+                                  href={`/principles/${r.id}`}
+                                  class={`panel-related-link ${isStructural ? "is-structural" : "is-substantive"}`}
+                                >
+                                  <span class="panel-related-num">
+                                    {pad(r.data.number)}
+                                  </span>
+                                  <span class="panel-related-title">
+                                    {r.data.title}
+                                  </span>
+                                </a>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )}
+                      <a
+                        href={`/principles/${p.id}`}
+                        class="panel-arrow"
+                        aria-label={`Read ${p.data.title}`}
+                      >
+                        <span>Read the principle</span>
+                        <svg
+                          width="24"
+                          height="10"
+                          viewBox="0 0 24 10"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                        >
+                          <path d="M0 5h22M17 1l5 4-5 4" stroke-linecap="square" />
+                        </svg>
+                      </a>
+                    </div>
+                  </article>
+                )
+              })
+            }
+          </div>
+        </section>
+
+        {/* Part II: Protection */}
+        <section id="section-substantive">
+          <header class="part-header part-header-substantive mb-14 lg:mb-20">
+            <p class="eyebrow text-error">Part II</p>
+            <h2 class="part-title">
+              What governance must{" "}
+              <em class="part-emphasis text-error">protect</em>
+            </h2>
+            <p class="part-lede">
+              Substantive commitments describe the conditions every structural
+              arrangement is obligated to serve. They are why the architecture exists.
+              Without them, structure is only procedure.
+            </p>
+          </header>
+
+          <div class="panels">
+            {
+              substantive.map((p, i) => {
+                const related = (p.data.connections || [])
+                  .map((cid) => principlesById[cid])
+                  .filter(Boolean)
+                const img = principleImages[p.id]
+                const reverse = i % 2 === 1
+                return (
+                  <article
+                    id={`p-${p.id}`}
+                    class={`panel panel-substantive ${reverse ? "panel-reverse" : ""}`}
+                  >
+                    <div class="panel-image">
+                      {img && (
+                        <Image
+                          src={img}
+                          alt=""
+                          widths={[600, 900, 1200]}
+                          sizes="(min-width: 768px) 40vw, 100vw"
+                        />
+                      )}
+                      <span class="panel-image-badge">Protection</span>
+                    </div>
+                    <div class="panel-content">
+                      <span class="panel-number" aria-hidden="true">
+                        {pad(p.data.number)}
+                      </span>
+                      <h3 class="panel-title">{p.data.title}</h3>
+                      <p class="panel-summary">{p.data.summary}</p>
+                      {related.length > 0 && (
+                        <div class="panel-related">
+                          <span class="panel-related-label">Related</span>
+                          <div class="panel-related-list">
+                            {related.map((r) => {
+                              const isStructural =
+                                r.data.tier === "structural"
+                              return (
+                                <a
+                                  href={`/principles/${r.id}`}
+                                  class={`panel-related-link ${isStructural ? "is-structural" : "is-substantive"}`}
+                                >
+                                  <span class="panel-related-num">
+                                    {pad(r.data.number)}
+                                  </span>
+                                  <span class="panel-related-title">
+                                    {r.data.title}
+                                  </span>
+                                </a>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      )}
+                      <a
+                        href={`/principles/${p.id}`}
+                        class="panel-arrow"
+                        aria-label={`Read ${p.data.title}`}
+                      >
+                        <span>Read the principle</span>
+                        <svg
+                          width="24"
+                          height="10"
+                          viewBox="0 0 24 10"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                        >
+                          <path d="M0 5h22M17 1l5 4-5 4" stroke-linecap="square" />
+                        </svg>
+                      </a>
+                    </div>
+                  </article>
+                )
+              })
+            }
+          </div>
+        </section>
+      </main>
     </div>
   </div>
+
+  <style>
+    /* Eyebrow: compact uppercase label used throughout */
+    .eyebrow {
+      font-family: var(--font-family-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      opacity: 0.65;
+    }
+
+    /* Intro */
+    .principles-intro {
+      position: relative;
+      border-bottom: 1px solid var(--color-base-300);
+      background:
+        radial-gradient(
+          ellipse 80% 60% at 20% 0%,
+          rgba(34, 87, 122, 0.05),
+          transparent 60%
+        ),
+        radial-gradient(
+          ellipse 60% 60% at 100% 100%,
+          rgba(204, 41, 54, 0.04),
+          transparent 60%
+        );
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .legend-dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+    .legend-dot-structural {
+      background: var(--color-primary);
+      box-shadow: 0 0 0 4px rgba(34, 87, 122, 0.15);
+    }
+    .legend-dot-substantive {
+      background: var(--color-error);
+      box-shadow: 0 0 0 4px rgba(204, 41, 54, 0.15);
+    }
+    .legend-label {
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+    .legend-sub {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      margin-top: 0.15rem;
+    }
+    .legend-divider {
+      width: 1px;
+      height: 2.25rem;
+      background: var(--color-base-300);
+    }
+
+    /* Sticky index rail */
+    .index-link {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      position: relative;
+      padding: 0.4rem 0 0.4rem 1rem;
+      border-left: 2px solid transparent;
+      color: var(--color-base-content);
+      opacity: 0.45;
+      transition:
+        opacity 0.25s ease,
+        border-color 0.25s ease,
+        padding-left 0.25s ease;
+      line-height: 1.3;
+    }
+    .index-link:hover {
+      opacity: 0.95;
+      padding-left: 1.25rem;
+    }
+    .index-link .index-num {
+      flex-shrink: 0;
+      font-family: var(--font-family-heading);
+      font-variant-numeric: tabular-nums;
+      font-size: 0.7rem;
+      font-weight: 600;
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+    }
+    .index-link .index-title {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--font-family-heading);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .index-link.active {
+      opacity: 1;
+    }
+    .index-link.active.index-structural {
+      border-left-color: var(--color-primary);
+    }
+    .index-link.active.index-substantive {
+      border-left-color: var(--color-error);
+    }
+
+    /* Part headers */
+    .part-header {
+      position: relative;
+      padding-top: 1.5rem;
+    }
+    .part-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4rem;
+      height: 2px;
+      background: currentColor;
+      opacity: 0.3;
+    }
+    .part-header-structural::before {
+      background: var(--color-primary);
+    }
+    .part-header-substantive::before {
+      background: var(--color-error);
+    }
+    .part-title {
+      font-family: var(--font-family-heading);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin: 0.5rem 0 1.25rem;
+      max-width: 18ch;
+    }
+    .part-emphasis {
+      font-family: var(--font-family-body);
+      font-style: italic;
+      font-weight: 500;
+    }
+    .part-lede {
+      font-size: 1.1rem;
+      line-height: 1.55;
+      color: var(--color-base-content);
+      opacity: 0.7;
+      max-width: 38rem;
+    }
+
+    /* Panels */
+    .panels {
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+    @media (min-width: 1024px) {
+      .panels {
+        gap: 7rem;
+      }
+    }
+
+    .panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+      scroll-margin-top: 6rem;
+    }
+    @media (min-width: 768px) {
+      .panel {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: 3rem;
+      }
+      .panel-reverse .panel-image {
+        order: 2;
+      }
+    }
+    @media (min-width: 1280px) {
+      .panel {
+        gap: 4.5rem;
+      }
+    }
+
+    .panel-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-box);
+      aspect-ratio: 4 / 5;
+      background: var(--color-base-200);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 24px 48px -24px rgba(34, 87, 122, 0.25);
+    }
+    .panel-substantive .panel-image {
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 24px 48px -24px rgba(204, 41, 54, 0.25);
+    }
+    .panel-image :global(img) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
+    }
+    .panel:hover .panel-image :global(img) {
+      transform: scale(1.04);
+    }
+    .panel-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.28) 0%,
+        rgba(0, 0, 0, 0) 42%
+      );
+    }
+    .panel-image-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      font-family: var(--font-family-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: white;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.35);
+    }
+    .panel-structural .panel-image-badge {
+      background: var(--color-primary);
+    }
+    .panel-substantive .panel-image-badge {
+      background: var(--color-error);
+    }
+
+    /* Content */
+    .panel-content {
+      position: relative;
+      min-width: 0;
+    }
+    .panel-number {
+      display: block;
+      font-family: var(--font-family-heading);
+      font-size: clamp(4.5rem, 11vw, 9rem);
+      font-weight: 800;
+      line-height: 0.8;
+      letter-spacing: -0.06em;
+      -webkit-text-stroke: 1.5px currentColor;
+      color: transparent;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+      font-variant-numeric: tabular-nums;
+      user-select: none;
+    }
+    .panel-structural .panel-number {
+      color: transparent;
+      -webkit-text-stroke-color: var(--color-primary);
+    }
+    .panel-substantive .panel-number {
+      color: transparent;
+      -webkit-text-stroke-color: var(--color-error);
+    }
+
+    .panel-title {
+      font-family: var(--font-family-heading);
+      font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      margin-bottom: 1rem;
+    }
+    .panel-summary {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--color-base-content);
+      opacity: 0.8;
+      max-width: 38rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .panel-related {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--color-base-300);
+      max-width: 38rem;
+    }
+    .panel-related-label {
+      font-family: var(--font-family-heading);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      opacity: 0.55;
+    }
+    .panel-related-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .panel-related-link {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-family: var(--font-family-heading);
+      padding: 0.5rem 0.85rem 0.5rem 0.7rem;
+      border: 1px solid var(--color-base-300);
+      border-radius: 999px;
+      transition: all 0.2s ease;
+      color: var(--color-base-content);
+      text-decoration: none;
+    }
+    .panel-related-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.05em;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      color: white;
+      line-height: 1;
+    }
+    .panel-related-link.is-structural .panel-related-num {
+      background: var(--color-primary);
+    }
+    .panel-related-link.is-substantive .panel-related-num {
+      background: var(--color-error);
+    }
+    .panel-related-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      opacity: 0.85;
+    }
+    .panel-related-link:hover {
+      border-color: var(--color-base-content);
+      transform: translateY(-1px);
+    }
+    .panel-related-link.is-structural:hover {
+      border-color: var(--color-primary);
+    }
+    .panel-related-link.is-substantive:hover {
+      border-color: var(--color-error);
+    }
+
+    .panel-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.78rem;
+      transition: gap 0.3s ease;
+    }
+    .panel-structural .panel-arrow {
+      color: var(--color-primary);
+    }
+    .panel-substantive .panel-arrow {
+      color: var(--color-error);
+    }
+    .panel-arrow svg {
+      transition: transform 0.3s ease;
+    }
+    .panel:hover .panel-arrow {
+      gap: 1.2rem;
+    }
+
+    /* Dark mode refinements */
+    @media (prefers-color-scheme: dark) {
+      .principles-intro {
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 20% 0%,
+            rgba(110, 173, 215, 0.07),
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 60% 60% at 100% 100%,
+            rgba(205, 92, 92, 0.06),
+            transparent 60%
+          );
+      }
+      .panel-image {
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.2),
+          0 24px 48px -24px rgba(0, 0, 0, 0.6);
+      }
+    }
+  </style>
+
+  <script>
+    // Active section highlighting via IntersectionObserver
+    const links = document.querySelectorAll(".index-link")
+    const targets = Array.from(links)
+      .map((l) => document.getElementById(l.dataset.target))
+      .filter(Boolean)
+
+    if (targets.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          // Find the entry closest to the top of the viewport that is intersecting
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+          if (visible.length === 0) return
+          const topId = visible[0].target.id
+          links.forEach((l) => {
+            l.classList.toggle("active", l.dataset.target === topId)
+          })
+        },
+        { rootMargin: "-30% 0px -55% 0px", threshold: 0 },
+      )
+      targets.forEach((t) => observer.observe(t))
+    }
+  </script>
 </BaseLayout>

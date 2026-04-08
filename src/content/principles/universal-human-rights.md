@@ -3,6 +3,15 @@ title: Universal Human Rights
 number: 6
 tier: substantive
 summary: "Non-negotiable minimum. Rights attach to all persons within jurisdiction, not only citizens."
+connections:
+  - adaptive-capacity
+  - subsidiarity-solidarity
+  - plural-sovereignty
+  - temporal-pluralism
+  - epistemic-autonomy
+  - human-primacy
+  - economic-democracy
+  - ecological-embeddedness
 ---
 
 _Universal Human Rights_ is the non-negotiable minimum that

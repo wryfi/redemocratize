@@ -3,6 +3,12 @@ title: Economic Democracy
 number: 9
 tier: substantive
 summary: "Right to participate in governance of economic institutions. Extreme wealth concentration incompatible with democracy."
+connections:
+  - subsidiarity-solidarity
+  - universal-human-rights
+  - democratic-sovereignty-over-institutions
+  - inalienable-commons
+  - ecological-embeddedness
 ---
 
 _Economic Democracy_ is the right to participate in the governance

@@ -3,6 +3,11 @@ title: Subsidiarity & Solidarity
 number: 2
 tier: structural
 summary: "Authority defaults to the most local competent level. Centralization bears the burden of justification. But subsidiarity entails solidarity: when any part of the community faces a crisis beyond its capacity, the larger community has a structural obligation to respond."
+connections:
+  - adaptive-capacity
+  - plural-sovereignty
+  - universal-human-rights
+  - ecological-embeddedness
 ---
 
 _Subsidiarity & Solidarity_ is a single principle with two halves, and neither makes sense without the other. Governing authority defaults to the most local competent level. Centralization bears the burden of justification. But membership in the political community means mutual obligation: when any part of the community faces a crisis beyond its capacity, the larger community has a structural obligation to respond with adequate resources. Authority is distributed. No community is abandoned.

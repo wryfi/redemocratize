@@ -3,6 +3,11 @@ title: Civic Technology Sovereignty
 number: 13
 tier: substantive
 summary: "Civic infrastructure must be publicly owned, transparent, auditable, comprehensible."
+connections:
+  - adaptive-capacity
+  - epistemic-autonomy
+  - human-primacy
+  - democratic-sovereignty-over-institutions
 ---
 
 _Civic Technology Sovereignty_ holds that the systems through which

@@ -3,6 +3,11 @@ title: Democratic Peace & Security
 number: 14
 tier: substantive
 summary: "Force subject to the most rigorous democratic constraints. War-making collective and deliberative."
+connections:
+  - adaptive-capacity
+  - subsidiarity-solidarity
+  - universal-human-rights
+  - cooperative-sovereignty
 ---
 
 _Democratic Peace & Security_ holds that the authority to exercise

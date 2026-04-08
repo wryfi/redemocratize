@@ -3,6 +3,12 @@ title: Epistemic Autonomy
 number: 7
 tier: substantive
 summary: "The right to participate authentically in the collective construction of shared understanding, free from systematic manipulation by state, private, or automated actors."
+connections:
+  - epistemic-pluralism
+  - universal-human-rights
+  - human-primacy
+  - democratic-sovereignty-over-institutions
+  - civic-technology-sovereignty
 ---
 
 _Epistemic Autonomy_ is the right to participate authentically in the collective

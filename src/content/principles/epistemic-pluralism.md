@@ -3,6 +3,11 @@ title: Epistemic Pluralism
 number: 5
 tier: structural
 summary: "Different modes of knowledge built into different institutional roles. No single epistemology dominant."
+connections:
+  - epistemic-autonomy
+  - democratic-sovereignty-over-institutions
+  - ecological-embeddedness
+  - civic-technology-sovereignty
 ---
 
 _Epistemic Pluralism_ means that different modes of knowledge -- deliberation,

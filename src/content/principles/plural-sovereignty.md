@@ -3,6 +3,12 @@ title: Plural Sovereignty
 number: 3
 tier: structural
 summary: "Multiple overlapping political communities — geographic, cultural, indigenous, ecological. No fiction of undifferentiated unity."
+connections:
+  - subsidiarity-solidarity
+  - temporal-pluralism
+  - universal-human-rights
+  - ecological-embeddedness
+  - cooperative-sovereignty
 ---
 
 _Plural Sovereignty_ recognizes that a continental polity contains multiple

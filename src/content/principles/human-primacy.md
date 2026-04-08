@@ -3,6 +3,12 @@ title: Human Primacy
 number: 8
 tier: substantive
 summary: "Not supremacy over nature -- authority over machines. Human judgment required over fundamental rights decisions. No person may be denied a right, a benefit, or their liberty by a machine."
+connections:
+  - universal-human-rights
+  - epistemic-autonomy
+  - democratic-sovereignty-over-institutions
+  - ecological-embeddedness
+  - civic-technology-sovereignty
 ---
 
 _Human Primacy_ is not a claim of human supremacy over the natural world; the

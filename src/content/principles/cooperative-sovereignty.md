@@ -3,6 +3,12 @@ title: Cooperative Sovereignty
 number: 15
 tier: substantive
 summary: "External relationships governed by same principles as internal: mutual respect, non-domination, democratic accountability."
+connections:
+  - subsidiarity-solidarity
+  - plural-sovereignty
+  - economic-democracy
+  - ecological-embeddedness
+  - democratic-peace-and-security
 ---
 
 _Cooperative Sovereignty_ holds that the political community's
