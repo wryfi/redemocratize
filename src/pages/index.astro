@@ -576,6 +576,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
     .principle-card-back {
       position: absolute;
       inset: 0;
+      -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       display: flex;
       flex-direction: column;
@@ -586,6 +587,14 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
 
     .principle-card-back {
       transform: rotateY(180deg);
+    }
+
+    /* iOS Safari fix: hide front face when card is flipped */
+    .principle-card.flipped .principle-card-front {
+      visibility: hidden;
+    }
+    .principle-card.flipped .principle-card-back {
+      visibility: visible;
     }
 
     /* Mobile: tap to flip */
