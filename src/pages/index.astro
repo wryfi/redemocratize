@@ -65,7 +65,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       widths={[800, 1200, 1920]}
       class="parallax-bg absolute inset-0 w-full h-full object-cover"
     />
-    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/85"></div>
+    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/75"></div>
     <div class="container max-w-4xl relative">
       <!-- Masthead -->
       <div class="flex items-start gap-5 md:gap-8 lg:gap-10 mb-10 lg:mb-14">
@@ -204,7 +204,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       class="parallax-bg absolute inset-0 w-full h-full object-cover"
       loading="lazy"
     />
-    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
+    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/80"></div>
     <div class="container max-w-4xl relative">
       <header class="mb-10 lg:mb-14">
         <p class="eyebrow section-eyebrow-primary mb-4">The Method</p>
@@ -397,7 +397,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       class="parallax-bg absolute inset-0 w-full h-full object-cover"
       loading="lazy"
     />
-    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
+    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/80"></div>
     <div class="container max-w-4xl relative text-black dark:text-base-content">
       <header class="mb-10 lg:mb-14">
         <p class="eyebrow section-eyebrow-primary mb-4">The Inheritance</p>
@@ -558,7 +558,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       class="parallax-bg absolute inset-0 w-full h-full object-cover"
       loading="lazy"
     />
-    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
+    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/80"></div>
     <div class="container max-w-4xl relative">
       <header class="mb-10 lg:mb-14">
         <p class="eyebrow section-eyebrow-primary mb-4">Open Source</p>
@@ -840,6 +840,20 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         background: rgba(20, 20, 24, 0.4);
         pointer-events: none;
         z-index: 1;
+      }
+      /* Mute the card borders so they sit back against the dark canvas */
+      .principle-card.border-primary {
+        border-color: oklch(44% 0.075 237);
+      }
+      .principle-card.border-error {
+        border-color: oklch(50% 0.13 27);
+      }
+      /* Dim the colored title bars: darker, less saturated, hue preserved */
+      .principle-card-front .bg-primary {
+        background-color: oklch(40% 0.08 237);
+      }
+      .principle-card-front .bg-error {
+        background-color: oklch(46% 0.13 27);
       }
     }
 

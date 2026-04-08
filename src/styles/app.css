@@ -30,7 +30,7 @@
 }
 
 @plugin "daisyui" {
-    themes: redemocratize --default, business --prefersdark;
+    themes: redemocratize --default, redemocratize-dark --prefersdark;
 }
 
 @plugin "daisyui/theme" {
@@ -58,6 +58,55 @@
     --color-warning-content: #22577A;
     --color-error: #cd5c5c;
     --color-error-content: oklch(98% 0.022 95.277);
+    --radius-selector: 0.5rem;
+    --radius-field: 1rem;
+    --radius-box: 0.5rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+    name: "redemocratize-dark";
+    default: false;
+    prefersdark: true;
+    color-scheme: "dark";
+
+    /* Base: cool near-black with layered grays */
+    --color-base-100: oklch(19% 0.012 255);
+    --color-base-200: oklch(23% 0.012 255);
+    --color-base-300: oklch(29% 0.012 255);
+    --color-base-content: oklch(92% 0.006 255);
+
+    /* Primary: lifted teal — same hue family as light-mode #22577A */
+    --color-primary: oklch(62% 0.11 237);
+    --color-primary-content: oklch(98% 0.005 237);
+
+    /* Secondary: muted gold, companion to light-mode #FFE381 */
+    --color-secondary: oklch(82% 0.10 95);
+    --color-secondary-content: oklch(22% 0.04 237);
+
+    /* Accent: lifted brand red, bridges #CC2936 to readable on dark */
+    --color-accent: oklch(64% 0.17 25);
+    --color-accent-content: oklch(98% 0.005 25);
+
+    /* Neutral: muted mulberry, companion to light-mode #402531 */
+    --color-neutral: oklch(32% 0.04 355);
+    --color-neutral-content: oklch(92% 0.005 355);
+
+    /* Semantic */
+    --color-info: oklch(72% 0.09 238);
+    --color-info-content: oklch(15% 0.02 238);
+    --color-success: oklch(68% 0.10 145);
+    --color-success-content: oklch(15% 0.02 145);
+    --color-warning: oklch(75% 0.14 70);
+    --color-warning-content: oklch(18% 0.04 70);
+    --color-error: oklch(65% 0.17 22);
+    --color-error-content: oklch(98% 0.005 22);
+
+    /* Shape tokens match light theme */
     --radius-selector: 0.5rem;
     --radius-field: 1rem;
     --radius-box: 0.5rem;
