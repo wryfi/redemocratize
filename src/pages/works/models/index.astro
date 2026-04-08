@@ -1,40 +1,20 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import LabsItemCard from '../../../components/LabsItemCard.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../../../layouts/BaseLayout.astro"
+import WorksListing from "../../../components/WorksListing.astro"
+import { getCollection } from "astro:content"
 
-const COLLECTIONS = ['articles', 'topics', 'proposals', 'models', 'news'];
-const collectionLabel = {
-  articles: 'article',
-  topics: 'topic',
-  proposals: 'proposal',
-  models: 'model',
-  news: 'news',
-};
-
-const currentCollection = 'models';
-
-let entries = [];
+let items = []
 try {
-  entries = await getCollection(currentCollection, ({ data }) => {
-    return import.meta.env.PROD ? data.draft !== true : true;
-  });
+  items = await getCollection("models", ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true
+  })
 } catch {}
 
-const pinned = entries
-  .filter(e => e.data.pin != null)
-  .sort((a, b) => a.data.pin - b.data.pin);
-const unpinned = entries
-  .filter(e => e.data.pin == null)
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
-
-const items = [...pinned, ...unpinned];
-
 const breadcrumbs = [
-  { name: 'Home', url: '/' },
-  { name: 'Works', url: '/works' },
-  { name: 'Models', url: '/works/models' },
-];
+  { name: "Home", url: "/" },
+  { name: "Works", url: "/works" },
+  { name: "Models", url: "/works/models" },
+]
 ---
 
 <BaseLayout
@@ -43,40 +23,5 @@ const breadcrumbs = [
   collectionType="models"
   breadcrumbs={breadcrumbs}
 >
-  <div class="bg-base-200 min-h-screen">
-  <div class="container py-8">
-    <div class="max-w-4xl mx-auto">
-      <header class="mb-12">
-        <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-4">Democracy Works</h1>
-        <p class="text-lg text-base-content/70">
-          Topics, proposals, models, articles, and news from the Redemocratize project.
-        </p>
-      </header>
-
-      <div class="flex flex-wrap gap-2 mb-10">
-        <a href="/works" class="btn btn-sm btn-outline">All</a>
-        {COLLECTIONS.map(name => (
-          <a
-            href={`/works/${name}`}
-            class={`btn btn-sm ${name === currentCollection ? 'btn-primary' : 'btn-outline'}`}
-          >
-            {collectionLabel[name]}
-          </a>
-        ))}
-      </div>
-
-      <div class="space-y-6">
-        {items.map(entry => (
-          <LabsItemCard item={entry} collection={currentCollection} />
-        ))}
-      </div>
-
-      {items.length === 0 && (
-        <div class="text-center py-16 text-base-content/50">
-          <p class="text-lg">No models yet. Check back soon.</p>
-        </div>
-      )}
-    </div>
-  </div>
-  </div>
+  <WorksListing items={items} currentCollection="models" />
 </BaseLayout>

@@ -7,15 +7,20 @@ const attribution = author
   : 'Redemocratize Project contributors';
 ---
 
-<label for="license-modal" class="badge badge-md cursor-pointer hover:brightness-95 transition-all gap-1 bg-badge-license text-badge-license-content" title="Licensed under CC BY-SA 4.0">
+<button
+  type="button"
+  class="badge badge-md cursor-pointer hover:brightness-95 transition-all gap-1 bg-badge-license text-badge-license-content license-badge-trigger"
+  title="Licensed under CC BY-SA 4.0"
+>
   <Icon name="ph:scales-bold" class="size-4" />
   CC BY-SA
-</label>
+</button>
 
-<input type="checkbox" id="license-modal" class="modal-toggle" />
-<div class="modal" role="dialog">
+<dialog class="modal license-modal">
   <div class="modal-box max-w-md">
-    <label for="license-modal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">&#x2715;</label>
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" aria-label="Close">&#x2715;</button>
+    </form>
     <div class="flex items-start gap-4">
       <img
         src="/images/cc-by-sa.svg"
@@ -47,5 +52,29 @@ const attribution = author
       </div>
     </div>
   </div>
-  <label class="modal-backdrop" for="license-modal">Close</label>
-</div>
+  <form method="dialog" class="modal-backdrop">
+    <button aria-label="Close">close</button>
+  </form>
+</dialog>
+
+<script>
+  // Wire up each trigger to its following <dialog> sibling. Works regardless
+  // of where the component is nested in the page.
+  function initLicenseBadges() {
+    document.querySelectorAll('.license-badge-trigger').forEach((btn) => {
+      if (btn.dataset.licenseWired === '1') return;
+      btn.dataset.licenseWired = '1';
+      btn.addEventListener('click', () => {
+        let el = btn.nextElementSibling;
+        while (el && !el.matches?.('dialog.license-modal')) {
+          el = el.nextElementSibling;
+        }
+        if (el && typeof el.showModal === 'function') {
+          el.showModal();
+        }
+      });
+    });
+  }
+  initLicenseBadges();
+  document.addEventListener('astro:after-swap', initLicenseBadges);
+</script>

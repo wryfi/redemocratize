@@ -1,0 +1,89 @@
+---
+/**
+ * Principle chip rail — for content pages. Visually consistent with the
+ * panel-related-link pattern on /principles but sized for use as a header
+ * element rather than a panel sidebar.
+ */
+const { principles = [], label = "Principles engaged" } = Astro.props
+---
+
+{principles.length > 0 && (
+  <aside class="principles-rail" aria-labelledby="principles-rail-label">
+    <p class="eyebrow principles-rail-label" id="principles-rail-label">{label}</p>
+    <ul class="principles-rail-list">
+      {principles.map((p) => (
+        <li>
+          <a
+            href={`/principles/${p.id}`}
+            class:list={[
+              "principle-chip",
+              p.data.tier === "structural" ? "is-structural" : "is-substantive",
+            ]}
+          >
+            <span class="chip-num">{String(p.data.number).padStart(2, "0")}</span>
+            <span class="chip-title">{p.data.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </aside>
+)}
+
+<style>
+  .principles-rail {
+    margin: 1.75rem 0 0;
+  }
+  .principles-rail-label {
+    margin-bottom: 0.75rem;
+  }
+  .principles-rail-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .principle-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-family: var(--font-family-heading);
+    padding: 0.42rem 0.8rem 0.42rem 0.55rem;
+    border: 1px solid var(--color-base-300);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--color-base-content);
+    transition: all 0.2s ease;
+  }
+  .principle-chip:hover {
+    transform: translateY(-1px);
+  }
+  .principle-chip.is-structural:hover {
+    border-color: var(--color-primary);
+  }
+  .principle-chip.is-substantive:hover {
+    border-color: var(--color-error);
+  }
+  .chip-num {
+    font-size: 0.62rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+    padding: 0.12rem 0.38rem;
+    border-radius: 999px;
+    color: white;
+    line-height: 1;
+  }
+  .principle-chip.is-structural .chip-num {
+    background: var(--color-primary);
+  }
+  .principle-chip.is-substantive .chip-num {
+    background: var(--color-error);
+  }
+  .chip-title {
+    font-size: 0.76rem;
+    font-weight: 600;
+    opacity: 0.85;
+  }
+</style>

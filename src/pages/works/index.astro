@@ -1,86 +1,30 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import LabsItemCard from '../../components/LabsItemCard.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import WorksListing from "../../components/WorksListing.astro"
+import { COLLECTIONS } from "../../lib/works.js"
+import { getCollection } from "astro:content"
 
-const COLLECTIONS = ['articles', 'topics', 'proposals', 'models', 'news'];
-const collectionLabel = {
-  articles: 'article',
-  topics: 'topic',
-  proposals: 'proposal',
-  models: 'model',
-  news: 'news',
-};
-
-let allItems = [];
+let allItems = []
 for (const name of COLLECTIONS) {
   try {
     const entries = await getCollection(name, ({ data }) => {
-      return import.meta.env.PROD ? data.draft !== true : true;
-    });
-    for (const entry of entries) {
-      allItems.push({ entry, collection: name });
-    }
+      return import.meta.env.PROD ? data.draft !== true : true
+    })
+    for (const entry of entries) allItems.push(entry)
   } catch {}
 }
 
-// Pinned first (sorted by pin number ascending), then unpinned (sorted by date descending)
-const pinned = allItems
-  .filter(item => item.entry.data.pin != null)
-  .sort((a, b) => a.entry.data.pin - b.entry.data.pin);
-const unpinned = allItems
-  .filter(item => item.entry.data.pin == null)
-  .sort((a, b) => new Date(b.entry.data.pubDate).getTime() - new Date(a.entry.data.pubDate).getTime());
-
-const items = [...pinned, ...unpinned];
-
-const currentFilter = 'all';
-
 const breadcrumbs = [
-  { name: 'Home', url: '/' },
-  { name: 'Works', url: '/works' },
-];
+  { name: "Home", url: "/" },
+  { name: "Works", url: "/works" },
+]
 ---
 
 <BaseLayout
   title="Democracy Works"
-  description="Essays, institutional proposals, comparative models, and topic analysis applying the Redemocratize principles."
+  description="Essays, topical analysis, institutional proposals, comparative models, and project news — the ongoing work of the Redemocratize project."
   collectionType="works"
   breadcrumbs={breadcrumbs}
 >
-  <div class="bg-base-200 min-h-screen">
-  <div class="container py-8">
-    <div class="max-w-4xl mx-auto">
-      <header class="mb-12">
-        <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-4">Democracy Works</h1>
-        <p class="text-lg text-base-content/70">
-          Topics, proposals, models, articles, and news from the Redemocratize project.
-        </p>
-      </header>
-
-      <!-- Filters -->
-      <div class="flex flex-wrap gap-2 mb-10">
-        <a href="/works" class="btn btn-sm btn-primary">All</a>
-        {COLLECTIONS.map(name => (
-          <a href={`/works/${name}`} class="btn btn-sm btn-outline">
-            {collectionLabel[name]}
-          </a>
-        ))}
-      </div>
-
-      <!-- Items -->
-      <div class="space-y-6">
-        {items.map(({ entry, collection }) => (
-          <LabsItemCard item={entry} collection={collection} />
-        ))}
-      </div>
-
-      {items.length === 0 && (
-        <div class="text-center py-16 text-base-content/50">
-          <p class="text-lg">No content yet. Check back soon.</p>
-        </div>
-      )}
-    </div>
-  </div>
-  </div>
+  <WorksListing items={allItems} currentCollection="all" />
 </BaseLayout>

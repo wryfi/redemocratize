@@ -1,0 +1,313 @@
+---
+/**
+ * The complete Democracy Works listing page body: hero, filter bar,
+ * featured strip, and monthly ledger groups. Drops directly into any
+ * /works or /works/{collection} page.
+ */
+import { COLLECTIONS, COLLECTION_CONFIG, HERO_COPY, organizeItems } from "../lib/works.js"
+import WorksLedgerRow from "./WorksLedgerRow.astro"
+import { getCollection } from "astro:content"
+
+const { items, currentCollection = "all" } = Astro.props
+
+const hero = HERO_COPY[currentCollection] || HERO_COPY.all
+const { featured, groups } = organizeItems(items)
+const hasAny = items.length > 0
+
+// Build principles lookup for the ↳ chips on each row.
+const principlesAll = await getCollection("principles")
+const principlesById = Object.fromEntries(principlesAll.map((p) => [p.id, p]))
+
+// Per-collection counts for the filter bar.
+const counts = { all: 0 }
+for (const name of COLLECTIONS) counts[name] = 0
+for (const entry of items) {
+  // When on a single collection page, `items` is already filtered,
+  // so we can't count cross-collection from here. We only populate
+  // the current one; the rest render without counts.
+  if (currentCollection !== "all") {
+    counts[currentCollection] = items.length
+  }
+}
+if (currentCollection === "all") {
+  counts.all = items.length
+  for (const entry of items) {
+    if (entry.collection && counts[entry.collection] != null) {
+      counts[entry.collection]++
+    }
+  }
+}
+
+function resolveCollection(entry, fallback) {
+  return entry.collection || fallback
+}
+---
+
+<section class="works-hero">
+  <div class="container max-w-5xl py-14 lg:py-20">
+    <p class="eyebrow works-hero-eyebrow">{hero.eyebrow}</p>
+    <h1 class="works-hero-title">{hero.title}</h1>
+    <p class="works-hero-lede">{hero.lede}</p>
+  </div>
+</section>
+
+<nav class="works-filters" aria-label="Filter by collection">
+  <div class="container max-w-5xl">
+    <ul class="works-filters-list">
+      <li>
+        <a
+          href="/works"
+          class:list={["works-filter", { "is-active": currentCollection === "all" }]}
+          data-collection="all"
+        >
+          All
+          {currentCollection === "all" && counts.all > 0 && (
+            <span class="count">{counts.all}</span>
+          )}
+        </a>
+      </li>
+      {COLLECTIONS.map((name) => (
+        <li>
+          <a
+            href={COLLECTION_CONFIG[name].href}
+            class:list={[
+              "works-filter",
+              `is-${name}`,
+              { "is-active": currentCollection === name },
+            ]}
+            data-collection={name}
+          >
+            {COLLECTION_CONFIG[name].label}
+            {currentCollection === "all" && counts[name] > 0 && (
+              <span class="count">{counts[name]}</span>
+            )}
+            {currentCollection === name && (
+              <span class="count">{counts[name]}</span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<div class="container max-w-5xl works-body">
+  {!hasAny && (
+    <div class="works-empty">
+      <p class="eyebrow">Nothing here yet</p>
+      <p class="works-empty-line">The archive for this section is still opening. Check back soon.</p>
+    </div>
+  )}
+
+  {featured.length > 0 && (
+    <section class="works-featured" aria-labelledby="works-featured-heading">
+      <header class="works-section-header">
+        <p class="eyebrow" id="works-featured-heading">Featured</p>
+      </header>
+      <div class="works-featured-list">
+        {featured.map((entry) => (
+          <WorksLedgerRow
+            entry={entry}
+            collection={resolveCollection(entry, currentCollection)}
+            principlesById={principlesById}
+            featured={true}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {groups.map((group) => (
+    <section class="works-group" aria-label={group.label}>
+      <header class="works-section-header">
+        <p class="eyebrow works-month-label">{group.label}</p>
+      </header>
+      <div class="works-group-list">
+        {group.items.map((entry) => (
+          <WorksLedgerRow
+            entry={entry}
+            collection={resolveCollection(entry, currentCollection)}
+            principlesById={principlesById}
+          />
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
+
+<style>
+  /* Hero */
+  .works-hero {
+    position: relative;
+    border-bottom: 1px solid var(--color-base-300);
+    background: radial-gradient(
+      ellipse 70% 60% at 25% 10%,
+      rgba(34, 87, 122, 0.035),
+      transparent 60%
+    );
+  }
+  .works-hero-eyebrow {
+    margin-bottom: 1.25rem;
+    color: var(--color-primary);
+    opacity: 0.85;
+  }
+  .works-hero-title {
+    font-family: var(--font-family-heading);
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 22ch;
+    margin-bottom: 1.5rem;
+  }
+  .works-hero-lede {
+    font-family: var(--font-family-body);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    line-height: 1.6;
+    max-width: 56ch;
+    opacity: 0.78;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .works-hero {
+      background: radial-gradient(
+        ellipse 70% 60% at 25% 10%,
+        rgba(110, 173, 215, 0.06),
+        transparent 60%
+      );
+    }
+  }
+
+  /* Filter bar */
+  .works-filters {
+    border-bottom: 1px solid var(--color-base-300);
+    background: var(--color-base-100);
+  }
+  .works-filters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.75rem;
+    padding: 1rem 0;
+    list-style: none;
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    .works-filters-list {
+      gap: 0 2.5rem;
+    }
+  }
+
+  .works-filter {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-family: var(--font-family-heading);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 0.5rem 0;
+    opacity: 0.5;
+    color: var(--color-base-content);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+  }
+  .works-filter:hover {
+    opacity: 0.9;
+  }
+  .works-filter .count {
+    font-size: 0.66rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    opacity: 0.65;
+    letter-spacing: 0.05em;
+  }
+  .works-filter.is-active {
+    opacity: 1;
+    border-bottom-color: var(--color-base-content);
+  }
+  .works-filter.is-active.is-articles {
+    border-bottom-color: var(--color-badge-article);
+  }
+  .works-filter.is-active.is-topics {
+    border-bottom-color: var(--color-badge-topic);
+  }
+  .works-filter.is-active.is-proposals {
+    border-bottom-color: var(--color-badge-proposal);
+  }
+  .works-filter.is-active.is-models {
+    border-bottom-color: var(--color-badge-model);
+  }
+  .works-filter.is-active.is-news {
+    border-bottom-color: var(--color-badge-news);
+  }
+
+  /* Body */
+  .works-body {
+    padding: 3rem 1.5rem 5rem;
+  }
+  @media (min-width: 1024px) {
+    .works-body {
+      padding: 4rem 2rem 6rem;
+    }
+  }
+
+  /* Section headers */
+  .works-section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 0.25rem;
+    padding-top: 0.75rem;
+  }
+  .works-section-header .eyebrow {
+    opacity: 0.5;
+  }
+  .works-section-header::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-base-300);
+  }
+
+  /* Featured */
+  .works-featured {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--color-base-content);
+    border-bottom-color: color-mix(in oklch, var(--color-base-content) 18%, transparent);
+  }
+  .works-featured .works-section-header .eyebrow {
+    color: var(--color-secondary-content);
+    opacity: 0.85;
+  }
+
+  /* Month groups */
+  .works-group {
+    margin-bottom: 3rem;
+  }
+  .works-group:last-child {
+    margin-bottom: 0;
+  }
+  .works-month-label {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Last row in a group: drop the bottom border so the group rule isn't doubled */
+  .works-group-list :global(.ledger-row:last-child),
+  .works-featured-list :global(.ledger-row:last-child) {
+    border-bottom: none;
+  }
+
+  /* Empty */
+  .works-empty {
+    padding: 5rem 0;
+    text-align: center;
+    opacity: 0.6;
+  }
+  .works-empty-line {
+    margin-top: 0.5rem;
+    font-family: var(--font-family-body);
+  }
+</style>

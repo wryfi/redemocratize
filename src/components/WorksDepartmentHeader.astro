@@ -1,0 +1,205 @@
+---
+/**
+ * Department header for Democracy Works content pages.
+ *
+ * Layout:
+ *   ─────  ARTICLE                       ← eyebrow in collection hue, with short rule
+ *   ← Articles                           ← back-link to collection index
+ *
+ *   The title of the piece, set large
+ *
+ *   By Author · March 25, 2026 · Updated Apr 8 · [status/country]
+ *
+ *   [Principle chip rail]
+ *   ─────────────────────────────────────
+ */
+import { Icon } from "astro-icon/components"
+import { COLLECTION_CONFIG, formatLongDate } from "../lib/works.js"
+import PrincipleChipRail from "./PrincipleChipRail.astro"
+import LicenseBadge from "./LicenseBadge.astro"
+
+const {
+  collection,
+  entry,
+  principles = [],
+  status,
+  country,
+} = Astro.props
+
+const cfg = COLLECTION_CONFIG[collection]
+const pub = formatLongDate(entry.data.pubDate)
+const updated = entry.data.updatedDate ? formatLongDate(entry.data.updatedDate) : null
+---
+
+<header
+  class="dept-header"
+  data-collection={collection}
+  style={`--dept-hue: ${cfg.bgVar}; --dept-hue-fg: ${cfg.fgVar};`}
+>
+  <a href={cfg.href} class="dept-kind-link" aria-label={`Back to ${cfg.label}`}>
+    <span class="dept-kind-arrow" aria-hidden="true">
+      <Icon name="ph:arrow-left-bold" />
+    </span>
+    <span class="dept-kind-label">{cfg.labelSingular}</span>
+  </a>
+
+  <h1 class="dept-title">{entry.data.title}</h1>
+
+  {entry.data.summary && (
+    <p class="dept-summary">{entry.data.summary}</p>
+  )}
+
+  <div class="dept-meta">
+    {entry.data.author && (
+      <span class="dept-meta-item">
+        <span class="dept-meta-label">By</span>
+        <span class="dept-meta-value">{entry.data.author}</span>
+      </span>
+    )}
+    <span class="dept-meta-item">
+      <time datetime={new Date(entry.data.pubDate).toISOString()}>{pub}</time>
+    </span>
+    {updated && (
+      <span class="dept-meta-item">
+        <span class="dept-meta-label">Updated</span>
+        <time datetime={new Date(entry.data.updatedDate).toISOString()}>{updated}</time>
+      </span>
+    )}
+    {country && (
+      <span class="dept-meta-item">
+        <span class="dept-meta-label">Country</span>
+        <span class="dept-meta-value">{country}</span>
+      </span>
+    )}
+    {status && (
+      <span class="dept-meta-pill">{status}</span>
+    )}
+    <span class="dept-meta-license">
+      <LicenseBadge author={entry.data.author} />
+    </span>
+  </div>
+
+  {principles.length > 0 && <PrincipleChipRail principles={principles} />}
+</header>
+
+<style>
+  .dept-header {
+    padding: 3rem 0 2rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-base-300);
+    position: relative;
+  }
+  .dept-header::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 4rem;
+    height: 2px;
+    background: var(--dept-hue);
+  }
+
+  /* Kind + back link, combined. Acts as both the category eyebrow
+     and the back-to-collection control. */
+  .dept-kind-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-family-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--dept-hue-fg);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    transition: gap 0.2s ease, opacity 0.2s ease;
+    opacity: 0.85;
+  }
+  .dept-kind-link:hover,
+  .dept-kind-link:focus-visible {
+    opacity: 1;
+    gap: 0.85rem;
+  }
+  .dept-kind-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 999px;
+    background: var(--dept-hue);
+    color: var(--dept-hue-fg);
+    line-height: 0;
+    transition: transform 0.2s ease;
+  }
+  .dept-kind-arrow :global(svg) {
+    display: block;
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+  .dept-kind-link:hover .dept-kind-arrow {
+    transform: translateX(-0.15rem);
+  }
+
+  .dept-title {
+    font-family: var(--font-family-heading);
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+    max-width: 22ch;
+  }
+
+  .dept-summary {
+    font-family: var(--font-family-body);
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    line-height: 1.55;
+    opacity: 0.78;
+    margin: 0 0 1.5rem;
+    max-width: 52ch;
+  }
+
+  .dept-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.25rem;
+    font-family: var(--font-family-body);
+    font-size: 0.88rem;
+    opacity: 0.72;
+  }
+  .dept-meta-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+  .dept-meta-label {
+    font-family: var(--font-family-heading);
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    opacity: 0.6;
+  }
+  .dept-meta-value {
+    font-style: italic;
+  }
+  .dept-meta-pill {
+    font-family: var(--font-family-heading);
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    background: var(--dept-hue);
+    color: var(--dept-hue-fg);
+  }
+  .dept-meta-license {
+    display: inline-flex;
+  }
+  .dept-meta-license :global(.badge) {
+    font-family: var(--font-family-heading);
+  }
+</style>

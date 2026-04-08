@@ -1,0 +1,287 @@
+---
+/**
+ * A single row in the Democracy Works chronological ledger.
+ *
+ * Layout:
+ *   [coin]  ROLE · 06 APR 2026
+ *           The title of the piece, set large
+ *           A lede paragraph giving the reader a real reason to click.
+ *           Author · ↳ 01 · 03 · 07 · 11
+ *
+ * The `featured` variant bumps the title scale and adds a gold "Featured"
+ * flag above the eyebrow. Used for pinned items.
+ */
+import { COLLECTION_CONFIG, formatLedgerDate, getExcerpt } from "../lib/works.js"
+
+const {
+  entry,
+  collection,
+  principlesById = {},
+  featured = false,
+} = Astro.props
+
+const cfg = COLLECTION_CONFIG[collection]
+const { day, month, year } = formatLedgerDate(entry.data.pubDate)
+const excerpt = getExcerpt(entry, featured ? 320 : 220)
+const href = `/works/${collection}/${entry.id}`
+
+const principleNumbers = (entry.data.principles || [])
+  .map((pid) => principlesById[pid])
+  .filter(Boolean)
+  .sort((a, b) => a.data.number - b.data.number)
+---
+
+<article class:list={["ledger-row", { "is-featured": featured }]}>
+  <div
+    class="ledger-coin"
+    aria-hidden="true"
+    style={`--coin-bg: ${cfg.bgVar}; --coin-fg: ${cfg.fgVar};`}
+  >
+    {cfg.letter}
+  </div>
+
+  <div class="ledger-body">
+    {featured && (
+      <p class="ledger-flag">
+        <span class="ledger-flag-dot" aria-hidden="true"></span>
+        Featured
+      </p>
+    )}
+
+    <p class="ledger-eyebrow">
+      <span class="role">{cfg.labelSingular}</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <time datetime={new Date(entry.data.pubDate).toISOString()}>
+        {day} {month} {year}
+      </time>
+      {entry.data.draft && (
+        <Fragment>
+          <span class="sep" aria-hidden="true">·</span>
+          <span class="draft">Draft</span>
+        </Fragment>
+      )}
+    </p>
+
+    <h3 class="ledger-title">
+      <a href={href}>{entry.data.title}</a>
+    </h3>
+
+    {excerpt && <p class="ledger-dek">{excerpt}</p>}
+
+    <div class="ledger-foot">
+      {entry.data.author && (
+        <span class="ledger-byline">{entry.data.author}</span>
+      )}
+
+      {principleNumbers.length > 0 && (
+        <p class="ledger-principles" aria-label="Principles engaged">
+          <span class="ledger-principles-marker" aria-hidden="true">↳</span>
+          {principleNumbers.map((p, i) => (
+            <Fragment>
+              {i > 0 && <span class="ledger-principles-sep" aria-hidden="true">·</span>}
+              <a
+                href={`/principles/${p.id}`}
+                class:list={[
+                  "ledger-principle-num",
+                  p.data.tier === "structural" ? "is-structural" : "is-substantive",
+                ]}
+                title={p.data.title}
+              >
+                {String(p.data.number).padStart(2, "0")}
+              </a>
+            </Fragment>
+          ))}
+        </p>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-base-300);
+  }
+  @media (min-width: 640px) {
+    .ledger-row {
+      grid-template-columns: 3rem minmax(0, 1fr);
+      gap: 1.75rem;
+      padding: 2.25rem 0;
+    }
+  }
+
+  /* Coin glyph */
+  .ledger-coin {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: var(--coin-bg);
+    color: var(--coin-fg);
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.01em;
+    margin-top: 0.15rem;
+    user-select: none;
+    flex-shrink: 0;
+  }
+  @media (min-width: 640px) {
+    .ledger-coin {
+      width: 2.25rem;
+      height: 2.25rem;
+      font-size: 1rem;
+    }
+  }
+
+  /* Body */
+  .ledger-body {
+    min-width: 0;
+    max-width: 44rem;
+  }
+
+  .ledger-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-family-heading);
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-secondary-content);
+    background: var(--color-secondary);
+    padding: 0.25rem 0.55rem 0.28rem;
+    border-radius: 999px;
+    margin-bottom: 0.85rem;
+  }
+  .ledger-flag-dot {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+
+  .ledger-eyebrow {
+    font-family: var(--font-family-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    opacity: 0.6;
+    margin-bottom: 0.55rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.55rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .ledger-eyebrow .role {
+    color: var(--color-base-content);
+  }
+  .ledger-eyebrow .sep {
+    opacity: 0.4;
+  }
+  .ledger-eyebrow .draft {
+    color: var(--color-accent);
+    opacity: 0.8;
+  }
+
+  /* Title */
+  .ledger-title {
+    font-family: var(--font-family-heading);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.7rem;
+  }
+  .ledger-row.is-featured .ledger-title {
+    font-size: clamp(1.7rem, 3.2vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+  .ledger-title a {
+    color: inherit;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+  }
+  .ledger-title a:hover,
+  .ledger-title a:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* Dek */
+  .ledger-dek {
+    font-family: var(--font-family-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.78;
+    margin: 0 0 1rem;
+    max-width: 42rem;
+  }
+  .ledger-row.is-featured .ledger-dek {
+    font-size: 1.08rem;
+  }
+
+  /* Footer */
+  .ledger-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1.25rem;
+    margin-top: 0.25rem;
+  }
+
+  .ledger-byline {
+    font-family: var(--font-family-body);
+    font-style: italic;
+    font-size: 0.86rem;
+    opacity: 0.7;
+  }
+
+  .ledger-principles {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-family: var(--font-family-heading);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.08em;
+    margin: 0;
+  }
+  .ledger-principles-marker {
+    opacity: 0.4;
+    margin-right: 0.15rem;
+  }
+  .ledger-principles-sep {
+    opacity: 0.3;
+  }
+  .ledger-principle-num {
+    font-weight: 700;
+    padding: 0.08rem 0.05rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+  .ledger-principle-num.is-structural:hover {
+    color: var(--color-primary);
+    opacity: 1;
+  }
+  .ledger-principle-num.is-substantive:hover {
+    color: var(--color-error);
+    opacity: 1;
+  }
+</style>
