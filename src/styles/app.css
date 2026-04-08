@@ -203,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
             rgba(34, 87, 122, 0.015) 50%,
             transparent 100%
         );
-    border-bottom: 1px solid rgba(34, 87, 122, 0.08);
+    border-bottom: none;
 }
 
 .hero-rule {
@@ -227,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
                 rgba(34, 87, 122, 0.03) 50%,
                 transparent 100%
             );
-        border-bottom-color: rgba(34, 87, 122, 0.15);
+        border-bottom: none;
     }
 
     .hero-logo {

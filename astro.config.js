@@ -35,7 +35,13 @@ export default defineConfig({
     remarkRehype: { handlers: defListHastHandlers },
   },
 
-  integrations: [icon(), mdx(), sitemap()],
+  integrations: [
+    icon(),
+    mdx(),
+    sitemap({
+      filter: (page) => !page.includes("/badge-preview"),
+    }),
+  ],
 
   build: {
     inlineStylesheets: "auto",

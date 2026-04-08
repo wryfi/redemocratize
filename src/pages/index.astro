@@ -1,6 +1,47 @@
 ---
+import { Image } from "astro:assets"
 import BaseLayout from "../layouts/BaseLayout.astro"
 import { getCollection } from "astro:content"
+import phoenixWings from "../assets/index/phoenix_wings.png"
+import decayingCourt from "../assets/index/decaying_court.png"
+import architects from "../assets/index/architects.png"
+import contribute from "../assets/index/contribute.jpg"
+import authoritarianism from "../assets/index/authoritarianism.jpg"
+import inequality from "../assets/index/inequality.jpg"
+import redwoods from "../assets/index/redwoods.jpg"
+import adaptiveCapacityImg from "../assets/index/adaptive_capacity.png"
+import subsidiaritySolidarityImg from "../assets/index/subsidiarity_solidarity.png"
+import pluralSovereigntyImg from "../assets/index/plural_sovereignty.png"
+import temporalPluralismImg from "../assets/index/temporal_pluralism.png"
+import epistemicPluralismImg from "../assets/index/epistemic_pluralism.png"
+import universalHumanRightsImg from "../assets/index/universal_human_rights.png"
+import epistemicAutonomyImg from "../assets/index/epistemic_autonomy.png"
+import humanPrimacyImg from "../assets/index/human_primacy.png"
+import economicDemocracyImg from "../assets/index/economic_democracy.png"
+import democraticSovereigntyImg from "../assets/index/democratic_sovereignty_over_institutions.png"
+import inalienableCommonsImg from "../assets/index/inalienable_commons.png"
+import ecologicalEmbeddednessImg from "../assets/index/ecological_embeddedness.png"
+import democraticPeaceSecurityImg from "../assets/index/democratic_peace_security.png"
+import cooperativeSovereigntyImg from "../assets/index/cooperative_sovereignty.png"
+import civicTechnologySovereigntyImg from "../assets/index/civic_technology_sovereignty.png"
+
+const principleImages = {
+  "adaptive-capacity": adaptiveCapacityImg,
+  "subsidiarity-solidarity": subsidiaritySolidarityImg,
+  "plural-sovereignty": pluralSovereigntyImg,
+  "temporal-pluralism": temporalPluralismImg,
+  "epistemic-pluralism": epistemicPluralismImg,
+  "universal-human-rights": universalHumanRightsImg,
+  "epistemic-autonomy": epistemicAutonomyImg,
+  "human-primacy": humanPrimacyImg,
+  "economic-democracy": economicDemocracyImg,
+  "democratic-sovereignty-over-institutions": democraticSovereigntyImg,
+  "inalienable-commons": inalienableCommonsImg,
+  "ecological-embeddedness": ecologicalEmbeddednessImg,
+  "democratic-peace-and-security": democraticPeaceSecurityImg,
+  "cooperative-sovereignty": cooperativeSovereigntyImg,
+  "civic-technology-sovereignty": civicTechnologySovereigntyImg,
+}
 
 let topics = []
 try {
@@ -14,8 +55,15 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
 
 <BaseLayout>
   <!-- Hero -->
-  <section class="hero-section relative overflow-hidden">
-    <div class="container max-w-4xl relative py-20 lg:py-28">
+  <section class="hero-section relative overflow-hidden min-h-screen flex items-center">
+    <Image
+      src={phoenixWings}
+      alt=""
+      widths={[800, 1200, 1920]}
+      class="parallax-bg absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/85"></div>
+    <div class="container max-w-4xl relative">
       <!-- Masthead -->
       <div class="flex items-start gap-5 md:gap-8 mb-10">
         <img
@@ -60,47 +108,70 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
 
   <!-- The Problem -->
   <section class="py-20 lg:py-24 bg-base-200">
-    <div class="container max-w-4xl">
-      <h2 class="text-3xl font-bold font-heading mb-8">The Problem</h2>
-      <div class="prose prose-lg max-w-none">
-        <p>
-          The crisis is not one failure. It is an accumulation, with each structural breakdown
-          creating the conditions for the next, built on constitutional designs that were never
-          able to correct themselves.
-        </p>
-        <p>
-          Across democracies, concentrated wealth has moved into structures that founders left
-          unguarded, using the tools of democratic governance to ensure it cannot be dislodged.
-          Amendment processes were made deliberately difficult, protecting the advantages of those
-          who demanded them. These failures are neither accident nor conspiracy. They are the
-          predictable result of constitutional designs that assumed good faith, relied on norms
-          instead of structure, and provided no realistic mechanism for their own renewal.
-        </p>
-        <p>
-          The 21st century has compounded the crisis with threats no earlier framework could
-          have anticipated: industrialized manipulation of the information environment, AI-generated
-          disinformation at scale, corporate-authoritarian alignment, automated surveillance, the
-          enclosure of shared wealth by a shrinking oligarchic class, and ecological breakdown that
-          existing systems have no structural capacity to address.
-        </p>
-        <p>
-          The present moment does not demand that we abandon democracy. It demands that we build
-          democratic institutions robust to the world we actually inhabit.
-        </p>
-      </div>
-      <div class="mt-12">
-        <a href="/lab/articles/cumulative-crises" class="btn btn-outline btn-primary font-heading">
-          Read more ...
-        </a>
+    <div class="container max-w-5xl">
+      <h2 class="text-3xl font-bold font-heading mb-10">The Problem</h2>
+      <div class="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-14">
+        <!-- Window -->
+        <div class="lg:w-2/5 shrink-0">
+          <div class="rounded-lg overflow-hidden shadow-lg aspect-[3/4]">
+            <Image
+              src={decayingCourt}
+              alt="Cracked facade of a marble courthouse"
+              widths={[600, 900]}
+              class="parallax-window-img w-[300%] max-w-none -ml-[100%]"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <!-- Text -->
+        <div class="prose prose-lg max-w-none">
+          <p>
+            The crisis is not one failure. It is an accumulation, with each structural breakdown
+            creating the conditions for the next, built on constitutional designs that were never
+            able to correct themselves.
+          </p>
+          <p>
+            Across democracies, concentrated wealth has moved into structures that founders left
+            unguarded, using the tools of democratic governance to ensure it cannot be dislodged.
+            Amendment processes were made deliberately difficult, protecting the advantages of those
+            who demanded them. These failures are neither accident nor conspiracy. They are the
+            predictable result of constitutional designs that assumed good faith, relied on norms
+            instead of structure, and provided no realistic mechanism for their own renewal.
+          </p>
+          <p>
+            The 21st century has compounded the crisis with threats no earlier framework could
+            have anticipated: industrialized manipulation of the information environment, AI-generated
+            disinformation at scale, corporate-authoritarian alignment, automated surveillance, the
+            enclosure of shared wealth by a shrinking oligarchic class, and ecological breakdown that
+            existing systems have no structural capacity to address.
+          </p>
+          <p>
+            The present moment does not demand that we abandon democracy. It demands that we build
+            democratic institutions robust to the world we actually inhabit.
+          </p>
+          <div class="mt-8 not-prose">
+            <a href="/lab/articles/cumulative-crises" class="btn btn-outline btn-primary font-heading">
+              Read more ...
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Our Approach -->
-  <section class="py-20 lg:py-24">
-    <div class="container max-w-4xl">
+  <section class="py-20 lg:py-24 relative overflow-hidden">
+    <Image
+      src={architects}
+      alt=""
+      widths={[800, 1200, 1920]}
+      class="parallax-bg absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
+    <div class="container max-w-4xl relative">
       <h2 class="text-3xl font-bold font-heading mb-8">Our Approach</h2>
-      <div class="prose prose-lg max-w-none">
+      <div class="prose prose-lg max-w-none backdrop-blur-xs">
         <p>Redemocratize articulates capture-resistant design principles for modern democracy.</p>
         <p>
           The framework addresses problems that existing constitutions were not designed for:
@@ -137,62 +208,112 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
 
   <!-- Fifteen Principles -->
   <section class="py-20 lg:py-28 bg-base-200">
-    <div class="container max-w-5xl">
+    <div class="container max-w-6xl">
       <h2 class="text-3xl font-bold font-heading mb-10">The Redemocratize Principles</h2>
 
-      <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
-        <div>
-          <h3 class="text-xl font-bold font-heading mb-6 text-primary">
-            How governance is organized
-          </h3>
-          <dl class="space-y-6">
-            {
-              structural.map((p) => (
-                <div>
-                  <dt class="font-bold font-heading">
-                    <a href={`/principles/${p.id}`} class="link link-hover">
-                      {p.data.title}
-                    </a>
-                  </dt>
-                  <dd class="text-base-content/80 mt-1">{p.data.summary}</dd>
+      <!-- Desktop: 5x3 grid of flip cards -->
+      <div class="hidden md:grid md:grid-cols-3 gap-5 lg:gap-6">
+        {
+          principles.map((p) => {
+            const isStructural = p.data.tier === "structural";
+            const label = isStructural ? "Structure" : "Protection";
+            const borderColor = isStructural ? "border-primary" : "border-accent";
+            const badgeColor = isStructural ? "badge-primary" : "badge-error";
+            const cardImg = principleImages[p.id];
+            return (
+              <a href={`/principles/${p.id}`} class="principle-card-link">
+                <div class={`principle-card aspect-[3/4] lg:aspect-[5/4] ${borderColor}`}>
+                  <div class="principle-card-inner">
+                    <div class="principle-card-front">
+                      {cardImg && (
+                        <Fragment>
+                          <Image
+                            src={cardImg}
+                            alt=""
+                            widths={[300, 450]}
+                            class="absolute inset-0 w-full h-full object-cover rounded-[calc(var(--radius-box)-2px)]"
+                          />
+                          <div class="absolute inset-0 bg-black/30 rounded-[calc(var(--radius-box)-2px)]"></div>
+                        </Fragment>
+                      )}
+                      <span class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}>{label}</span>
+                      <h3 class={`text-lg lg:text-xl font-bold font-heading text-center mt-3 z-10 ${cardImg ? `principle-card-title-img${!isStructural ? " outline-accent" : ""}` : ""}`}>
+                        {p.data.title}
+                      </h3>
+                    </div>
+                    <div class="principle-card-back">
+                      <p class="text-sm text-center leading-snug">
+                        {p.data.summary}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              ))
-            }
-          </dl>
-        </div>
-
-        <div>
-          <h3 class="text-xl font-bold font-heading mb-6 text-accent">
-            What governance must protect
-          </h3>
-          <dl class="space-y-6">
-            {
-              substantive.map((p) => (
-                <div>
-                  <dt class="font-bold font-heading">
-                    <a href={`/principles/${p.id}`} class="link link-hover">
-                      {p.data.title}
-                    </a>
-                  </dt>
-                  <dd class="text-base-content/80 mt-1">{p.data.summary}</dd>
-                </div>
-              ))
-            }
-          </dl>
-        </div>
+              </a>
+            );
+          })
+        }
       </div>
 
-      <div class="mt-12">
-        <a href="/principles" class="btn btn-primary font-heading">Explore the principles</a>
+      <!-- Mobile: carousel -->
+      <div class="md:hidden carousel carousel-center w-full gap-4 px-2">
+        {
+          principles.map((p) => {
+            const isStructural = p.data.tier === "structural";
+            const label = isStructural ? "Structure" : "Protection";
+            const borderColor = isStructural ? "border-primary" : "border-accent";
+            const badgeColor = isStructural ? "badge-primary" : "badge-error";
+            const cardImg = principleImages[p.id];
+            return (
+              <div class="carousel-item">
+                <div class={`principle-card w-56 aspect-[3/4] ${borderColor}`}>
+                  <div class="principle-card-inner">
+                    <div class="principle-card-front">
+                      {cardImg && (
+                        <Image
+                          src={cardImg}
+                          alt=""
+                          widths={[250]}
+                          class="absolute inset-0 w-full h-full object-cover rounded-[calc(var(--radius-box)-2px)]"
+                        />
+                      )}
+                      <span class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}>{label}</span>
+                      <h3 class={`text-lg font-bold font-heading text-center mt-3 z-10 ${cardImg ? `principle-card-title-img${!isStructural ? " outline-accent" : ""}` : ""}`}>
+                        {p.data.title}
+                      </h3>
+                    </div>
+                    <div class="principle-card-back">
+                      <p class="text-sm text-center leading-snug">
+                        {p.data.summary}
+                      </p>
+                      <a href={`/principles/${p.id}`} class="btn btn-sm btn-outline btn-primary font-heading mt-3">
+                        Read more
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        }
       </div>
+
     </div>
   </section>
 
   <!-- What We Build On -->
-  <section class="py-20 lg:py-24">
-    <div class="container max-w-4xl">
+  <section class="py-20 lg:py-24 relative overflow-hidden">
+    <Image
+      src={redwoods}
+      alt=""
+      widths={[800, 1200, 1920]}
+      class="parallax-bg absolute inset-0 w-full h-full object-cover"
+
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
+    <div class="container max-w-4xl relative text-black dark:text-base-content">
       <h2 class="text-3xl font-bold font-heading mb-8">On the Shoulders of Giants</h2>
-      <div class="prose prose-lg max-w-none">
+      <div class="prose prose-lg max-w-none text-black dark:text-base-content backdrop-blur-xs">
         <p>
           This project is not nihilistic about existing democratic traditions. Many principles
           embedded in those traditions are sound — due process, freedom of conscience, separation of
@@ -226,8 +347,17 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         </p>
       </div>
 
-      <div class="mt-10 space-y-5">
-        <div class="card bg-base-100 shadow-sm">
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <div class="card bg-base-100 shadow-sm overflow-hidden">
+          <div class="rounded-t-[var(--radius-box)] overflow-hidden h-72">
+            <Image
+              src={authoritarianism}
+              alt="Riot police in formation"
+              widths={[400, 600]}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
           <div class="card-body p-5">
             <h3 class="card-title text-base font-heading">
               Preventing & Defeating Authoritarianism
@@ -243,7 +373,16 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
             </div>
           </div>
         </div>
-        <div class="card bg-base-100 shadow-sm">
+        <div class="card bg-base-100 shadow-sm overflow-hidden">
+          <div class="rounded-t-[var(--radius-box)] overflow-hidden h-72">
+            <Image
+              src={inequality}
+              alt="Homeless encampment on a city street"
+              widths={[400, 600]}
+              class="w-full h-full object-cover object-bottom"
+              loading="lazy"
+            />
+          </div>
           <div class="card-body p-5">
             <h3 class="card-title text-base font-heading">Wealth Inequality & Oligarchy</h3>
             <p class="text-sm text-base-content/70">
@@ -271,10 +410,18 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
   </section>
 
   <!-- Contribute -->
-  <section class="py-20 lg:py-24">
-    <div class="container max-w-4xl">
+  <section class="py-20 lg:py-24 relative overflow-hidden">
+    <Image
+      src={contribute}
+      alt=""
+      widths={[800, 1200, 1920]}
+      class="parallax-bg absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
+    <div class="container max-w-4xl relative">
       <h2 class="text-3xl font-bold font-heading mb-8">Contribute</h2>
-      <div class="prose prose-lg max-w-none">
+      <div class="prose prose-lg max-w-none backdrop-blur-xs">
         <p>
           This is an open project. The principles are developed in the open and contributions are
           welcome from anyone — scholars, organizers, lawyers, technologists, citizens.
@@ -377,5 +524,138 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         button.textContent = "Subscribe";
       }
     });
+  </script>
+
+
+  <style>
+    .principle-card-title-img {
+      color: white;
+      --outline-color: #22577A;
+      text-shadow:
+        -1px -1px 0 var(--outline-color),
+         1px -1px 0 var(--outline-color),
+        -1px  1px 0 var(--outline-color),
+         1px  1px 0 var(--outline-color),
+         0   -1px 0 var(--outline-color),
+         0    1px 0 var(--outline-color),
+        -1px  0   0 var(--outline-color),
+         1px  0   0 var(--outline-color);
+    }
+
+    .principle-card-title-img.outline-accent {
+      --outline-color: #cd5c5c;
+    }
+
+    .principle-card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .principle-card {
+      perspective: 800px;
+      cursor: pointer;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: var(--radius-box);
+      background: var(--color-base-100);
+    }
+
+    .principle-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease;
+      transform-style: preserve-3d;
+    }
+
+    .principle-card:hover .principle-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .principle-card-front,
+    .principle-card-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .principle-card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Mobile: tap to flip */
+    @media (hover: none) {
+      .principle-card.flipped .principle-card-inner {
+        transform: rotateY(180deg);
+      }
+      .principle-card:hover .principle-card-inner {
+        transform: none;
+      }
+      .principle-card.flipped:hover .principle-card-inner {
+        transform: rotateY(180deg);
+      }
+    }
+  </style>
+
+  <script>
+    // Mobile tap-to-flip for principle cards
+    if (window.matchMedia("(hover: none)").matches) {
+      document.querySelectorAll(".principle-card").forEach((card) => {
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("a")) return;
+          card.classList.toggle("flipped");
+        });
+      });
+    }
+  </script>
+
+  <script>
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (!isMobile) {
+      const bgImages = document.querySelectorAll(".parallax-bg");
+      const windowImages = document.querySelectorAll(".parallax-window-img");
+      let ticking = false;
+
+      function updateParallax() {
+        const vh = window.innerHeight;
+
+        bgImages.forEach((img) => {
+          const section = img.closest("section");
+          const rect = section.getBoundingClientRect();
+          const progress = (rect.top + rect.height) / (vh + rect.height);
+          const position = 30 + progress * 40;
+          img.style.objectPosition = `center ${position}%`;
+        });
+
+        windowImages.forEach((img) => {
+          const container = img.parentElement;
+          const rect = container.getBoundingClientRect();
+          const containerHeight = rect.height;
+          const imgHeight = img.offsetHeight;
+          const travel = imgHeight - containerHeight;
+          const progress = (rect.top + containerHeight) / (vh + containerHeight);
+          const offset = -(1 - progress) * travel;
+          img.style.transform = `translateY(${offset}px)`;
+        });
+      }
+
+      updateParallax();
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateParallax();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
   </script>
 </BaseLayout>
