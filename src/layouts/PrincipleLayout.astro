@@ -1,0 +1,788 @@
+---
+import BaseLayout from "./BaseLayout.astro"
+import MobileTableOfContents from "../components/MobileTableOfContents.astro"
+import LicenseBadge from "../components/LicenseBadge.astro"
+import { Image } from "astro:assets"
+import { getCollection } from "astro:content"
+
+import adaptiveCapacityImg from "../assets/principles/adaptive_capacity.png"
+import subsidiaritySolidarityImg from "../assets/principles/subsidiarity_solidarity.png"
+import pluralSovereigntyImg from "../assets/principles/plural_sovereignty.png"
+import temporalPluralismImg from "../assets/principles/temporal_pluralism.png"
+import epistemicPluralismImg from "../assets/principles/epistemic_pluralism.png"
+import universalHumanRightsImg from "../assets/principles/universal_human_rights.png"
+import epistemicAutonomyImg from "../assets/principles/epistemic_autonomy.png"
+import humanPrimacyImg from "../assets/principles/human_primacy.png"
+import economicDemocracyImg from "../assets/principles/economic_democracy.png"
+import democraticSovereigntyImg from "../assets/principles/democratic_sovereignty_over_institutions.png"
+import inalienableCommonsImg from "../assets/principles/inalienable_commons.png"
+import ecologicalEmbeddednessImg from "../assets/principles/ecological_embeddedness.png"
+import democraticPeaceSecurityImg from "../assets/principles/democratic_peace_security.png"
+import cooperativeSovereigntyImg from "../assets/principles/cooperative_sovereignty.png"
+import civicTechnologySovereigntyImg from "../assets/principles/civic_technology_sovereignty.png"
+
+const principleImages = {
+  "adaptive-capacity": adaptiveCapacityImg,
+  "subsidiarity-solidarity": subsidiaritySolidarityImg,
+  "plural-sovereignty": pluralSovereigntyImg,
+  "temporal-pluralism": temporalPluralismImg,
+  "epistemic-pluralism": epistemicPluralismImg,
+  "universal-human-rights": universalHumanRightsImg,
+  "epistemic-autonomy": epistemicAutonomyImg,
+  "human-primacy": humanPrimacyImg,
+  "economic-democracy": economicDemocracyImg,
+  "democratic-sovereignty-over-institutions": democraticSovereigntyImg,
+  "inalienable-commons": inalienableCommonsImg,
+  "ecological-embeddedness": ecologicalEmbeddednessImg,
+  "democratic-peace-and-security": democraticPeaceSecurityImg,
+  "cooperative-sovereignty": cooperativeSovereigntyImg,
+  "civic-technology-sovereignty": civicTechnologySovereigntyImg,
+}
+
+const { entry, headings } = Astro.props
+const p = entry
+const isStructural = p.data.tier === "structural"
+const tierLabel = isStructural ? "Structure" : "Protection"
+const heroImage = principleImages[p.id]
+
+const allPrinciples = (await getCollection("principles")).sort(
+  (a, b) => a.data.number - b.data.number,
+)
+const principlesById = Object.fromEntries(
+  allPrinciples.map((x) => [x.id, x]),
+)
+const related = (p.data.connections || [])
+  .map((cid) => principlesById[cid])
+  .filter(Boolean)
+
+const idx = allPrinciples.findIndex((x) => x.id === p.id)
+const prev = idx > 0 ? allPrinciples[idx - 1] : null
+const next = idx < allPrinciples.length - 1 ? allPrinciples[idx + 1] : null
+
+const pad = (n) => String(n).padStart(2, "0")
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Principles", url: "/principles" },
+  { name: p.data.title, url: `/principles/${p.id}` },
+]
+
+const definedTerm = {
+  name: p.data.title,
+  description: p.data.summary,
+  termCode: String(p.data.number),
+}
+
+const tocHeadings = (headings || []).filter((h) => h.depth >= 2 && h.depth <= 3)
+---
+
+<BaseLayout
+  title={`${p.data.number}. ${p.data.title}`}
+  description={p.data.summary}
+  breadcrumbs={breadcrumbs}
+  definedTerm={definedTerm}
+  collectionType="principles"
+>
+  {tocHeadings.length > 0 && <MobileTableOfContents headings={tocHeadings} />}
+
+  {/* Hero */}
+  <section
+    class={`principle-hero ${isStructural ? "hero-structural" : "hero-substantive"}`}
+  >
+    <div class="container max-w-6xl relative py-14 lg:py-20">
+      <div class="hero-meta-row">
+        <a href="/principles" class="hero-back">
+          <svg
+            width="20"
+            height="10"
+            viewBox="0 0 20 10"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M20 5H1M5 1L1 5l4 4" stroke-linecap="square" />
+          </svg>
+          <span>All principles</span>
+        </a>
+        <LicenseBadge />
+      </div>
+
+      <div class="hero-body">
+        <span class="hero-number" aria-hidden="true">
+          {pad(p.data.number)}
+        </span>
+        <h1 class="hero-title">{p.data.title}</h1>
+        <p class="hero-summary">{p.data.summary}</p>
+      </div>
+
+      {
+        heroImage && (
+          <div class="hero-image-wrap">
+            <div class="hero-image">
+              <Image
+                src={heroImage}
+                alt=""
+                widths={[500, 750, 1000]}
+                sizes="(min-width: 1024px) 18rem, 80vw"
+              />
+              <span class="hero-image-badge">{tierLabel}</span>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  {/* Main: prose + sticky TOC */}
+  <div class="container max-w-6xl py-16 lg:py-24">
+    <div class="lg:grid lg:grid-cols-[1fr_220px] lg:gap-16 xl:gap-20">
+      <article class="prose prose-lg max-w-none principle-prose">
+        <slot />
+      </article>
+
+      {
+        tocHeadings.length > 0 && (
+          <aside class="hidden lg:block order-last">
+            <nav class="sticky top-24 principle-toc" aria-label="On this page">
+              <p class="eyebrow mb-5">On this page</p>
+              <ol class="space-y-1">
+                {tocHeadings.map((h) => (
+                  <li>
+                    <a
+                      href={`#${h.slug}`}
+                      class={`toc-link ${isStructural ? "toc-structural" : "toc-substantive"} ${h.depth === 3 ? "toc-indent" : ""}`}
+                      data-heading={h.slug}
+                    >
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </aside>
+        )
+      }
+    </div>
+  </div>
+
+  {/* Related principles */}
+  {
+    related.length > 0 && (
+      <section class="related-section">
+        <div class="container max-w-6xl py-16 lg:py-20">
+          <header class="mb-10">
+            <p
+              class={`eyebrow mb-3 ${isStructural ? "text-primary" : "text-error"}`}
+            >
+              Related
+            </p>
+            <h2 class="related-heading">Part of the same system</h2>
+          </header>
+          <div class="related-list">
+            {related.map((r) => {
+              const rIsStructural = r.data.tier === "structural"
+              return (
+                <a
+                  href={`/principles/${r.id}`}
+                  class={`related-card ${rIsStructural ? "is-structural" : "is-substantive"}`}
+                >
+                  <span class="related-num">{pad(r.data.number)}</span>
+                  <div class="related-body">
+                    <h3 class="related-card-title">{r.data.title}</h3>
+                    <p class="related-card-summary">{r.data.summary}</p>
+                  </div>
+                </a>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {/* Prev / next */}
+  {
+    (prev || next) && (
+      <nav class="pagination-section" aria-label="Principle navigation">
+        <div class="container max-w-6xl py-14 lg:py-16">
+          <div class="pagination-grid">
+            {prev ? (
+              <a
+                href={`/principles/${prev.id}`}
+                class={`pagination-link ${prev.data.tier === "structural" ? "is-structural" : "is-substantive"}`}
+              >
+                <span class="pagination-meta">
+                  <svg
+                    width="16"
+                    height="10"
+                    viewBox="0 0 16 10"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path d="M16 5H1M5 1L1 5l4 4" stroke-linecap="square" />
+                  </svg>
+                  <span>Previous</span>
+                </span>
+                <span class="pagination-body">
+                  <span class="pagination-num">{pad(prev.data.number)}</span>
+                  <span class="pagination-title">{prev.data.title}</span>
+                </span>
+              </a>
+            ) : (
+              <div />
+            )}
+            {next ? (
+              <a
+                href={`/principles/${next.id}`}
+                class={`pagination-link pagination-right ${next.data.tier === "structural" ? "is-structural" : "is-substantive"}`}
+              >
+                <span class="pagination-meta">
+                  <span>Next</span>
+                  <svg
+                    width="16"
+                    height="10"
+                    viewBox="0 0 16 10"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path d="M0 5h15M11 1l4 4-4 4" stroke-linecap="square" />
+                  </svg>
+                </span>
+                <span class="pagination-body">
+                  <span class="pagination-num">{pad(next.data.number)}</span>
+                  <span class="pagination-title">{next.data.title}</span>
+                </span>
+              </a>
+            ) : (
+              <div />
+            )}
+          </div>
+        </div>
+      </nav>
+    )
+  }
+
+  <style>
+    /* Shared eyebrow */
+    .eyebrow {
+      font-family: var(--font-family-heading);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      opacity: 0.65;
+    }
+
+    /* Hero */
+    .principle-hero {
+      position: relative;
+      border-bottom: 1px solid var(--color-base-300);
+      overflow: hidden;
+    }
+    .hero-structural {
+      background:
+        radial-gradient(
+          ellipse 70% 80% at 90% 0%,
+          rgba(34, 87, 122, 0.08),
+          transparent 55%
+        ),
+        radial-gradient(
+          ellipse 60% 60% at 0% 100%,
+          rgba(34, 87, 122, 0.05),
+          transparent 55%
+        );
+    }
+    .hero-substantive {
+      background:
+        radial-gradient(
+          ellipse 70% 80% at 90% 0%,
+          rgba(204, 41, 54, 0.07),
+          transparent 55%
+        ),
+        radial-gradient(
+          ellipse 60% 60% at 0% 100%,
+          rgba(204, 41, 54, 0.05),
+          transparent 55%
+        );
+    }
+
+    .hero-meta-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .hero-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: var(--font-family-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.6;
+      transition: all 0.25s ease;
+    }
+    .hero-back:hover {
+      opacity: 1;
+      gap: 0.85rem;
+    }
+    .hero-structural .hero-back:hover {
+      color: var(--color-primary);
+    }
+    .hero-substantive .hero-back:hover {
+      color: var(--color-error);
+    }
+
+    .hero-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-number {
+      display: block;
+      font-family: var(--font-family-heading);
+      font-size: clamp(5rem, 13vw, 11rem);
+      font-weight: 800;
+      line-height: 0.78;
+      letter-spacing: -0.06em;
+      color: transparent;
+      -webkit-text-stroke: 2px currentColor;
+      font-variant-numeric: tabular-nums;
+      user-select: none;
+      margin-bottom: 1.75rem;
+    }
+    .hero-structural .hero-number {
+      -webkit-text-stroke-color: var(--color-primary);
+    }
+    .hero-substantive .hero-number {
+      -webkit-text-stroke-color: var(--color-error);
+    }
+
+    .hero-title {
+      font-family: var(--font-family-heading);
+      font-size: clamp(2.25rem, 5.5vw, 4rem);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .hero-summary {
+      font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+      line-height: 1.55;
+      color: var(--color-base-content);
+      opacity: 0.78;
+      max-width: 42rem;
+    }
+
+    .hero-image-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+    @media (min-width: 1024px) {
+      .hero-image-wrap {
+        position: absolute;
+        top: 5.5rem;
+        right: 2rem;
+        margin-top: 0;
+        width: 15rem;
+        z-index: 0;
+      }
+      .hero-body {
+        padding-right: 17rem;
+      }
+    }
+    @media (min-width: 1280px) {
+      .hero-image-wrap {
+        width: 17rem;
+      }
+      .hero-body {
+        padding-right: 19.5rem;
+      }
+    }
+
+    .hero-image {
+      position: relative;
+      width: 100%;
+      max-width: 18rem;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-box);
+      overflow: hidden;
+      background: var(--color-base-200);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 28px 56px -28px rgba(34, 87, 122, 0.3);
+    }
+    @media (min-width: 1024px) {
+      .hero-image {
+        max-width: none;
+      }
+    }
+    .hero-substantive .hero-image {
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 28px 56px -28px rgba(204, 41, 54, 0.3);
+    }
+    .hero-image :global(img) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.28),
+        rgba(0, 0, 0, 0) 42%
+      );
+    }
+    .hero-image-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      font-family: var(--font-family-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: white;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+    }
+    .hero-structural .hero-image-badge {
+      background: var(--color-primary);
+    }
+    .hero-substantive .hero-image-badge {
+      background: var(--color-error);
+    }
+
+    /* Sticky TOC rail */
+    .principle-toc {
+      padding-left: 0.25rem;
+    }
+    .toc-link {
+      display: block;
+      padding: 0.4rem 0 0.4rem 1rem;
+      border-left: 2px solid transparent;
+      color: var(--color-base-content);
+      opacity: 0.5;
+      transition:
+        opacity 0.25s ease,
+        border-color 0.25s ease,
+        padding-left 0.25s ease;
+      font-family: var(--font-family-heading);
+      font-size: 0.85rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    .toc-link.toc-indent {
+      padding-left: 1.75rem;
+      font-size: 0.78rem;
+      font-weight: 400;
+    }
+    .toc-link:hover {
+      opacity: 0.95;
+      padding-left: 1.25rem;
+    }
+    .toc-link.toc-indent:hover {
+      padding-left: 2rem;
+    }
+    .toc-link.active {
+      opacity: 1;
+    }
+    .toc-link.toc-structural.active {
+      border-left-color: var(--color-primary);
+    }
+    .toc-link.toc-substantive.active {
+      border-left-color: var(--color-error);
+    }
+
+    /* Related section */
+    .related-section {
+      background: var(--color-base-200);
+      border-top: 1px solid var(--color-base-300);
+    }
+    .related-heading {
+      font-family: var(--font-family-heading);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 22ch;
+    }
+    .related-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+    @media (min-width: 768px) {
+      .related-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    .related-card {
+      display: flex;
+      gap: 1.1rem;
+      padding: 1.25rem 1.4rem;
+      background: var(--color-base-100);
+      border: 1px solid var(--color-base-300);
+      border-radius: var(--radius-box);
+      text-decoration: none;
+      color: var(--color-base-content);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .related-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: transparent;
+      border-radius: var(--radius-box) 0 0 var(--radius-box);
+      transition: background 0.25s ease;
+    }
+    .related-card.is-structural::before {
+      background: var(--color-primary);
+      opacity: 0.2;
+    }
+    .related-card.is-substantive::before {
+      background: var(--color-error);
+      opacity: 0.2;
+    }
+    .related-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -18px rgba(0, 0, 0, 0.2);
+    }
+    .related-card.is-structural:hover {
+      border-color: var(--color-primary);
+    }
+    .related-card.is-structural:hover::before {
+      opacity: 1;
+    }
+    .related-card.is-substantive:hover {
+      border-color: var(--color-error);
+    }
+    .related-card.is-substantive:hover::before {
+      opacity: 1;
+    }
+
+    .related-num {
+      flex-shrink: 0;
+      font-family: var(--font-family-heading);
+      font-size: 1.4rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      padding-top: 0.15rem;
+      color: transparent;
+      -webkit-text-stroke: 1.5px currentColor;
+      letter-spacing: -0.03em;
+    }
+    .related-card.is-structural .related-num {
+      -webkit-text-stroke-color: var(--color-primary);
+    }
+    .related-card.is-substantive .related-num {
+      -webkit-text-stroke-color: var(--color-error);
+    }
+
+    .related-body {
+      min-width: 0;
+    }
+    .related-card-title {
+      font-family: var(--font-family-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.35rem;
+    }
+    .related-card-summary {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      opacity: 0.68;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Prev/next */
+    .pagination-section {
+      border-top: 1px solid var(--color-base-300);
+    }
+    .pagination-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .pagination-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .pagination-link {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--color-base-300);
+      border-radius: var(--radius-box);
+      text-decoration: none;
+      color: var(--color-base-content);
+      transition: all 0.25s ease;
+    }
+    .pagination-link.pagination-right {
+      align-items: flex-end;
+      text-align: right;
+    }
+    .pagination-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -18px rgba(0, 0, 0, 0.2);
+    }
+    .pagination-link.is-structural:hover {
+      border-color: var(--color-primary);
+    }
+    .pagination-link.is-substantive:hover {
+      border-color: var(--color-error);
+    }
+
+    .pagination-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: var(--font-family-heading);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.55;
+    }
+    .pagination-body {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+    .pagination-link.pagination-right .pagination-body {
+      justify-content: flex-end;
+    }
+    .pagination-num {
+      font-family: var(--font-family-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1.5px currentColor;
+      flex-shrink: 0;
+    }
+    .pagination-link.is-structural .pagination-num {
+      -webkit-text-stroke-color: var(--color-primary);
+    }
+    .pagination-link.is-substantive .pagination-num {
+      -webkit-text-stroke-color: var(--color-error);
+    }
+    .pagination-title {
+      font-family: var(--font-family-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      min-width: 0;
+    }
+
+    /* Prose accents */
+    .principle-prose :global(h2) {
+      position: relative;
+      padding-top: 1.5rem;
+      font-family: var(--font-family-heading);
+    }
+    .principle-prose :global(h2)::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3rem;
+      height: 2px;
+      opacity: 0.45;
+    }
+    .hero-structural ~ div .principle-prose :global(h2)::before {
+      background: var(--color-primary);
+    }
+    .hero-substantive ~ div .principle-prose :global(h2)::before {
+      background: var(--color-error);
+    }
+
+    /* Dark mode refinements */
+    @media (prefers-color-scheme: dark) {
+      .hero-image {
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.3),
+          0 28px 56px -28px rgba(0, 0, 0, 0.7);
+      }
+      .related-card:hover {
+        box-shadow: 0 14px 28px -18px rgba(0, 0, 0, 0.5);
+      }
+    }
+  </style>
+
+  <script>
+    // Active TOC highlight
+    function initPrincipleTOC() {
+      const links = document.querySelectorAll(".toc-link")
+      if (!links.length) return
+      const targets = Array.from(links)
+        .map((l) => document.getElementById(l.dataset.heading))
+        .filter(Boolean)
+      if (!targets.length) return
+
+      let activeId = null
+      const setActive = (id) => {
+        if (id === activeId) return
+        activeId = id
+        links.forEach((l) => {
+          l.classList.toggle("active", l.dataset.heading === id)
+        })
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+          if (visible.length > 0) {
+            setActive(visible[0].target.id)
+          } else {
+            let lastAbove = null
+            for (const el of targets) {
+              if (el.getBoundingClientRect().top < 120) lastAbove = el
+            }
+            if (lastAbove) setActive(lastAbove.id)
+          }
+        },
+        { rootMargin: "-100px 0px -60% 0px", threshold: 0 },
+      )
+      targets.forEach((t) => observer.observe(t))
+    }
+
+    initPrincipleTOC()
+    document.addEventListener("astro:after-swap", initPrincipleTOC)
+  </script>
+</BaseLayout>

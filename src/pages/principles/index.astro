@@ -76,7 +76,7 @@ const pad = (n) => String(n).padStart(2, "0")
         class="text-5xl md:text-6xl lg:text-7xl font-bold font-heading tracking-tight leading-[0.95] mb-10"
       >
         Principles for a<br />
-        <span class="text-primary">resilient</span>{" "}<em class="font-serif italic"
+        <span class="text-primary">resilient</span>{" "}<em class="font-body italic"
           >democracy</em
         >.
       </h1>
@@ -183,10 +183,12 @@ const pad = (n) => String(n).padStart(2, "0")
                       <span class="panel-image-badge">Structure</span>
                     </div>
                     <div class="panel-content">
-                      <span class="panel-number" aria-hidden="true">
-                        {pad(p.data.number)}
-                      </span>
-                      <h3 class="panel-title">{p.data.title}</h3>
+                      <a href={`/principles/${p.id}`} class="panel-heading-link">
+                        <span class="panel-number" aria-hidden="true">
+                          {pad(p.data.number)}
+                        </span>
+                        <h3 class="panel-title">{p.data.title}</h3>
+                      </a>
                       <p class="panel-summary">{p.data.summary}</p>
                       {related.length > 0 && (
                         <div class="panel-related">
@@ -277,10 +279,12 @@ const pad = (n) => String(n).padStart(2, "0")
                       <span class="panel-image-badge">Protection</span>
                     </div>
                     <div class="panel-content">
-                      <span class="panel-number" aria-hidden="true">
-                        {pad(p.data.number)}
-                      </span>
-                      <h3 class="panel-title">{p.data.title}</h3>
+                      <a href={`/principles/${p.id}`} class="panel-heading-link">
+                        <span class="panel-number" aria-hidden="true">
+                          {pad(p.data.number)}
+                        </span>
+                        <h3 class="panel-title">{p.data.title}</h3>
+                      </a>
                       <p class="panel-summary">{p.data.summary}</p>
                       {related.length > 0 && (
                         <div class="panel-related">
@@ -590,6 +594,24 @@ const pad = (n) => String(n).padStart(2, "0")
       position: relative;
       min-width: 0;
     }
+    .panel-heading-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+    .panel-heading-link:hover .panel-title,
+    .panel-heading-link:focus-visible .panel-title {
+      color: var(--color-primary);
+    }
+    .panel-substantive .panel-heading-link:hover .panel-title,
+    .panel-substantive .panel-heading-link:focus-visible .panel-title {
+      color: var(--color-error);
+    }
+    .panel-heading-link:hover .panel-number,
+    .panel-heading-link:focus-visible .panel-number {
+      opacity: 1;
+    }
+
     .panel-number {
       display: block;
       font-family: var(--font-family-heading);
@@ -600,7 +622,7 @@ const pad = (n) => String(n).padStart(2, "0")
       -webkit-text-stroke: 1.5px currentColor;
       color: transparent;
       opacity: 0.9;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
       font-variant-numeric: tabular-nums;
       user-select: none;
     }
@@ -620,6 +642,10 @@ const pad = (n) => String(n).padStart(2, "0")
       line-height: 1.05;
       letter-spacing: -0.015em;
       margin-bottom: 1rem;
+      transition: color 0.25s ease;
+    }
+    .panel-number {
+      transition: opacity 0.25s ease;
     }
     .panel-summary {
       font-size: 1.1rem;

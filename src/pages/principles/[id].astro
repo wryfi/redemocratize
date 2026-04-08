@@ -1,6 +1,5 @@
 ---
-import ContentLayout from '../../layouts/ContentLayout.astro';
-import ContentMeta from '../../components/ContentMeta.astro';
+import PrincipleLayout from '../../layouts/PrincipleLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -13,29 +12,8 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-
-const breadcrumbs = [
-  { name: 'Home', url: '/' },
-  { name: 'Principles', url: '/principles' },
-  { name: entry.data.title, url: `/principles/${entry.id}` },
-];
-
-const definedTerm = {
-  name: entry.data.title,
-  description: entry.data.summary,
-  termCode: String(entry.data.number),
-};
 ---
 
-<ContentLayout
-  title={`${entry.data.number}. ${entry.data.title}`}
-  description={entry.data.summary}
-  headings={headings}
-  backLink="/principles"
-  backLabel="Back to Principles"
-  breadcrumbs={breadcrumbs}
-  definedTerm={definedTerm}
->
-  <ContentMeta type="principle" />
+<PrincipleLayout entry={entry} headings={headings}>
   <Content />
-</ContentLayout>
+</PrincipleLayout>
