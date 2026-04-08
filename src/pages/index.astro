@@ -163,7 +163,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
   </section>
 
   <!-- Our Approach -->
-  <section class="py-20 lg:py-24 relative overflow-hidden">
+  <section class="py-20 lg:py-24 relative overflow-hidden min-h-[50vh] flex items-center">
     <Image
       src={architects}
       alt=""
@@ -220,35 +220,36 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
           principles.map((p) => {
             const isStructural = p.data.tier === "structural"
             const label = isStructural ? "Structure" : "Protection"
-            const borderColor = isStructural ? "border-primary" : "border-accent"
+            const borderColor = isStructural ? "border-primary" : "border-error"
             const badgeColor = isStructural ? "badge-primary" : "badge-error"
             const cardImg = principleImages[p.id]
             return (
               <a href={`/principles/${p.id}`} class="principle-card-link">
-                <div class={`principle-card aspect-[3/4] lg:aspect-[5/4] ${borderColor}`}>
+                <div class={`principle-card ${borderColor}`}>
                   <div class="principle-card-inner">
                     <div class="principle-card-front">
-                      {cardImg && (
-                        <Fragment>
+                      <div class="relative aspect-[3/4] lg:aspect-[5/4] overflow-hidden">
+                        {cardImg && (
                           <Image
                             src={cardImg}
                             alt=""
                             widths={[300, 450]}
-                            class="absolute inset-0 w-full h-full object-cover rounded-[calc(var(--radius-box)-2px)]"
+                            class="absolute inset-0 w-full h-full object-cover"
                           />
-                          <div class="absolute inset-0 bg-black/30 rounded-[calc(var(--radius-box)-2px)]" />
-                        </Fragment>
-                      )}
-                      <span
-                        class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}
+                        )}
+                        <span
+                          class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}
+                        >
+                          {label}
+                        </span>
+                      </div>
+                      <div
+                        class={`px-3 py-3 ${isStructural ? "bg-primary" : "bg-error"}`}
                       >
-                        {label}
-                      </span>
-                      <h3
-                        class={`text-lg lg:text-xl font-bold font-heading text-center mt-3 z-10 ${cardImg ? `principle-card-title-img${!isStructural ? " outline-accent" : ""}` : ""}`}
-                      >
-                        {p.data.title}
-                      </h3>
+                        <h3 class="text-base lg:text-lg font-bold font-heading text-center text-white leading-tight">
+                          {p.data.title}
+                        </h3>
+                      </div>
                     </div>
                     <div class="principle-card-back">
                       <p class="text-sm text-center leading-snug">{p.data.summary}</p>
@@ -267,32 +268,36 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
           principles.map((p) => {
             const isStructural = p.data.tier === "structural"
             const label = isStructural ? "Structure" : "Protection"
-            const borderColor = isStructural ? "border-primary" : "border-accent"
+            const borderColor = isStructural ? "border-primary" : "border-error"
             const badgeColor = isStructural ? "badge-primary" : "badge-error"
             const cardImg = principleImages[p.id]
             return (
               <div class="carousel-item">
-                <div class={`principle-card w-56 aspect-[3/4] ${borderColor}`}>
+                <div class={`principle-card w-56 ${borderColor}`}>
                   <div class="principle-card-inner">
                     <div class="principle-card-front">
-                      {cardImg && (
-                        <Image
-                          src={cardImg}
-                          alt=""
-                          widths={[250]}
-                          class="absolute inset-0 w-full h-full object-cover rounded-[calc(var(--radius-box)-2px)]"
-                        />
-                      )}
-                      <span
-                        class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}
+                      <div class="relative aspect-[3/4] overflow-hidden">
+                        {cardImg && (
+                          <Image
+                            src={cardImg}
+                            alt=""
+                            widths={[250]}
+                            class="absolute inset-0 w-full h-full object-cover"
+                          />
+                        )}
+                        <span
+                          class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}
+                        >
+                          {label}
+                        </span>
+                      </div>
+                      <div
+                        class={`px-3 py-3 ${isStructural ? "bg-primary" : "bg-error"}`}
                       >
-                        {label}
-                      </span>
-                      <h3
-                        class={`text-lg font-bold font-heading text-center mt-3 z-10 ${cardImg ? `principle-card-title-img${!isStructural ? " outline-accent" : ""}` : ""}`}
-                      >
-                        {p.data.title}
-                      </h3>
+                        <h3 class="text-base font-bold font-heading text-center text-white leading-tight">
+                          {p.data.title}
+                        </h3>
+                      </div>
                     </div>
                     <div class="principle-card-back">
                       <p class="text-sm text-center leading-snug">{p.data.summary}</p>
@@ -314,7 +319,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
   </section>
 
   <!-- What We Build On -->
-  <section class="py-20 lg:py-24 relative overflow-hidden">
+  <section class="py-20 lg:py-24 relative overflow-hidden min-h-[50vh] flex items-center">
     <Image
       src={redwoods}
       alt=""
@@ -422,7 +427,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
   </section>
 
   <!-- Contribute -->
-  <section class="py-20 lg:py-24 relative overflow-hidden">
+  <section class="py-20 lg:py-24 relative overflow-hidden min-h-[50vh] flex items-center">
     <Image
       src={contribute}
       alt=""
@@ -534,24 +539,6 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
   </script>
 
   <style>
-    .principle-card-title-img {
-      color: white;
-      --outline-color: #22577a;
-      text-shadow:
-        -1px -1px 0 var(--outline-color),
-        1px -1px 0 var(--outline-color),
-        -1px 1px 0 var(--outline-color),
-        1px 1px 0 var(--outline-color),
-        0 -1px 0 var(--outline-color),
-        0 1px 0 var(--outline-color),
-        -1px 0 0 var(--outline-color),
-        1px 0 0 var(--outline-color);
-    }
-
-    .principle-card-title-img.outline-accent {
-      --outline-color: #cd5c5c;
-    }
-
     .principle-card-link {
       text-decoration: none;
       color: inherit;
@@ -569,7 +556,6 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
     .principle-card-inner {
       position: relative;
       width: 100%;
-      height: 100%;
       transition: transform 0.5s ease;
       transform-style: preserve-3d;
     }
@@ -578,7 +564,16 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       transform: rotateY(180deg);
     }
 
-    .principle-card-front,
+    .principle-card-front {
+      position: relative;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: calc(var(--radius-box) - 2px);
+    }
+
     .principle-card-back {
       position: absolute;
       inset: 0;
@@ -589,9 +584,6 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       align-items: center;
       justify-content: center;
       padding: 1.25rem;
-    }
-
-    .principle-card-back {
       transform: rotateY(180deg);
     }
 
