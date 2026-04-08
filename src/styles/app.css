@@ -248,3 +248,43 @@ h1, h2, h3, h4, h5, h6 {
 .legal-citation {
     font-style: normal;
 }
+
+/* Shared eyebrow: small uppercase label used above section titles */
+.eyebrow {
+    font-family: var(--font-family-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    opacity: 0.65;
+}
+
+/* Shared arrow-link: editorial "continue reading" treatment */
+.arrow-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+    color: var(--color-primary);
+    transition: gap 0.3s ease;
+}
+.arrow-link:hover {
+    gap: 1.1rem;
+}
+.arrow-link svg {
+    flex-shrink: 0;
+}
+
+/* Section header: eyebrow + heading pattern */
+.section-eyebrow-primary {
+    color: var(--color-primary);
+    opacity: 1;
+}
+.section-eyebrow-error {
+    color: var(--color-error);
+    opacity: 1;
+}

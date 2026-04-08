@@ -59,19 +59,102 @@ const fullTitle = title === siteConfig.name || title.includes(siteConfig.name)
     <div class="min-h-screen">
       <slot />
     </div>
-    <footer class="footer footer-center p-10 bg-base-200 text-base-content">
-      <aside>
-        <p class="font-heading font-bold text-lg">Redemocratize</p>
-        <p>An open-source constitutional design project.</p>
-        <p class="text-sm opacity-70">
-          Licensed under
-          <a
-            rel="license"
-            href={siteConfig.license.url}
-            class="link link-hover"
-          >{siteConfig.license.name}</a>
-        </p>
-      </aside>
+    <footer class="site-footer bg-base-200 text-base-content border-t border-base-300">
+      <div class="container max-w-6xl py-16 lg:py-20">
+        <div class="grid gap-12 md:grid-cols-12 md:gap-8 lg:gap-12">
+          <div class="md:col-span-5">
+            <div class="flex items-start gap-4">
+              <img src="/favicon.svg" alt="" class="w-12 h-12 shrink-0" />
+              <div>
+                <p class="font-heading font-bold text-xl">Redemocratize</p>
+                <p class="text-sm italic text-base-content/70 mt-1">
+                  Envisioning Resilient Democracy
+                </p>
+              </div>
+            </div>
+            <p class="mt-6 text-sm text-base-content/70 max-w-sm leading-relaxed">
+              An open-source constitutional design project articulating
+              capture-resistant principles for democratic governance adequate to
+              the 21st century.
+            </p>
+          </div>
+
+          <div class="md:col-span-3">
+            <p class="eyebrow mb-4">Explore</p>
+            <ul class="space-y-2 text-sm">
+              <li><a href="/principles" class="footer-link">The Principles</a></li>
+              <li><a href="/works" class="footer-link">Democracy Works</a></li>
+              <li><a href="/contribute" class="footer-link">Contribute</a></li>
+              <li><a href="/faq" class="footer-link">FAQ</a></li>
+              <li><a href="/about" class="footer-link">About</a></li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-4">
+            <p class="eyebrow mb-4">Project</p>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href={siteConfig.repo}
+                  class="footer-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Source code on GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  rel="license noopener noreferrer"
+                  target="_blank"
+                  href={siteConfig.license.url}
+                  class="footer-link"
+                >
+                  Licensed {siteConfig.license.name}
+                </a>
+              </li>
+              <li><a href="/#subscribe-form" class="footer-link">Newsletter</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="mt-14 pt-8 border-t border-base-300 flex flex-col sm:flex-row gap-3 sm:gap-8 text-xs text-base-content/60"
+        >
+          <p>
+            &copy; {new Date().getFullYear()} Redemocratize Project contributors.
+          </p>
+          <p>
+            Content licensed
+            <a
+              rel="license noopener noreferrer"
+              target="_blank"
+              href={siteConfig.license.url}
+              class="underline decoration-base-content/30 hover:decoration-base-content/60"
+            >{siteConfig.license.name}</a>.
+          </p>
+        </div>
+      </div>
+
+      <style>
+        .site-footer {
+          --_footer-link-color: var(--color-base-content);
+        }
+        .footer-link {
+          display: inline-block;
+          color: var(--_footer-link-color);
+          opacity: 0.7;
+          transition:
+            opacity 0.2s ease,
+            color 0.2s ease,
+            padding-left 0.2s ease;
+        }
+        .footer-link:hover {
+          opacity: 1;
+          color: var(--color-primary);
+          padding-left: 0.2rem;
+        }
+      </style>
     </footer>
   </body>
 </html>

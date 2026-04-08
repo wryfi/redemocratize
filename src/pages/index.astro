@@ -5,6 +5,7 @@ import { getCollection } from "astro:content"
 import phoenixWings from "../assets/index/phoenix_wings.png"
 import decayingCourt from "../assets/index/decaying_court.png"
 import architects from "../assets/index/architects.png"
+import principlesBg from "../assets/index/principles_bg.png"
 import contribute from "../assets/index/contribute.jpg"
 import authoritarianism from "../assets/index/authoritarianism.jpg"
 import inequality from "../assets/index/inequality.jpg"
@@ -55,7 +56,9 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
 
 <BaseLayout>
   <!-- Hero -->
-  <section class="hero-section relative overflow-hidden min-h-screen flex items-center">
+  <section
+    class="hero-section relative overflow-hidden min-h-[calc(100vh-4rem)] flex items-center"
+  >
     <Image
       src={phoenixWings}
       alt=""
@@ -104,12 +107,34 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         </p>
       </div>
     </div>
+
+    <a href="#the-problem" class="hero-scroll-cue" aria-label="Scroll to The Problem">
+      <span>Read on</span>
+      <svg
+        width="14"
+        height="22"
+        viewBox="0 0 14 22"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <path d="M7 1v18M1 14l6 6 6-6" stroke-linecap="square" />
+      </svg>
+    </a>
   </section>
 
   <!-- The Problem -->
-  <section class="py-20 lg:py-24 bg-base-200">
+  <section id="the-problem" class="py-20 lg:py-28 bg-base-200">
     <div class="container max-w-5xl">
-      <h2 class="text-3xl font-bold font-heading mb-10">The Problem</h2>
+      <header class="mb-12 lg:mb-16">
+        <p class="eyebrow section-eyebrow-error mb-4">The Diagnosis</p>
+        <h2
+          class="text-4xl lg:text-5xl font-bold font-heading tracking-tight leading-[1.05]"
+        >
+          The Problem
+        </h2>
+      </header>
       <div class="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-14">
         <!-- Window -->
         <div class="lg:w-2/5 shrink-0">
@@ -150,11 +175,19 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
             democratic institutions robust to the world we actually inhabit.
           </p>
           <div class="mt-8 not-prose">
-            <a
-              href="/works/articles/cumulative-crises"
-              class="btn btn-outline btn-primary font-heading"
-            >
-              Read more ...
+            <a href="/works/articles/cumulative-crises" class="arrow-link">
+              <span>The cumulative crises</span>
+              <svg
+                width="24"
+                height="10"
+                viewBox="0 0 24 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M0 5h22M17 1l5 4-5 4" stroke-linecap="square" />
+              </svg>
             </a>
           </div>
         </div>
@@ -173,7 +206,14 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
     />
     <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
     <div class="container max-w-4xl relative">
-      <h2 class="text-3xl font-bold font-heading mb-8">Our Approach</h2>
+      <header class="mb-10 lg:mb-14">
+        <p class="eyebrow section-eyebrow-primary mb-4">The Method</p>
+        <h2
+          class="text-4xl lg:text-5xl font-bold font-heading tracking-tight leading-[1.05]"
+        >
+          Our Approach
+        </h2>
+      </header>
       <div class="prose prose-lg max-w-none backdrop-blur-xs">
         <p>Redemocratize articulates capture-resistant design principles for modern democracy.</p>
         <p>
@@ -210,9 +250,30 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
   </section>
 
   <!-- Fifteen Principles -->
-  <section class="py-20 lg:py-28 bg-base-200">
-    <div class="container max-w-6xl">
-      <h2 class="text-3xl font-bold font-heading mb-10">The Redemocratize Principles</h2>
+  <section class="py-20 lg:py-28 bg-base-200 relative overflow-hidden">
+    <Image
+      src={principlesBg}
+      alt=""
+      widths={[800, 1200, 1920]}
+      class="principles-bg absolute inset-0 w-full h-full object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-base-200/80 dark:bg-base-200/85"></div>
+    <div class="container max-w-6xl relative">
+      <header class="mb-14 lg:mb-20 max-w-3xl">
+        <p class="eyebrow section-eyebrow-primary mb-4">The Fifteen</p>
+        <h2
+          class="text-4xl lg:text-6xl font-bold font-heading tracking-tight leading-[1] mb-6"
+        >
+          The Redemocratize Principles
+        </h2>
+        <p class="text-lg lg:text-xl text-base-content/70 leading-relaxed">
+          Read them as a system, not a list. Five structural principles shape how
+          governance is organized; ten substantive commitments define what it must
+          protect. The tension between the two tiers is productive, and must be
+          held.
+        </p>
+      </header>
 
       <!-- Desktop: 5x3 grid of flip cards -->
       <div class="hidden md:grid md:grid-cols-3 gap-5 lg:gap-6">
@@ -316,8 +377,11 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         }
       </div>
 
-      <div class="mt-12 lg:mt-16 flex justify-center">
-        <a href="/principles" class="btn btn-primary font-heading">
+      <div class="mt-14 lg:mt-20 flex justify-center">
+        <a
+          href="/principles"
+          class="btn btn-primary btn-lg font-heading tracking-wide"
+        >
           Explore the Principles
         </a>
       </div>
@@ -335,7 +399,14 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
     />
     <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
     <div class="container max-w-4xl relative text-black dark:text-base-content">
-      <h2 class="text-3xl font-bold font-heading mb-8">On the Shoulders of Giants</h2>
+      <header class="mb-10 lg:mb-14">
+        <p class="eyebrow section-eyebrow-primary mb-4">The Inheritance</p>
+        <h2
+          class="text-4xl lg:text-5xl font-bold font-heading tracking-tight leading-[1.05]"
+        >
+          On the Shoulders of Giants
+        </h2>
+      </header>
       <div class="prose prose-lg max-w-none text-black dark:text-base-content backdrop-blur-xs">
         <p>
           This project is not nihilistic about existing democratic traditions. Many principles
@@ -349,85 +420,131 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         </p>
       </div>
       <div class="mt-10">
-        <a
-          href="/works/articles/inherited-principles"
-          class="btn btn-outline btn-primary font-heading"
-        >
-          Read about inherited principles
+        <a href="/works/articles/inherited-principles" class="arrow-link">
+          <span>Inherited principles</span>
+          <svg
+            width="24"
+            height="10"
+            viewBox="0 0 24 10"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M0 5h22M17 1l5 4-5 4" stroke-linecap="square" />
+          </svg>
         </a>
       </div>
     </div>
   </section>
 
   <!-- Start Here -->
-  <section class="py-20 lg:py-24 bg-base-200">
-    <div class="container max-w-4xl">
-      <h2 class="text-3xl font-bold font-heading mb-8">The Principles Applied</h2>
-      <div class="prose prose-lg max-w-none">
-        <p>
-          The principles are the intellectual architecture. But most people think in terms of
-          issues. These topic pages show how the principles apply to the things you care about.
+  <section class="py-20 lg:py-28 bg-base-200">
+    <div class="container max-w-5xl">
+      <header class="mb-12 lg:mb-16 max-w-3xl">
+        <p class="eyebrow section-eyebrow-error mb-4">In Practice</p>
+        <h2
+          class="text-4xl lg:text-5xl font-bold font-heading tracking-tight leading-[1.05] mb-6"
+        >
+          The Principles Applied
+        </h2>
+        <p class="text-lg text-base-content/70 leading-relaxed">
+          The principles are the intellectual architecture. Most people think in
+          terms of issues. These topic pages show how the principles apply to the
+          things you care about.
         </p>
-      </div>
+      </header>
 
-      <div class="mt-10 grid md:grid-cols-2 gap-6">
-        <div class="card bg-base-100 shadow-sm overflow-hidden">
-          <div class="rounded-t-[var(--radius-box)] overflow-hidden h-72">
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <a href="/works/topics/authoritarianism" class="topic-card">
+          <div class="topic-card-image">
             <Image
               src={authoritarianism}
               alt="Riot police in formation"
               widths={[400, 600]}
-              class="w-full h-full object-cover"
               loading="lazy"
             />
           </div>
-          <div class="card-body p-5">
-            <h3 class="card-title text-base font-heading">
-              Preventing & Defeating Authoritarianism
+          <div class="topic-card-body">
+            <h3 class="topic-card-title">
+              Preventing &amp; Defeating Authoritarianism
             </h3>
-            <p class="text-sm text-base-content/70">
-              How the entire framework is designed to make authoritarian capture structurally
-              impossible.
+            <p class="topic-card-summary">
+              How the entire framework is designed to make authoritarian capture
+              structurally impossible.
             </p>
-            <div class="card-actions justify-end">
-              <a href="/works/topics/authoritarianism" class="btn btn-sm btn-primary font-heading">
-                Read
-              </a>
-            </div>
+            <span class="topic-card-arrow">
+              <span>Read the topic</span>
+              <svg
+                width="22"
+                height="10"
+                viewBox="0 0 22 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M0 5h20M15 1l5 4-5 4" stroke-linecap="square" />
+              </svg>
+            </span>
           </div>
-        </div>
-        <div class="card bg-base-100 shadow-sm overflow-hidden">
-          <div class="rounded-t-[var(--radius-box)] overflow-hidden h-72">
+        </a>
+
+        <a href="/works/topics/wealth-inequality" class="topic-card">
+          <div class="topic-card-image">
             <Image
               src={inequality}
               alt="Homeless encampment on a city street"
               widths={[400, 600]}
-              class="w-full h-full object-cover object-bottom"
+              class="object-bottom"
               loading="lazy"
             />
           </div>
-          <div class="card-body p-5">
-            <h3 class="card-title text-base font-heading">Wealth Inequality & Oligarchy</h3>
-            <p class="text-sm text-base-content/70">
-              Why extreme wealth concentration is inherently incompatible with democracy, and what
-              governance designed to prevent it looks like.
+          <div class="topic-card-body">
+            <h3 class="topic-card-title">Wealth Inequality &amp; Oligarchy</h3>
+            <p class="topic-card-summary">
+              Why extreme wealth concentration is inherently incompatible with
+              democracy, and what governance designed to prevent it looks like.
             </p>
-            <div class="card-actions justify-end">
-              <a href="/works/topics/wealth-inequality" class="btn btn-sm btn-primary font-heading">
-                Read
-              </a>
-            </div>
+            <span class="topic-card-arrow">
+              <span>Read the topic</span>
+              <svg
+                width="22"
+                height="10"
+                viewBox="0 0 22 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M0 5h20M15 1l5 4-5 4" stroke-linecap="square" />
+              </svg>
+            </span>
           </div>
-        </div>
+        </a>
       </div>
 
-      <p class="mt-8 text-base-content/70">
-        Help us develop: Education, Immigration, Healthcare, Criminal Justice, Climate &
-        Environment, Labor & Work, Technology & Privacy, Money & Politics
+      <p class="mt-10 text-sm text-base-content/60">
+        Help us develop: Education, Immigration, Healthcare, Criminal Justice,
+        Climate &amp; Environment, Labor &amp; Work, Technology &amp; Privacy,
+        Money &amp; Politics.
       </p>
 
       <div class="mt-8">
-        <a href="/works" class="btn btn-outline btn-primary font-heading">Explore Democracy Works</a>
+        <a href="/works" class="arrow-link">
+          <span>Democracy Works</span>
+          <svg
+            width="24"
+            height="10"
+            viewBox="0 0 24 10"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M0 5h22M17 1l5 4-5 4" stroke-linecap="square" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -443,7 +560,14 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
     />
     <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
     <div class="container max-w-4xl relative">
-      <h2 class="text-3xl font-bold font-heading mb-8">Contribute</h2>
+      <header class="mb-10 lg:mb-14">
+        <p class="eyebrow section-eyebrow-primary mb-4">Open Source</p>
+        <h2
+          class="text-4xl lg:text-5xl font-bold font-heading tracking-tight leading-[1.05]"
+        >
+          Contribute
+        </h2>
+      </header>
       <div class="prose prose-lg max-w-none backdrop-blur-xs">
         <p>
           This is an open project. The principles are developed in the open and contributions are
@@ -460,19 +584,39 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         </p>
       </div>
       <div class="mt-10">
-        <a href="/contribute" class="btn btn-primary font-heading">How to contribute</a>
+        <a href="/contribute" class="arrow-link">
+          <span>How to contribute</span>
+          <svg
+            width="24"
+            height="10"
+            viewBox="0 0 24 10"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M0 5h22M17 1l5 4-5 4" stroke-linecap="square" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Stay Connected -->
-  <section class="py-20 lg:py-24">
+  <section class="py-20 lg:py-28">
     <div class="container max-w-4xl text-center">
-      <h2 class="text-3xl font-bold font-heading mb-8">Stay Connected</h2>
-      <p class="text-lg text-base-content/80 mb-10">
-        Join the mailing list to follow the project's development and be notified of new content and
-        opportunities to contribute.
-      </p>
+      <header class="mb-10 lg:mb-14">
+        <p class="eyebrow mb-4">Stay Connected</p>
+        <h2
+          class="text-4xl lg:text-5xl font-bold font-heading tracking-tight leading-[1.05] mb-5"
+        >
+          Join the mailing list
+        </h2>
+        <p class="text-lg text-base-content/70 leading-relaxed max-w-xl mx-auto">
+          Follow the project's development and get notified of new content and
+          opportunities to contribute.
+        </p>
+      </header>
       <form id="subscribe-form" class="flex flex-col items-center gap-4">
         <div class="join">
           <input
@@ -545,6 +689,134 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
   </script>
 
   <style>
+    /* Principles section background — static, faded top/bottom */
+    .principles-bg {
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #000 14%,
+        #000 65%,
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #000 14%,
+        #000 65%,
+        transparent 100%
+      );
+      object-position: center;
+    }
+
+    /* Hero scroll cue */
+    .hero-scroll-cue {
+      position: absolute;
+      left: 50%;
+      bottom: 2.25rem;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-family-heading);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--color-base-content);
+      opacity: 0.55;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+    .hero-scroll-cue:hover {
+      opacity: 1;
+    }
+    .hero-scroll-cue svg {
+      animation: scroll-cue-bounce 2.4s ease-in-out infinite;
+    }
+    @keyframes scroll-cue-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-scroll-cue svg {
+        animation: none;
+      }
+    }
+
+    /* Topic cards */
+    .topic-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-base-100);
+      border: 1px solid var(--color-base-300);
+      border-radius: var(--radius-box);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+    .topic-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-primary);
+      box-shadow: 0 24px 48px -24px rgba(34, 87, 122, 0.3);
+    }
+    .topic-card-image {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--color-base-200);
+    }
+    .topic-card-image :global(img) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+    }
+    .topic-card:hover .topic-card-image :global(img) {
+      transform: scale(1.05);
+    }
+    .topic-card-body {
+      padding: 1.5rem 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+    .topic-card-title {
+      font-family: var(--font-family-heading);
+      font-size: 1.375rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .topic-card-summary {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--color-base-content);
+      opacity: 0.7;
+      flex: 1;
+    }
+    .topic-card-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 0.5rem;
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.72rem;
+      color: var(--color-primary);
+      transition: gap 0.3s ease;
+    }
+    .topic-card:hover .topic-card-arrow {
+      gap: 1.1rem;
+    }
+
     .principle-card-link {
       text-decoration: none;
       color: inherit;
@@ -557,6 +829,18 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       border-style: solid;
       border-radius: var(--radius-box);
       background: var(--color-base-100);
+    }
+
+    /* Dark mode: tone down the image area so cards don't glow */
+    @media (prefers-color-scheme: dark) {
+      .principle-card-front > div:first-child::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(20, 20, 24, 0.4);
+        pointer-events: none;
+        z-index: 1;
+      }
     }
 
     .principle-card-inner {
