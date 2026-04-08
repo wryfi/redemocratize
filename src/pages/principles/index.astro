@@ -5,9 +5,27 @@ import { getCollection } from "astro:content"
 const principles = (await getCollection("principles")).sort((a, b) => a.data.number - b.data.number)
 const structural = principles.filter((p) => p.data.tier === "structural")
 const substantive = principles.filter((p) => p.data.tier === "substantive")
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Principles', url: '/principles' },
+]
+
+const definedTermSet = principles.map((p) => ({
+  name: p.data.title,
+  description: p.data.summary,
+  url: `/principles/${p.id}`,
+  termCode: String(p.data.number),
+}))
 ---
 
-<BaseLayout title="The Redemocratize Principles | Redemocratize">
+<BaseLayout
+  title="The Redemocratize Principles"
+  description="Fifteen design principles for democratic governance adequate to the 21st century, organized in two tiers: structural principles and substantive commitments."
+  collectionType="principles"
+  breadcrumbs={breadcrumbs}
+  definedTermSet={definedTermSet}
+>
   <div class="container py-8">
     <div class="max-w-4xl mx-auto">
       <header class="mb-12">

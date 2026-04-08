@@ -87,4 +87,4 @@ await Bun.write(filePath, frontmatter.join("\n"));
 console.log(`Created ${filePath}`);
 console.log(`  uid: ${uid}`);
 console.log(`  type: ${type}`);
-console.log(`  URL: /lab/${collection}/${slug}`);
+console.log(`  URL: /works/${collection}/${slug}`);

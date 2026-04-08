@@ -238,11 +238,14 @@ adaptive capacity, transparency, and epistemic pluralism.`,
     ],
   },
 ]
+
+const allFaqs = sections.flatMap((section) => section.faqs)
 ---
 
 <BaseLayout
-  title="FAQ — Redemocratize"
+  title="FAQ"
   description="Frequently asked questions about the Redemocratize project, its principles, and how to get involved."
+  faqs={allFaqs}
 >
   <section class="py-16 lg:py-24">
     <div class="container max-w-4xl">

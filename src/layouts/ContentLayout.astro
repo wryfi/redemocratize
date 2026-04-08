@@ -2,10 +2,33 @@
 import BaseLayout from './BaseLayout.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import MobileTableOfContents from '../components/MobileTableOfContents.astro';
-const { title, description, headings, backLink, backLabel } = Astro.props;
+const {
+  title,
+  description,
+  headings,
+  backLink,
+  backLabel,
+  image,
+  type,
+  author,
+  breadcrumbs,
+  collectionType,
+  definedTerm,
+  definedTermSet,
+} = Astro.props;
 ---
 
-<BaseLayout title={`${title} | Redemocratize`} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  type={type}
+  author={author}
+  breadcrumbs={breadcrumbs}
+  collectionType={collectionType}
+  definedTerm={definedTerm}
+  definedTermSet={definedTermSet}
+>
   {headings && headings.length > 0 && (
     <MobileTableOfContents headings={headings} />
   )}

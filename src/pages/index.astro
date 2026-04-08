@@ -76,12 +76,12 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
             Redemocratize
           </h1>
           <p class="text-base md:text-lg lg:text-xl italic text-base-content/70 mt-2 leading-snug">
-            Design Principles for Democratic Self-Governance
+            Envisioning Resilient Democracy
           </p>
           <p
             class="text-base md:text-lg lg:text-xl italic text-base-content/70 mt-0.5 leading-snug"
           >
-            Laboratory for Collaborative Democracy
+            In the Open, For the Living
           </p>
         </div>
       </div>
@@ -139,18 +139,21 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
             instead of structure, and provided no realistic mechanism for their own renewal.
           </p>
           <p>
-            The 21st century has compounded the crisis with threats no earlier framework could
-            have anticipated: industrialized manipulation of the information environment, AI-generated
+            The 21st century has compounded the crisis with threats no earlier framework could have
+            anticipated: industrialized manipulation of the information environment, AI-generated
             disinformation at scale, corporate-authoritarian alignment, automated surveillance, the
-            enclosure of shared wealth by a shrinking oligarchic class, and ecological breakdown that
-            existing systems have no structural capacity to address.
+            enclosure of shared wealth by a shrinking oligarchic class, and ecological breakdown
+            that existing systems have no structural capacity to address.
           </p>
           <p>
             The present moment does not demand that we abandon democracy. It demands that we build
             democratic institutions robust to the world we actually inhabit.
           </p>
           <div class="mt-8 not-prose">
-            <a href="/lab/articles/cumulative-crises" class="btn btn-outline btn-primary font-heading">
+            <a
+              href="/works/articles/cumulative-crises"
+              class="btn btn-outline btn-primary font-heading"
+            >
               Read more ...
             </a>
           </div>
@@ -176,10 +179,10 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
         <p>
           The framework addresses problems that existing constitutions were not designed for:
           algorithmic manipulation of public discourse, the concentration of epistemic power in
-          unaccountable private hands, automated systems making decisions about human rights, extreme
-          wealth that negates democratic self-governance, ecological limits that no political
-          arrangement can override, and institutional capture by actors who use the tools of
-          democracy to dismantle it.
+          unaccountable private hands, automated systems making decisions about human rights,
+          extreme wealth that negates democratic self-governance, ecological limits that no
+          political arrangement can override, and institutional capture by actors who use the tools
+          of democracy to dismantle it.
         </p>
         <p>
           The principles function as architectural elements around which resilient government
@@ -215,11 +218,11 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       <div class="hidden md:grid md:grid-cols-3 gap-5 lg:gap-6">
         {
           principles.map((p) => {
-            const isStructural = p.data.tier === "structural";
-            const label = isStructural ? "Structure" : "Protection";
-            const borderColor = isStructural ? "border-primary" : "border-accent";
-            const badgeColor = isStructural ? "badge-primary" : "badge-error";
-            const cardImg = principleImages[p.id];
+            const isStructural = p.data.tier === "structural"
+            const label = isStructural ? "Structure" : "Protection"
+            const borderColor = isStructural ? "border-primary" : "border-accent"
+            const badgeColor = isStructural ? "badge-primary" : "badge-error"
+            const cardImg = principleImages[p.id]
             return (
               <a href={`/principles/${p.id}`} class="principle-card-link">
                 <div class={`principle-card aspect-[3/4] lg:aspect-[5/4] ${borderColor}`}>
@@ -233,23 +236,27 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
                             widths={[300, 450]}
                             class="absolute inset-0 w-full h-full object-cover rounded-[calc(var(--radius-box)-2px)]"
                           />
-                          <div class="absolute inset-0 bg-black/30 rounded-[calc(var(--radius-box)-2px)]"></div>
+                          <div class="absolute inset-0 bg-black/30 rounded-[calc(var(--radius-box)-2px)]" />
                         </Fragment>
                       )}
-                      <span class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}>{label}</span>
-                      <h3 class={`text-lg lg:text-xl font-bold font-heading text-center mt-3 z-10 ${cardImg ? `principle-card-title-img${!isStructural ? " outline-accent" : ""}` : ""}`}>
+                      <span
+                        class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}
+                      >
+                        {label}
+                      </span>
+                      <h3
+                        class={`text-lg lg:text-xl font-bold font-heading text-center mt-3 z-10 ${cardImg ? `principle-card-title-img${!isStructural ? " outline-accent" : ""}` : ""}`}
+                      >
                         {p.data.title}
                       </h3>
                     </div>
                     <div class="principle-card-back">
-                      <p class="text-sm text-center leading-snug">
-                        {p.data.summary}
-                      </p>
+                      <p class="text-sm text-center leading-snug">{p.data.summary}</p>
                     </div>
                   </div>
                 </div>
               </a>
-            );
+            )
           })
         }
       </div>
@@ -258,11 +265,11 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       <div class="md:hidden carousel carousel-center w-full gap-4 px-2">
         {
           principles.map((p) => {
-            const isStructural = p.data.tier === "structural";
-            const label = isStructural ? "Structure" : "Protection";
-            const borderColor = isStructural ? "border-primary" : "border-accent";
-            const badgeColor = isStructural ? "badge-primary" : "badge-error";
-            const cardImg = principleImages[p.id];
+            const isStructural = p.data.tier === "structural"
+            const label = isStructural ? "Structure" : "Protection"
+            const borderColor = isStructural ? "border-primary" : "border-accent"
+            const badgeColor = isStructural ? "badge-primary" : "badge-error"
+            const cardImg = principleImages[p.id]
             return (
               <div class="carousel-item">
                 <div class={`principle-card w-56 aspect-[3/4] ${borderColor}`}>
@@ -276,27 +283,33 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
                           class="absolute inset-0 w-full h-full object-cover rounded-[calc(var(--radius-box)-2px)]"
                         />
                       )}
-                      <span class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}>{label}</span>
-                      <h3 class={`text-lg font-bold font-heading text-center mt-3 z-10 ${cardImg ? `principle-card-title-img${!isStructural ? " outline-accent" : ""}` : ""}`}>
+                      <span
+                        class={`badge badge-sm ${badgeColor} font-heading absolute top-3 left-3 z-10`}
+                      >
+                        {label}
+                      </span>
+                      <h3
+                        class={`text-lg font-bold font-heading text-center mt-3 z-10 ${cardImg ? `principle-card-title-img${!isStructural ? " outline-accent" : ""}` : ""}`}
+                      >
                         {p.data.title}
                       </h3>
                     </div>
                     <div class="principle-card-back">
-                      <p class="text-sm text-center leading-snug">
-                        {p.data.summary}
-                      </p>
-                      <a href={`/principles/${p.id}`} class="btn btn-sm btn-outline btn-primary font-heading mt-3">
+                      <p class="text-sm text-center leading-snug">{p.data.summary}</p>
+                      <a
+                        href={`/principles/${p.id}`}
+                        class="btn btn-sm btn-outline btn-primary font-heading mt-3"
+                      >
                         Read more
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
-            );
+            )
           })
         }
       </div>
-
     </div>
   </section>
 
@@ -307,7 +320,6 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       alt=""
       widths={[800, 1200, 1920]}
       class="parallax-bg absolute inset-0 w-full h-full object-cover"
-
       loading="lazy"
     />
     <div class="absolute inset-0 bg-base-100/88 dark:bg-base-100/90"></div>
@@ -327,7 +339,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       </div>
       <div class="mt-10">
         <a
-          href="/lab/articles/inherited-principles"
+          href="/works/articles/inherited-principles"
           class="btn btn-outline btn-primary font-heading"
         >
           Read about inherited principles
@@ -367,7 +379,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
               impossible.
             </p>
             <div class="card-actions justify-end">
-              <a href="/lab/topics/authoritarianism" class="btn btn-sm btn-primary font-heading">
+              <a href="/works/topics/authoritarianism" class="btn btn-sm btn-primary font-heading">
                 Read
               </a>
             </div>
@@ -390,7 +402,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
               governance designed to prevent it looks like.
             </p>
             <div class="card-actions justify-end">
-              <a href="/lab/topics/wealth-inequality" class="btn btn-sm btn-primary font-heading">
+              <a href="/works/topics/wealth-inequality" class="btn btn-sm btn-primary font-heading">
                 Read
               </a>
             </div>
@@ -399,12 +411,12 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       </div>
 
       <p class="mt-8 text-base-content/70">
-        Help us develop: Education, Immigration, Healthcare, Criminal Justice,
-        Climate & Environment, Labor & Work, Technology & Privacy, Money & Politics
+        Help us develop: Education, Immigration, Healthcare, Criminal Justice, Climate &
+        Environment, Labor & Work, Technology & Privacy, Money & Politics
       </p>
 
       <div class="mt-8">
-        <a href="/lab" class="btn btn-outline btn-primary font-heading">Explore the Lab</a>
+        <a href="/works" class="btn btn-outline btn-primary font-heading">Explore Democracy Works</a>
       </div>
     </div>
   </section>
@@ -432,8 +444,8 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
           examples from other democratic traditions. You can translate.
         </p>
         <p>
-          The preferred way to contribute is through git and the project's source repository, but
-          we also accept contributions through Google Docs. All content is licensed CC BY-SA.
+          The preferred way to contribute is through git and the project's source repository, but we
+          also accept contributions through Google Docs. All content is licensed CC BY-SA.
         </p>
       </div>
       <div class="mt-10">
@@ -461,9 +473,7 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
             pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
             title="Please enter a valid email address"
           />
-          <button type="submit" class="btn btn-primary join-item font-heading">
-            Subscribe
-          </button>
+          <button type="submit" class="btn btn-primary join-item font-heading">Subscribe</button>
         </div>
         <div class="cf-turnstile" data-sitekey="0x4AAAAAACwW6ap8A70BtVeG" data-theme="auto"></div>
       </form>
@@ -474,72 +484,68 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <script>
-    const form = document.getElementById("subscribe-form");
-    const emailInput = document.getElementById("subscribe-email");
-    const message = document.getElementById("subscribe-message");
+    const form = document.getElementById("subscribe-form")
+    const emailInput = document.getElementById("subscribe-email")
+    const message = document.getElementById("subscribe-message")
 
     form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = emailInput.value.trim();
-      if (!email) return;
+      e.preventDefault()
+      const email = emailInput.value.trim()
+      if (!email) return
 
-      const turnstileToken = form.querySelector("[name='cf-turnstile-response']")?.value;
+      const turnstileToken = form.querySelector("[name='cf-turnstile-response']")?.value
       if (!turnstileToken) {
-        message.textContent = "Please complete the verification.";
-        message.className = "mt-4 text-sm text-error";
-        return;
+        message.textContent = "Please complete the verification."
+        message.className = "mt-4 text-sm text-error"
+        return
       }
 
-      const button = form.querySelector("button");
-      button.disabled = true;
-      button.textContent = "Subscribing...";
-      message.classList.add("hidden");
+      const button = form.querySelector("button")
+      button.disabled = true
+      button.textContent = "Subscribing..."
+      message.classList.add("hidden")
 
       try {
         const res = await fetch("/api/subscribe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, turnstileToken }),
-        });
+        })
 
-        const data = await res.json().catch(() => null);
+        const data = await res.json().catch(() => null)
 
         if (res.ok) {
-          message.textContent =
-            "Check your email to confirm your subscription.";
-          message.className = "mt-4 text-sm text-success";
-          emailInput.value = "";
-          turnstile.reset();
+          message.textContent = "Check your email to confirm your subscription."
+          message.className = "mt-4 text-sm text-success"
+          emailInput.value = ""
+          turnstile.reset()
         } else {
-          message.textContent =
-            data?.message || "Something went wrong. Please try again.";
-          message.className = "mt-4 text-sm text-error";
+          message.textContent = data?.message || "Something went wrong. Please try again."
+          message.className = "mt-4 text-sm text-error"
         }
       } catch {
-        message.textContent =
-          "Could not reach the server. Please try again later.";
-        message.className = "mt-4 text-sm text-error";
+        message.textContent = "Could not reach the server. Please try again later."
+        message.className = "mt-4 text-sm text-error"
       } finally {
-        button.disabled = false;
-        button.textContent = "Subscribe";
+        button.disabled = false
+        button.textContent = "Subscribe"
       }
-    });
+    })
   </script>
-
 
   <style>
     .principle-card-title-img {
       color: white;
-      --outline-color: #22577A;
+      --outline-color: #22577a;
       text-shadow:
         -1px -1px 0 var(--outline-color),
-         1px -1px 0 var(--outline-color),
-        -1px  1px 0 var(--outline-color),
-         1px  1px 0 var(--outline-color),
-         0   -1px 0 var(--outline-color),
-         0    1px 0 var(--outline-color),
-        -1px  0   0 var(--outline-color),
-         1px  0   0 var(--outline-color);
+        1px -1px 0 var(--outline-color),
+        -1px 1px 0 var(--outline-color),
+        1px 1px 0 var(--outline-color),
+        0 -1px 0 var(--outline-color),
+        0 1px 0 var(--outline-color),
+        -1px 0 0 var(--outline-color),
+        1px 0 0 var(--outline-color);
     }
 
     .principle-card-title-img.outline-accent {
@@ -616,55 +622,55 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
     if (window.matchMedia("(hover: none)").matches) {
       document.querySelectorAll(".principle-card").forEach((card) => {
         card.addEventListener("click", (e) => {
-          if (e.target.closest("a")) return;
-          card.classList.toggle("flipped");
-        });
-      });
+          if (e.target.closest("a")) return
+          card.classList.toggle("flipped")
+        })
+      })
     }
   </script>
 
   <script>
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
     if (!isMobile) {
-      const bgImages = document.querySelectorAll(".parallax-bg");
-      const windowImages = document.querySelectorAll(".parallax-window-img");
-      let ticking = false;
+      const bgImages = document.querySelectorAll(".parallax-bg")
+      const windowImages = document.querySelectorAll(".parallax-window-img")
+      let ticking = false
 
       function updateParallax() {
-        const vh = window.innerHeight;
+        const vh = window.innerHeight
 
         bgImages.forEach((img) => {
-          const section = img.closest("section");
-          const rect = section.getBoundingClientRect();
-          const progress = (rect.top + rect.height) / (vh + rect.height);
-          const position = 30 + progress * 40;
-          img.style.objectPosition = `center ${position}%`;
-        });
+          const section = img.closest("section")
+          const rect = section.getBoundingClientRect()
+          const progress = (rect.top + rect.height) / (vh + rect.height)
+          const position = 30 + progress * 40
+          img.style.objectPosition = `center ${position}%`
+        })
 
         windowImages.forEach((img) => {
-          const container = img.parentElement;
-          const rect = container.getBoundingClientRect();
-          const containerHeight = rect.height;
-          const imgHeight = img.offsetHeight;
-          const travel = imgHeight - containerHeight;
-          const progress = (rect.top + containerHeight) / (vh + containerHeight);
-          const offset = -(1 - progress) * travel;
-          img.style.transform = `translateY(${offset}px)`;
-        });
+          const container = img.parentElement
+          const rect = container.getBoundingClientRect()
+          const containerHeight = rect.height
+          const imgHeight = img.offsetHeight
+          const travel = imgHeight - containerHeight
+          const progress = (rect.top + containerHeight) / (vh + containerHeight)
+          const offset = -(1 - progress) * travel
+          img.style.transform = `translateY(${offset}px)`
+        })
       }
 
-      updateParallax();
+      updateParallax()
 
       window.addEventListener("scroll", () => {
         if (!ticking) {
           requestAnimationFrame(() => {
-            updateParallax();
-            ticking = false;
-          });
-          ticking = true;
+            updateParallax()
+            ticking = false
+          })
+          ticking = true
         }
-      });
+      })
     }
   </script>
 </BaseLayout>

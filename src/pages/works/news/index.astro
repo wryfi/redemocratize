@@ -12,7 +12,7 @@ const collectionLabel = {
   news: 'news',
 };
 
-const currentCollection = 'models';
+const currentCollection = 'news';
 
 let entries = [];
 try {
@@ -29,24 +29,35 @@ const unpinned = entries
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 const items = [...pinned, ...unpinned];
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Works', url: '/works' },
+  { name: 'News', url: '/works/news' },
+];
 ---
 
-<BaseLayout title="Models | Redemocratize Laboratory">
+<BaseLayout
+  title="News | Democracy Works"
+  description="Project updates and news about the development of the Redemocratize framework."
+  collectionType="news"
+  breadcrumbs={breadcrumbs}
+>
   <div class="bg-base-200 min-h-screen">
   <div class="container py-8">
     <div class="max-w-4xl mx-auto">
       <header class="mb-12">
-        <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-4">Redemocratize Laboratory</h1>
+        <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-4">Democracy Works</h1>
         <p class="text-lg text-base-content/70">
           Topics, proposals, models, articles, and news from the Redemocratize project.
         </p>
       </header>
 
       <div class="flex flex-wrap gap-2 mb-10">
-        <a href="/lab" class="btn btn-sm btn-outline">All</a>
+        <a href="/works" class="btn btn-sm btn-outline">All</a>
         {COLLECTIONS.map(name => (
           <a
-            href={`/lab/${name}`}
+            href={`/works/${name}`}
             class={`btn btn-sm ${name === currentCollection ? 'btn-primary' : 'btn-outline'}`}
           >
             {collectionLabel[name]}
@@ -62,7 +73,7 @@ const items = [...pinned, ...unpinned];
 
       {items.length === 0 && (
         <div class="text-center py-16 text-base-content/50">
-          <p class="text-lg">No models yet. Check back soon.</p>
+          <p class="text-lg">No news yet. Check back soon.</p>
         </div>
       )}
     </div>

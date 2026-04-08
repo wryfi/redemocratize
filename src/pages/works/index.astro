@@ -35,14 +35,24 @@ const unpinned = allItems
 const items = [...pinned, ...unpinned];
 
 const currentFilter = 'all';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Works', url: '/works' },
+];
 ---
 
-<BaseLayout title="Redemocratize Laboratory">
+<BaseLayout
+  title="Democracy Works"
+  description="Essays, institutional proposals, comparative models, and topic analysis applying the Redemocratize principles."
+  collectionType="works"
+  breadcrumbs={breadcrumbs}
+>
   <div class="bg-base-200 min-h-screen">
   <div class="container py-8">
     <div class="max-w-4xl mx-auto">
       <header class="mb-12">
-        <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-4">Redemocratize Laboratory</h1>
+        <h1 class="text-4xl lg:text-5xl font-bold font-heading mb-4">Democracy Works</h1>
         <p class="text-lg text-base-content/70">
           Topics, proposals, models, articles, and news from the Redemocratize project.
         </p>
@@ -50,9 +60,9 @@ const currentFilter = 'all';
 
       <!-- Filters -->
       <div class="flex flex-wrap gap-2 mb-10">
-        <a href="/lab" class="btn btn-sm btn-primary">All</a>
+        <a href="/works" class="btn btn-sm btn-primary">All</a>
         {COLLECTIONS.map(name => (
-          <a href={`/lab/${name}`} class="btn btn-sm btn-outline">
+          <a href={`/works/${name}`} class="btn btn-sm btn-outline">
             {collectionLabel[name]}
           </a>
         ))}

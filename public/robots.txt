@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /badge-preview
+
+Sitemap: https://redemocratize.org/sitemap-index.xml

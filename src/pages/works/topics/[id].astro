@@ -15,14 +15,24 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Works', url: '/works' },
+  { name: 'Topics', url: '/works/topics' },
+  { name: entry.data.title, url: `/works/topics/${entry.id}` },
+];
 ---
 
 <ContentLayout
   title={entry.data.title}
   description={entry.data.summary}
   headings={headings}
-  backLink="/lab"
-  backLabel="Back to Lab"
+  backLink="/works"
+  backLabel="Back to Works"
+  type="article"
+  author={entry.data.author}
+  breadcrumbs={breadcrumbs}
 >
   <ContentMeta
     type="topic"

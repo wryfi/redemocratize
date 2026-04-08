@@ -11,14 +11,14 @@ let registry = new Map();
 // Document metadata cache
 let documentMeta = new Map();
 
-// Collections that live under /labs/ in the URL structure
-const LABS_COLLECTIONS = new Set(['articles', 'topics', 'proposals', 'models', 'news']);
+// Collections that live under /works/ in the URL structure
+const WORKS_COLLECTIONS = new Set(['articles', 'topics', 'proposals', 'models', 'news']);
 
 /**
  * Get the URL base path for a collection
  */
 function collectionBasePath(collection) {
-  return LABS_COLLECTIONS.has(collection) ? `/lab/${collection}` : `/${collection}`;
+  return WORKS_COLLECTIONS.has(collection) ? `/works/${collection}` : `/${collection}`;
 }
 
 /**
