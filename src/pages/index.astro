@@ -708,6 +708,20 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       object-position: center;
     }
 
+    /* Reserve vertical space so the content (centered via flex) never
+       reaches the bottom edge and collides with the absolute-positioned
+       scroll cue on short viewports (iPhone). */
+    .hero-section {
+      padding-top: 2.5rem;
+      padding-bottom: 6rem;
+    }
+    @media (min-width: 1024px) {
+      .hero-section {
+        padding-top: 3.5rem;
+        padding-bottom: 7rem;
+      }
+    }
+
     /* Hero scroll cue */
     .hero-scroll-cue {
       position: absolute;
@@ -820,6 +834,8 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
     .principle-card-link {
       text-decoration: none;
       color: inherit;
+      display: block;
+      height: 100%;
     }
 
     .principle-card {
@@ -829,6 +845,12 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       border-style: solid;
       border-radius: var(--radius-box);
       background: var(--color-base-100);
+      /* Fill the flex/grid cell. In the mobile carousel the items are
+         stretched to the tallest card's height; without this the card
+         sizes to its intrinsic content and leaves a band of bg-base-100
+         between the label and the bottom border. */
+      height: 100%;
+      overflow: hidden;
     }
 
     /* Dark mode: tone down the image area so cards don't glow */
@@ -860,6 +882,11 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
     .principle-card-inner {
       position: relative;
       width: 100%;
+      /* Fill the card: the carousel stretches all items to the tallest
+         card's height, so without this the inner collapses to its
+         intrinsic content size and exposes the card's bg-base-100
+         between the label and the bottom border. */
+      height: 100%;
       transition: transform 0.5s ease;
       transform-style: preserve-3d;
     }
@@ -874,8 +901,13 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       backface-visibility: hidden;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      border-radius: calc(var(--radius-box) - 2px);
+      height: 100%;
+    }
+    /* Image area grows to consume any extra card height; the label
+       (last child) stays pinned to the bottom edge. */
+    .principle-card-front > div:first-child {
+      flex: 1 1 auto;
+      min-height: 0;
     }
 
     .principle-card-back {
