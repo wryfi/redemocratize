@@ -52,6 +52,8 @@ try {
 const principles = (await getCollection("principles")).sort((a, b) => a.data.number - b.data.number)
 const structural = principles.filter((p) => p.data.tier === "structural")
 const substantive = principles.filter((p) => p.data.tier === "substantive")
+
+const isDev = import.meta.env.DEV
 ---
 
 <BaseLayout>
@@ -625,20 +627,29 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
             placeholder="your@email.com"
             class="input join-item w-64"
             required
-            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-            title="Please enter a valid email address"
+            pattern={".+@.+\\..+"}
+            title="Please enter a valid email address including a domain (e.g. you@example.com)"
           />
           <button type="submit" class="btn btn-primary join-item font-heading">Subscribe</button>
         </div>
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAACwW6ap8A70BtVeG" data-theme="auto"></div>
+        {!isDev && (
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAACwW6ap8A70BtVeG" data-theme="auto"></div>
+        )}
+        {isDev && (
+          <div class="alert alert-warning max-w-md">
+            <span>Dev mode: Turnstile and form submission are disabled. Submissions will log to the console instead of posting.</span>
+          </div>
+        )}
       </form>
       <p id="subscribe-message" class="mt-4 text-sm hidden"></p>
     </div>
   </section>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {!isDev && (
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  )}
 
-  <script>
+  <script define:vars={{ isDev }}>
     const form = document.getElementById("subscribe-form")
     const emailInput = document.getElementById("subscribe-email")
     const message = document.getElementById("subscribe-message")
@@ -647,6 +658,15 @@ const substantive = principles.filter((p) => p.data.tier === "substantive")
       e.preventDefault()
       const email = emailInput.value.trim()
       if (!email) return
+
+      if (isDev) {
+        console.log("[dev] subscribe form submission (not sent):", { email })
+        message.textContent = "Dev mode: submission logged to console, not sent."
+        message.className = "mt-4 text-sm text-warning"
+        message.classList.remove("hidden")
+        emailInput.value = ""
+        return
+      }
 
       const turnstileToken = form.querySelector("[name='cf-turnstile-response']")?.value
       if (!turnstileToken) {
