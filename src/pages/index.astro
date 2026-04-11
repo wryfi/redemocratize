@@ -96,16 +96,14 @@ const isDev = import.meta.env.DEV
 
       <!-- Manifesto -->
       <div class="text-base md:text-xl lg:text-2xl space-y-3 lg:space-y-4 text-base-content/85">
-        <p>
-          Democratic governance is under assault everywhere, but
-          <em>democracy</em> is not the problem.
-        </p>
-        <p>The problem is institutional vulnerability to capture.</p>
-        <p>We know what's breaking. The harder question is: how do we rebuild?</p>
-        <p>Constitutions designed to resist change cannot resist capture.</p>
-        <p>Redemocratize offers resilient principles for the world we actually inhabit.</p>
-        <p class="font-semibold text-base-content">
-          The answer to capture is not resistance. It's better design.
+        <p class="manifesto-line" style="--line-index: 0">Thomas Jefferson wrote that <em>Earth belongs always to the living.</em></p>
+        <p class="manifesto-line" style="--line-index: 1">Yet most of humanity lives under social contracts dictated by dead men.</p>
+        <p class="manifesto-line" style="--line-index: 2">Governments that resist change inevitably collapse.</p>
+        <p class="manifesto-line" style="--line-index: 3">With collapse comes opportunity for rebirth.</p>
+        <p class="manifesto-line" style="--line-index: 4">When that moment arrives, will democracy be ready?</p>
+        <p class="manifesto-line" style="--line-index: 5">We can't win playing by dead men's rules. But we can change the game.</p>
+        <p class="manifesto-line font-semibold text-base-content" style="--line-index: 6">
+          Join us in designing the next great democracy — for the living.
         </p>
       </div>
     </div>
@@ -130,14 +128,14 @@ const isDev = import.meta.env.DEV
   <section id="the-problem" class="py-20 lg:py-28 bg-base-200">
     <div class="container max-w-5xl">
       <header class="mb-12 lg:mb-16">
-        <p class="eyebrow section-eyebrow-error mb-4">The Diagnosis</p>
+        <p class="eyebrow section-eyebrow-error mb-4">Diagnosing</p>
         <h2
           class="text-4xl lg:text-5xl font-bold font-heading tracking-tight leading-[1.05]"
         >
           The Problem
         </h2>
       </header>
-      <div class="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-14">
+      <div class="flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-14">
         <!-- Window -->
         <div class="lg:w-2/5 shrink-0">
           <div class="rounded-lg overflow-hidden shadow-lg aspect-[3/4]">
@@ -153,32 +151,36 @@ const isDev = import.meta.env.DEV
         <!-- Text -->
         <div class="prose prose-lg max-w-none">
           <p>
-            The crisis is not one failure. It is an accumulation, with each structural breakdown
-            creating the conditions for the next, built on constitutional designs that were never
-            able to correct themselves.
+            Across the democratic world, reform movements fight for change within
+            systems that were designed to resist it. They do essential work, but the
+            deck is stacked against them.
           </p>
           <p>
-            Across democracies, concentrated wealth has moved into structures that founders left
-            unguarded, using the tools of democratic governance to ensure it cannot be dislodged.
-            Amendment processes were made deliberately difficult, protecting the advantages of those
-            who demanded them. These failures are neither accident nor conspiracy. They are the
-            predictable result of constitutional designs that assumed good faith, relied on norms
-            instead of structure, and provided no realistic mechanism for their own renewal.
+            Those who benefit most from the legacy of colonial privilege inherited
+            rules written to entrench their power, and that asymmetry compounds over
+            time. Reform from within this system can only win incremental concessions,
+            extracted through enormous effort, easily rolled back.
           </p>
           <p>
-            The 21st century has compounded the crisis with threats no earlier framework could have
-            anticipated: industrialized manipulation of the information environment, AI-generated
-            disinformation at scale, corporate-authoritarian alignment, automated surveillance, the
-            enclosure of shared wealth by a shrinking oligarchic class, and ecological breakdown
-            that existing systems have no structural capacity to address.
+            This is why reform alone is not enough. The failures compound.
+            Constitutional frameworks that provide no mechanism for their own renewal
+            have consumed their corrective capacity. Each breakdown creates the
+            conditions for the next. The loop tightens with every turn.
           </p>
-          <p>
-            The present moment does not demand that we abandon democracy. It demands that we build
-            democratic institutions robust to the world we actually inhabit.
+          <div class="fuller-quote not-prose">
+            <p class="fuller-quote-lead">Buckminster Fuller taught us:</p>
+            <blockquote class="fuller-quote-text">
+              "You never change things by fighting the existing reality.
+              To change something, build a new model that makes the
+              existing model obsolete."
+            </blockquote>
+          </div>
+          <p class="mt-6 text-lg font-semibold lg:text-xl">
+            Redemocratize is building a new model for democracy.
           </p>
           <div class="mt-8 not-prose">
             <a href="/works/articles/cumulative-crises" class="arrow-link">
-              <span>The cumulative crises</span>
+              <span>Cumulative Crises in the U.S.</span>
               <svg
                 width="24"
                 height="10"
@@ -217,32 +219,45 @@ const isDev = import.meta.env.DEV
         </h2>
       </header>
       <div class="prose prose-lg max-w-none backdrop-blur-xs">
-        <p>Redemocratize articulates capture-resistant design principles for modern democracy.</p>
         <p>
-          The framework addresses problems that existing constitutions were not designed for:
-          algorithmic manipulation of public discourse, the concentration of epistemic power in
-          unaccountable private hands, automated systems making decisions about human rights,
-          extreme wealth that negates democratic self-governance, ecological limits that no
-          political arrangement can override, and institutional capture by actors who use the tools
-          of democracy to dismantle it.
+          Redemocratize is not a political campaign, a movement, or a policy
+          platform.
         </p>
         <p>
-          The principles function as architectural elements around which resilient government
-          institutions may be constructed. We evaluate institutional forms by how well they serve
-          the principles, not by how closely they resemble what exists.
+          We start from design principles that extend the best ideas
+          of the Enlightenment to the problems of modern life.
         </p>
         <p>
-          We invite collaborators to apply these design principles to specific governance challenges
-          and the creation of new democratic forms, and provide infrastructure and support for the
-          work of building functional democracy.
+          These principles address threats that no existing constitution was
+          designed for, from algorithmic manipulation of public discourse to the
+          concentration of unchecked power in private hands. These are not
+          theoretical risks. They are active strategies being used to subvert
+          the will of the people right now.
         </p>
         <p>
-          This is closer to an open-source software project than a political campaign. The
-          principles are developed in the open. Contributions are encouraged. Everything is
-          versioned, transparent, and revisable — because a project advocating for adaptive
-          governance must first practice it.
+          The principles are the architecture of a resilient twenty-first
+          century democracy. They serve as building blocks upon which living
+          democracy can be constructed. We evaluate institutional designs by
+          how well they serve the principles, not by how closely they resemble
+          what exists.
         </p>
-        <p>We are just getting started, but we are building in the open.</p>
+        <p>
+          We invite contributors to challenge, refine, and extend this
+          architecture, and use it to solve specific governance challenges
+          and imagine new democratic forms. We provide the tools and the
+          space for this creative collaboration.
+        </p>
+        <p>
+          Redemocratize works like an open-source project or an open
+          access journal. The principles are developed in the open. Contributions
+          are encouraged. Everything is versioned, transparent, and revisable
+          — because a project advocating for adaptive governance must first
+          practice it.
+        </p>
+        <p>
+          We are just getting started, and the present moment has never had
+          more to teach us.
+        </p>
         <p>
           You are invited to <a href="/contribute">join us</a> in ensuring that government of the people,
           by the people, for the people does not perish from the earth.
@@ -267,7 +282,7 @@ const isDev = import.meta.env.DEV
         <h2
           class="text-4xl lg:text-6xl font-bold font-heading tracking-tight leading-[1] mb-6"
         >
-          The Redemocratize Principles
+          Redemocratize Principles
         </h2>
         <p class="text-lg lg:text-xl text-base-content/70 leading-relaxed">
           Read them as a system, not a list. Five structural principles shape how
@@ -411,10 +426,11 @@ const isDev = import.meta.env.DEV
       </header>
       <div class="prose prose-lg max-w-none text-black dark:text-base-content backdrop-blur-xs">
         <p>
-          This project is not nihilistic about existing democratic traditions. Many principles
-          embedded in those traditions are sound — due process, freedom of conscience, separation of
-          powers, civilian control of the military, the rejection of hereditary privilege. The
-          crisis is that institutional implementations have failed these principles.
+          Many principles embedded in existing democratic traditions are sound:
+          due process, freedom of conscience, separation of powers, civilian
+          control of the military, the rejection of hereditary privilege, and
+          more. The crisis is not with these principles. It is with institutional
+          designs that have failed to protect them.
         </p>
         <p>
           We claim these traditions more seriously than those defending the status quo. We insist on
@@ -740,6 +756,63 @@ const isDev = import.meta.env.DEV
         padding-top: 3.5rem;
         padding-bottom: 7rem;
       }
+    }
+
+    /* Manifesto fade-in */
+    .manifesto-line {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: manifesto-fade-in 0.8s ease-out forwards;
+      animation-delay: calc(var(--line-index) * 2s + 0.5s);
+    }
+    @keyframes manifesto-fade-in {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .manifesto-line {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+
+    /* Fuller quote */
+    .fuller-quote {
+      position: relative;
+      margin: 2rem 0;
+      padding: 1.75rem 2rem 1.75rem 2.25rem;
+      border-left: 4px solid var(--color-primary);
+      background: linear-gradient(
+        135deg,
+        oklch(from var(--color-primary) l c h / 0.06),
+        oklch(from var(--color-secondary) l c h / 0.04)
+      );
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+    .fuller-quote-text {
+      font-family: var(--font-family-heading);
+      font-size: 1.25rem;
+      line-height: 1.5;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--color-base-content);
+    }
+    @media (min-width: 1024px) {
+      .fuller-quote-text {
+        font-size: 1.5rem;
+      }
+    }
+    .fuller-quote-lead {
+      font-family: var(--font-family-heading);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      margin-bottom: 0.75rem;
     }
 
     /* Hero scroll cue */
